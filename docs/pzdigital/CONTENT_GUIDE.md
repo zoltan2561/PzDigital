@@ -14,6 +14,12 @@
 3. `featured_on_home=true` esetén a `sort_order` szerinti első három projekt kerül a főoldalra. A teljes listán minden publikálható referencia megjelenik.
 4. Ne adj meg feltételezett technológiát, évszámot, eredményszázalékot vagy ügyfélidézetet.
 
+### Főoldali kiemelt referencia
+
+- A `featured_project_slug` az elsődleges főoldali projektet választja ki a publikált és `featured_on_home=true` referenciák közül.
+- Hiányzó, hibás vagy visszavont slug esetén a `sort_order` szerinti első publikálható kiemelt referencia a visszaesés; üres listán a teljes főoldali referenciaszekció rejtve marad.
+- A kiemelt kártya a közös projektadatokból épül. A `showcase_headline` opcionális; feladat- és megoldásszöveget a `case_study_sections` adataiból kap, ezért külön GyrosCity-specifikus nézet nem szükséges.
+
 ## Státuszok és kapcsolatok
 
 - `publication_status`: `draft` vagy `published`; a draft szerveroldalon kiszűrésre kerül.
@@ -21,3 +27,9 @@
 - `lifecycle_status`: `preview`, `pilot` vagy `available`; ez nem azonos a publikálhatósággal.
 - FoodShop–GyrosCity: a FoodShop `related_projects` eleme `project_slug=gyroscity`, `relationship=origin`. A GyrosCity URL-je kizárólag a referencia `public_url` mezője.
 - Minden képet a projekt `public/media/pzdigital` könyvtárából szolgáljunk ki, és egészítsük ki konkrét alt szöveggel, forrás- és viewport-adattal a médiamanifesztben.
+
+## Kapcsolatfelvételi kategóriák
+
+- Az általános projektkategóriák a `inquiry_interests` konfigurációból, a termékopciók kizárólag a publikálható termékkatalógusból származnak.
+- A termék- és referenciakontextust továbbra is külön, szerveroldalon ellenőrzött slug őrzi. Ismeretlen query-paraméter nem választ ki kategóriát.
+- Új weboldal, üzleti rendszer, meglévő rendszer továbbfejlesztése és más egyedi fejlesztés esetén rövid projektleírás kötelező; a meglévő CSRF-, honeypot-, rate-limit- és deduplikációs folyamat változatlan.

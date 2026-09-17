@@ -1,6 +1,6 @@
-@props(['project'])
+@props(['project', 'compact' => false])
 
-<article class="project-card accent-{{ $project['accent'] }}" data-project-card="{{ $project['slug'] }}">
+<article @class(['project-card', 'project-card-compact' => $compact, 'accent-'.$project['accent']]) data-project-card="{{ $project['slug'] }}">
     <a class="project-card-image" href="{{ route('projects.show', $project['slug']) }}" aria-label="{{ $project['name'] }} projekt megtekintése">
         <img src="{{ $project['media'][0]['card_src'] ?? $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="{{ isset($project['media'][0]['card_src']) ? 900 : 1000 }}" loading="lazy">
         <span>Referenciamunka</span>

@@ -6,7 +6,7 @@
 @section('content')
 <section class="contact-hero">
     <div class="container contact-grid">
-        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Beszéljünk a folyamatról, amin egyszerűsítenél.</h1><p>Írd meg röviden, mivel foglalkozol és hol keletkezik a legtöbb pluszmunka. Az első válaszban a következő tisztázandó lépéseket foglaljuk össze.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><ol><li>Rögzítjük és átnézzük a megkeresést.</li><li>E-mailben pontosító kérdéseket küldünk.</li><li>Indokolt esetben bemutatót vagy egyeztetést szervezünk.</li></ol></div></div>
+        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd le a célodat és azt, mi nem működik most jól. Nem szükséges kész műszaki specifikációval érkezned.</p><p class="contact-supporting">Új projekt és meglévő rendszer továbbfejlesztése kapcsán is egyeztethetünk, a tényleges feladat és a vállalható keretek áttekintésével.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük a megkeresést, és egyeztetjük, mi lehet a következő lépés. Ha pontosítás szükséges, célzott kérdésekkel jelentkezünk.</p></div></div>
         <div class="form-card">
             <div class="form-heading"><span>Projekt- és bemutatókérés</span><p>A *-gal jelölt mezők kötelezők.</p></div>
             @if($errors->any())<div class="form-alert" role="alert"><strong>A beküldést nem tudtuk feldolgozni.</strong><p>Kérjük, ellenőrizd a megjelölt mezőket.</p>@error('form')<p>{{ $message }}</p>@enderror</div>@endif
@@ -30,9 +30,16 @@
                     <label for="interest_type">Miben segíthetünk? *</label>
                     <select id="interest_type" name="interest_type" required data-interest>
                         <option value="">Válassz egy lehetőséget</option>
-                        @foreach($products as $product)
-                            <option value="{{ $product['slug'] }}" data-product-option="{{ $product['slug'] }}" @selected(old('interest_type', $selectedInterest) === $product['slug'])>{{ $product['name'] }} — {{ $product['lifecycle_status'] === 'preview' ? 'egyeztetés' : 'bemutató' }}</option>
-                        @endforeach
+                        <optgroup label="Projekt típusa">
+                            @foreach($inquiryInterests as $value => $label)
+                                <option value="{{ $value }}" @selected(old('interest_type', $selectedInterest) === $value)>{{ $label }}</option>
+                            @endforeach
+                        </optgroup>
+                        <optgroup label="Saját termék">
+                            @foreach($products as $product)
+                                <option value="{{ $product['slug'] }}" data-product-option="{{ $product['slug'] }}" @selected(old('interest_type', $selectedInterest) === $product['slug'])>{{ $product['name'] }} — {{ $product['lifecycle_status'] === 'preview' ? 'egyeztetés' : 'bemutató' }}</option>
+                            @endforeach
+                        </optgroup>
                         @if($activeProject && $projects->has($activeProject))
                             <option value="project_reference" data-project-option="{{ $activeProject }}" @selected(old('interest_type', $selectedInterest) === 'project_reference')>{{ $projects[$activeProject]['name'] }} projekthez hasonló fejlesztés</option>
                         @endif
@@ -43,7 +50,7 @@
                     @error('product_slug')<span class="field-error">{{ $message }}</span>@enderror
                     @error('project_slug')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
-                <div class="field"><label for="message">Rövid leírás <span>(egyedi fejlesztésnél kötelező)</span></label><textarea id="message" name="message" rows="5" maxlength="3000" placeholder="Mivel foglalkozol, és melyik folyamat okozza a legtöbb pluszmunkát?">{{ old('message') }}</textarea>@error('message')<span class="field-error">{{ $message }}</span>@enderror</div>
+                <div class="field"><label for="message">Rövid leírás <span>(projektmegkeresésnél kötelező)</span></label><textarea id="message" name="message" rows="5" maxlength="3000" placeholder="Mi a célod, és mi nem működik most jól?">{{ old('message') }}</textarea>@error('message')<span class="field-error">{{ $message }}</span>@enderror</div>
                 <p class="privacy-note">A megadott adatokat a kapcsolatfelvétel kezelésére használjuk. Az éles indulás előtt a végleges <a href="{{ route('privacy') }}">adatkezelési tájékoztató</a> jóváhagyása szükséges.</p>
                 <button class="button button-full" type="submit" data-submit>Megkeresés elküldése <span aria-hidden="true">→</span></button>
             </form>

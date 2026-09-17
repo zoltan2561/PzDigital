@@ -15,6 +15,8 @@ A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.ph
 
 Az űrlap CSRF-védett, rate limitált és honeypot mezőt használ. A rekord mentése után, commitot követően kerül queue-ba az értesítés. A címzettet kizárólag a `PZDIGITAL_CONTACT_EMAIL` környezeti változó adja. Sikertelen vagy függő értesítések PII nélküli listája:
 
+A szolgáltatási érdeklődési kategóriák a `pzdigital.inquiry_interests` konfigurációból, a termék- és referenciaválasztás pedig a publikálható katalógusból épül. Az ismeretlen kategória vagy slug nem kerülhet a mentett rekordba.
+
 ```powershell
 php artisan inquiries:notifications
 php artisan inquiries:notifications --retry=AZ_INQUIRY_UUID

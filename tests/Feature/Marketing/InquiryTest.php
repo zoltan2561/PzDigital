@@ -60,6 +60,31 @@ class InquiryTest extends TestCase
         Bus::assertNothingDispatched();
     }
 
+    public function test_existing_system_interest_is_selectable_validated_and_persisted(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+
+        $this->get('/kapcsolat?erdeklodes=existing_system')
+            ->assertOk()
+            ->assertSee('Meglévő rendszer továbbfejlesztése')
+            ->assertSee('value="existing_system" selected', false);
+
+        $this->post('/kapcsolat', [
+            ...$this->validPayload($token),
+            'interest_type' => 'existing_system',
+            'product_slug' => null,
+            'message' => 'A meglévő belső rendszer egy folyamatát szeretnénk továbbfejleszteni.',
+        ])->assertRedirect('/koszonjuk');
+
+        $this->assertDatabaseHas('inquiries', [
+            'submission_token' => $token,
+            'interest_type' => 'existing_system',
+            'product_slug' => null,
+        ]);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+    }
+
     public function test_reference_context_is_validated_and_persisted(): void
     {
         Bus::fake();

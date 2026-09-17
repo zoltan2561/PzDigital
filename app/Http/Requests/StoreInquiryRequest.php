@@ -19,6 +19,8 @@ class StoreInquiryRequest extends FormRequest
         $catalog = app(MarketingCatalog::class);
         $publishedProducts = $catalog->products()->keys()->all();
         $publishedProjects = $catalog->projects()->keys()->all();
+        $inquiryInterests = $catalog->inquiryInterests()->keys()->all();
+        $projectInterests = ['website', 'business_system', 'existing_system', 'custom_development'];
 
         return [
             'submission_token' => ['required', 'uuid'],
@@ -26,10 +28,10 @@ class StoreInquiryRequest extends FormRequest
             'email' => ['required', 'email:rfc', 'max:254'],
             'company' => ['nullable', 'string', 'max:160'],
             'phone' => ['nullable', 'string', 'max:40'],
-            'interest_type' => ['required', Rule::in([...$publishedProducts, 'project_reference', 'custom_development', 'other'])],
+            'interest_type' => ['required', Rule::in([...$publishedProducts, 'project_reference', ...$inquiryInterests])],
             'product_slug' => ['nullable', Rule::in($publishedProducts)],
             'project_slug' => ['nullable', Rule::in($publishedProjects)],
-            'message' => ['nullable', 'string', 'max:3000', Rule::requiredIf($this->input('interest_type') === 'custom_development')],
+            'message' => ['nullable', 'string', 'max:3000', Rule::requiredIf(in_array($this->input('interest_type'), $projectInterests, true))],
             'source_path' => ['nullable', 'string', 'max:180', 'regex:/^\/[A-Za-z0-9\-\/_]*$/'],
             'utm_source' => ['nullable', 'string', 'max:100', 'regex:/^[\pL\pN ._\-]+$/u'],
             'utm_medium' => ['nullable', 'string', 'max:100', 'regex:/^[\pL\pN ._\-]+$/u'],

@@ -30,6 +30,28 @@ class MarketingCatalog
             ->take($limit);
     }
 
+    public function homepageProjects(int $limit = 3): Collection
+    {
+        $projects = $this->projects()
+            ->filter(fn (array $project): bool => (bool) ($project['featured_on_home'] ?? false));
+
+        if ($projects->isEmpty()) {
+            return collect();
+        }
+
+        $preferredSlug = (string) config('pzdigital.featured_project_slug', '');
+        $primary = $projects->get($preferredSlug) ?? $projects->first();
+
+        return collect([$primary['slug'] => $primary])
+            ->merge($projects->except($primary['slug']))
+            ->take($limit);
+    }
+
+    public function inquiryInterests(): Collection
+    {
+        return collect(config('pzdigital.inquiry_interests', []));
+    }
+
     public function relatedProjects(array $product): Collection
     {
         $projects = $this->projects();

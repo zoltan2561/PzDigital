@@ -23,7 +23,8 @@ class InquiryController extends Controller
         $project = request()->string('referencia')->toString();
         $products = $this->catalog->products();
         $projects = $this->catalog->projects();
-        $allowed = [...$products->keys()->all(), 'custom_development', 'other'];
+        $inquiryInterests = $this->catalog->inquiryInterests();
+        $allowed = [...$products->keys()->all(), ...$inquiryInterests->keys()->all()];
         $selectedProject = $projects->has($project) ? $project : '';
 
         return view('pages.contact', [
@@ -34,6 +35,7 @@ class InquiryController extends Controller
             'selectedProject' => $selectedProject,
             'products' => $products,
             'projects' => $projects,
+            'inquiryInterests' => $inquiryInterests,
             'submissionToken' => (string) Str::uuid(),
         ]);
     }

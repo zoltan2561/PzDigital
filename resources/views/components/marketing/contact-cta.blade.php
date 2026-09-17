@@ -5,7 +5,7 @@
         <div>
             <span class="eyebrow eyebrow-light">Következő lépés</span>
             <h2>{{ $title }}</h2>
-            <p>Írd meg röviden, mivel foglalkozol és mi okozza a legtöbb pluszmunkát. Egyeztessünk arról, milyen megoldás illik hozzá.</p>
+            <p>Írd meg röviden a célodat és azt, mi nem működik most jól. Nem szükséges kész műszaki specifikációval érkezned.</p>
         </div>
         <a class="button button-light" href="{{ route('contact', $parameters) }}">Beszéljünk róla <span aria-hidden="true">→</span></a>
     </div>

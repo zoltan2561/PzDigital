@@ -4,6 +4,14 @@ return [
     'contact_email' => env('PZDIGITAL_CONTACT_EMAIL', 'hello@pzdigital.hu'),
     'privacy_version' => env('PZDIGITAL_PRIVACY_VERSION', 'draft-2026-09'),
     'inquiry_rate_limit' => (int) env('PZDIGITAL_INQUIRY_RATE_LIMIT', 8),
+    'featured_project_slug' => 'gyroscity',
+    'inquiry_interests' => [
+        'website' => 'Új céges weboldal',
+        'business_system' => 'Egyedi üzleti rendszer',
+        'existing_system' => 'Meglévő rendszer továbbfejlesztése',
+        'custom_development' => 'Más egyedi fejlesztés',
+        'other' => 'Általános egyeztetés',
+    ],
 
     'products' => [
         'szervizpro' => [
@@ -95,6 +103,7 @@ return [
         'gyroscity' => [
             'slug' => 'gyroscity',
             'name' => 'GyrosCity',
+            'showcase_headline' => 'GyrosCity — saját étlap és rendelési felület',
             'summary' => 'Éttermi weboldal és online rendelési felület kategóriákkal, kínálati kártyákkal és kosárfolyamattal.',
             'categories' => ['Éttermi weboldal', 'Online rendelés'],
             'project_type' => 'client_project',

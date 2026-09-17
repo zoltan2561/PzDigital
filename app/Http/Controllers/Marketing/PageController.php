@@ -14,7 +14,7 @@ class PageController extends Controller
     {
         return view('pages.home', [
             'products' => $this->catalog->featuredProducts(),
-            'projects' => $this->catalog->featuredProjects(),
+            'projects' => $this->catalog->homepageProjects(),
         ]);
     }
 

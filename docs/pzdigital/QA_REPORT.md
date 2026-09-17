@@ -55,3 +55,13 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Kontrasztmérés: világos főszöveg 13,78:1, világos másodlagos szöveg 5,16:1, sötét főszöveg 17,18:1, sötét másodlagos szöveg 8,10:1, sötét felületi link 8,53:1.
 - [x] Célzott tesztek: 19 PASS, 114 assertion; Vite build PASS; Pint PASS; Composer validáció PASS.
 - [x] Előtte/utána és részletképek: `storage/app/qa/v1-2` (figyelmen kívül hagyott lokális mappa).
+
+## V1.3 bizalom és projektbemutatás — 2026-09-17
+
+- [x] A főoldali referenciaválogatás egy adatból kiválasztott nagy projektet és két külön másodlagos referenciát mutat. A GyrosCity-kiemelés feladatot, megoldást és valós termékrácsot tartalmaz.
+- [x] Hibás vagy visszavont kiemelt slug esetén az első publikálható kiemelt projekt jelenik meg; publikálható elem nélkül a szekció rejtett. Célzott regressziós teszttel ellenőrizve.
+- [x] A szolgáltatások konkrét kimenetet, a négy folyamatlépés külön kimenetcímkét, a bizalompanel pedig PZ-monogramot és igazolható Laravel/PHP/webes fókuszt kapott. Fiktív név, fotó vagy ügyfélvélemény nem került ki.
+- [x] A kapcsolatoldal új weboldal, üzleti rendszer, meglévő rendszer továbbfejlesztése, saját termék és általános egyeztetés szerint választható; a termék- és referenciakontextus, mentés és értesítési folyamat változatlan.
+- [x] Böngészős audit: 360, 390, 768, 1024, 1440 és 1920 px; 0 vízszintes túlcsordulás, 0 törött kép, 0 konzolhiba. Mobilmenü, GYIK, űrlapfókusz és az általános/SzervizPRO/GyrosCity/meglévő rendszer/érvénytelen kategóriaútvonal ellenőrizve.
+- [x] Célzott tesztek: 21 PASS, 132 assertion; Vite build PASS; Pint PASS; Composer validáció PASS.
+- [x] Előtte/utána desktop és mobil, valamint referencia- és bizalomrészlet: `storage/app/qa/v1-3` (figyelmen kívül hagyott lokális mappa).

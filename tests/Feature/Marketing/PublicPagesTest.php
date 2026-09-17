@@ -32,6 +32,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('Saját szoftvermegoldásaink')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
+            ->assertSee('GyrosCity — saját étlap és rendelési felület')
+            ->assertSee('Kiemelt referenciamunka')
             ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
             ->assertSee('/media/pzdigital/references/gyroscity/menu-card.jpg', false)
             ->assertDontSee('A műhely átlátja a napot.')
@@ -40,7 +42,34 @@ class PublicPagesTest extends TestCase
         $html = $response->getContent();
         $this->assertLessThan(strpos($html, 'id="munkaink"'), strpos($html, 'id="szolgaltatasok"'));
         $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="munkaink"'));
-        $this->assertSame(3, substr_count($html, 'data-project-card='));
+        $this->assertSame(1, substr_count($html, 'data-project-featured='));
+        $this->assertSame(2, substr_count($html, 'data-project-card='));
+    }
+
+    public function test_homepage_project_showcase_uses_configured_project_and_safe_fallbacks(): void
+    {
+        config(['pzdigital.featured_project_slug' => 'napiinfo']);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('data-project-featured="napiinfo"', false)
+            ->assertSee('data-project-card="gyroscity"', false);
+
+        $projects = config('pzdigital.projects');
+        $projects['napiinfo']['content_approved'] = false;
+        config(['pzdigital.projects' => $projects]);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('data-project-featured="gyroscity"', false)
+            ->assertDontSee('data-project-card="napiinfo"', false);
+
+        config(['pzdigital.projects' => collect($projects)->map(fn (array $project): array => [
+            ...$project,
+            'content_approved' => false,
+        ])->all()]);
+
+        $this->get('/')->assertOk()->assertDontSee('id="munkaink"', false);
     }
 
     public function test_szervizpro_page_displays_verified_product_screens(): void
