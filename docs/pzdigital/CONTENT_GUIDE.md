@@ -16,8 +16,8 @@
 
 ### Főoldali projektpéldák
 
-- A V1.8 hero tipografikus; nem tartalmaz projektválasztót vagy foglalási ábrát.
-- A kompakt főoldali referencialista a `homepage_story_project_slugs` szerinti NapiInfo–GyrosCity–ZCutzBarber sorrendet használja. Üres publikálható listán a teljes szekció rejtve marad.
+- A hero az első publikált, jóváhagyott és főoldalra kiemelt terméket mutatja: `screenshots[0]`, `name`, `status_label` és `flow` mezőkkel. Nincs független, szűrést megkerülő termékadat. Üres listán a képes rész kimarad.
+- A képes főoldali referencialista a `homepage_story_project_slugs` szerinti NapiInfo–GyrosCity–ZCutzBarber sorrendet használja. A kép a `media[0].card_src`, ennek hiányában `media[0].src`. Üres publikálható listán a teljes szekció rejtve marad.
 - A projekt neve, leírása és részletoldali linkje szerveroldali HTML-ben szerepel. A külön projektoldalakon a meglévő részletes esettanulmány és folyamatbemutató marad.
 
 ### Esettanulmányblokkok

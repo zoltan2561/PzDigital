@@ -111,3 +111,14 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Célzott marketing- és kapcsolatút-tesztek: 28 PASS, 278 assertion; Vite build és Pint PASS. Értesítés a regressziós tesztekben fake, nincs külső üzenet.
 - [x] Előtte/utána 1440 és 390 px főoldalkép, olvasható hero-, szolgáltatás/folyamat-, termék- és mobilmenü-részlet; termék-, referencia- és űrlaphibaképek; JSON audit és 3 másodperces, 1440 × 900-as gyorsított mozgáselőnézet: `storage/app/qa/v1-8`.
 - [x] A screenshotok és a nyers képkockák helyi, figyelmen kívül hagyott QA-artifactok. PROD- vagy DEV-deploy nem része ennek a változtatásnak.
+
+## Vizuális megújulás a V1.8 visszajelzése után — 2026-09-17
+
+- [x] Kék–fehér közös arculat, rétegzett hero valódi termékképpel; ikonos szolgáltatáskártyák, nagy termékpanelek és képes referenciák. A szolgáltatások és a négy lépés közvetlenül egymás alatt maradtak.
+- [x] A hero a publikálható főoldali terméklistából épül. Új regressziós teszt ellenőrzi a nem jóváhagyott termék kizárását és az üres lista biztonságos megjelenítését. Termékstátuszok és demó-korlátozások változatlanok.
+- [x] Véges hero-timeline, lépcsőzetes scroll-reveal, folyamatvonal és hoverállapotok. A ténylegesen mért hero-opacity 0,25-ről 1-re változik; a folyamatvonal végállapota 1. Élő reduced-motion váltás után 0 inline animációs stílus, minden vizsgált elem teljesen látható.
+- [x] 320/390/768/1024/1280/1440/1920 px: nincs dokumentumszintű vízszintes túlcsordulás vagy törött kép. Mobilmenü/Escape/fókusz, billentyűzetes GYIK, JS nélküli navigáció, 200%-os szöveg és reduced-motion ellenőrizve; 0 konzolhiba.
+- [x] A két termékoldal, GyrosCity és a kapcsolatoldal közös stílusa desktopon és mobilon ellenőrizve. A hiányos űrlap natív és szerveroldali validációja működik; érvényes megkeresés nem került beküldésre.
+- [x] Teljes tesztcsomag: 31 PASS, 290 assertion. Vite production build, Pint és git diff whitespace-ellenőrzés PASS.
+- [x] Helyi képek és audit: `storage/app/qa/visual-experience`. A `motion-preview.mp4` időbélyeges böngészős képkockákból összeállított, kb. 8 másodperces mozgásbemutató. A régi egyszínű kontrasztmérő a hero gradientjét nem értelmezi; arra a külön `final-check.json` a legvilágosabb háttérszínből számított konzervatív értéket rögzíti. Ez nem teljes akadálymentességi tanúsítás.
+- [x] Nem került be új függőség. Nincs PROD-deploy, külső adatírás vagy éles demómegnyitás.

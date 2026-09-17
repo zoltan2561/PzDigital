@@ -3,27 +3,49 @@
 @php($description = 'Egyedi szoftverek, automatizálás és rendszerkapcsolatok a vállalkozásod működéséhez. Saját termékek, bemutatók és átlátható megvalósítás.')
 
 @section('content')
+@php($heroProduct = $products->first())
 <section class="hero company-home-hero">
-    <div class="container company-home-hero-grid">
+    <div class="hero-orbit" aria-hidden="true"></div>
+    <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
         <div class="hero-copy">
-            <span class="eyebrow eyebrow-light">PZ Digital · Szoftverfejlesztés és automatizálás</span>
-            <h1>Ami ma pluszmunka, arra fejlesztünk megoldást.</h1>
+            <span class="eyebrow eyebrow-light hero-eyebrow"><span aria-hidden="true"></span> Szoftverfejlesztés · Automatizálás</span>
+            <h1>Ami ma pluszmunka,<br> <span>arra fejlesztünk megoldást.</span></h1>
             <p>Egyedi szoftvereket készítünk, összekötjük a rendszereidet, és automatizáljuk az ismétlődő feladatokat. Abból indulunk ki, hol veszítesz időt, és hogyan lehetne egyszerűbb a munkád.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
                 <a class="button button-outline" href="#megoldasok">Megnézem a termékeket</a>
             </div>
+            <div class="hero-assurances" aria-label="Amiben számíthatsz ránk">
+                <span><x-marketing.icon name="code" /> Egyedi fejlesztés</span>
+                <span><x-marketing.icon name="flow" /> Saját termékek</span>
+                <span><x-marketing.icon name="shield" /> Bevezetés</span>
+            </div>
         </div>
+        @if($heroProduct)
+            <div class="hero-showcase" data-hero-showcase>
+                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Saját fejlesztés. Valódi felület.</div>
+                <a class="showcase-window" href="{{ route('products.show', $heroProduct['slug']) }}" aria-label="{{ $heroProduct['name'] }}: a termék bemutatása">
+                    <div class="showcase-toolbar" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>{{ $heroProduct['name'] }}</span><x-marketing.icon name="shield" /></div>
+                    <img src="{{ $heroProduct['screenshots'][0]['src'] }}" alt="{{ $heroProduct['screenshots'][0]['alt'] }}" width="1440" height="1050" fetchpriority="high">
+                    <div class="showcase-caption"><div><small>{{ $heroProduct['status_label'] }}</small><strong>{{ $heroProduct['name'] }}</strong></div><span class="showcase-open" aria-hidden="true">↗</span></div>
+                </a>
+                <div class="showcase-flow">
+                    <span class="showcase-flow-icon" aria-hidden="true"><x-marketing.icon name="flow" /></span>
+                    <div><small>Egy átgondolt folyamat</small><div>@foreach($heroProduct['flow'] as $step)<span>{{ $step['title'] }}</span>@unless($loop->last)<b aria-hidden="true">→</b>@endunless @endforeach</div></div>
+                </div>
+            </div>
+        @endif
     </div>
+    <div class="container hero-footnote"><span>Az üzleti feladattól a működő megoldásig.</span><a href="#szolgaltatasok">Nézd meg, miben segítünk <span aria-hidden="true">↓</span></a></div>
 </section>
 
 <section class="section section-services" id="szolgaltatasok" data-home-reveal>
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Mire szeretnél megoldást?</h2></div></div>
         <div class="service-rows">
-            <article><span>01</span><h3>Egyedi szoftverek</h3><p>A munkádhoz illeszkedő rendszert készítünk, például feladatok követésére, adatok kezelésére vagy belső folyamatok támogatására.</p><a href="{{ route('services') }}#rendszerek" aria-label="Részletek: Egyedi szoftverek">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>02</span><h3>Automatizálás és összekapcsolás</h3><p>Összekötjük a használt programokat, és csökkentjük az ismétlődő kézi adatmozgatást, ahol ezt a rendszerek lehetővé teszik.</p><a href="{{ route('services') }}#integraciok" aria-label="Részletek: Automatizálás és összekapcsolás">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>03</span><h3>Weboldalak és online felületek</h3><p>Céges bemutatkozást, rendelési vagy foglalási felületet készítünk, a hozzá szükséges kezeléssel együtt.</p><a href="{{ route('services') }}#weboldalak" aria-label="Részletek: Weboldalak és online felületek">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="code" /></span><span>01 / FEJLESZTÉS</span></div><h3>Egyedi szoftverek</h3><p>A munkádhoz illeszkedő rendszert készítünk, például feladatok követésére, adatok kezelésére vagy belső folyamatok támogatására.</p><a href="{{ route('services') }}#rendszerek" aria-label="Részletek: Egyedi szoftverek">Részletek <span aria-hidden="true">↗</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="flow" /></span><span>02 / AUTOMATIZÁLÁS</span></div><h3>Automatizálás és összekapcsolás</h3><p>Összekötjük a használt programokat, és csökkentjük az ismétlődő kézi adatmozgatást, ahol ezt a rendszerek lehetővé teszik.</p><a href="{{ route('services') }}#integraciok" aria-label="Részletek: Automatizálás és összekapcsolás">Részletek <span aria-hidden="true">↗</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="globe" /></span><span>03 / WEBES JELENLÉT</span></div><h3>Weboldalak és online felületek</h3><p>Céges bemutatkozást, rendelési vagy foglalási felületet készítünk, a hozzá szükséges kezeléssel együtt.</p><a href="{{ route('services') }}#weboldalak" aria-label="Részletek: Weboldalak és online felületek">Részletek <span aria-hidden="true">↗</span></a></article>
         </div>
     </div>
 </section>
@@ -80,7 +102,10 @@
         <div><span class="eyebrow eyebrow-light">Referenciák</span><h2>Nézd meg, min dolgoztunk.</h2><p>Weboldalak, üzleti felületek és automatizált megoldások a gyakorlatban.</p></div>
         <div class="compact-reference-links">
             @foreach($projects->take(3) as $project)
-                <a href="{{ route('projects.show', $project['slug']) }}"><span>{{ $project['name'] }}</span><strong>{{ $project['home_feature'] ?? $project['showcase_title'] }}</strong><b aria-hidden="true">→</b></a>
+                <a class="reference-preview" href="{{ route('projects.show', $project['slug']) }}">
+                    <div class="reference-preview-image"><img src="{{ $project['media'][0]['card_src'] ?? $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="1000" loading="lazy"><span aria-hidden="true">↗</span></div>
+                    <div class="reference-preview-copy"><span>{{ $project['name'] }}</span><strong>{{ $project['home_feature'] ?? $project['showcase_title'] }}</strong></div>
+                </a>
             @endforeach
             <a class="compact-reference-all" href="{{ route('projects.index') }}">Munkáink megtekintése <span aria-hidden="true">→</span></a>
         </div>

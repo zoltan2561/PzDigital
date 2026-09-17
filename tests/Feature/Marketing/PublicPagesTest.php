@@ -25,7 +25,9 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Ami ma pluszmunka, arra fejlesztünk megoldást.')
+            ->assertSee('Ami ma pluszmunka,')
+            ->assertSee('arra fejlesztünk megoldást.')
+            ->assertSee('data-hero-showcase', false)
             ->assertSee('Egyedi szoftvereket készítünk, összekötjük a rendszereidet, és automatizáljuk az ismétlődő feladatokat. Abból indulunk ki, hol veszítesz időt, és hogyan lehetne egyszerűbb a munkád.')
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
@@ -121,6 +123,26 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('id="referenciak"', false)
             ->assertSee('Technológiák, amelyekkel dolgozunk');
         $this->get('/referenciak')->assertOk();
+    }
+
+    public function test_hero_uses_only_published_featured_products_and_handles_an_empty_catalog(): void
+    {
+        $products = config('pzdigital.products');
+        $products['szervizpro']['content_approved'] = false;
+        config(['pzdigital.products' => $products]);
+
+        $this->get('/')->assertOk()
+            ->assertSee('data-hero-showcase', false)
+            ->assertSee('FoodShop: a termék bemutatása')
+            ->assertDontSee('/media/pzdigital/szervizpro/dashboard.png', false);
+
+        $products['foodshop']['featured_on_home'] = false;
+        config(['pzdigital.products' => $products]);
+
+        $this->get('/')->assertOk()
+            ->assertDontSee('data-hero-showcase', false)
+            ->assertDontSee('has-showcase', false)
+            ->assertSee('Ami ma pluszmunka,');
     }
 
     public function test_homepage_preview_placeholder_is_explicit_non_interactive_and_environment_safe(): void

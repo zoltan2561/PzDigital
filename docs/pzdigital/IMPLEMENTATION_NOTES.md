@@ -4,7 +4,7 @@
 
 - Laravel 13.32, PHP 8.3+.
 - Szerveroldali Blade oldalak, Tailwind CSS 4/Vite build és scope-olt marketing JavaScript.
-- GSAP core + ScrollTrigger a főoldali szekciók visszafogott belépéséhez; nincs smooth-scroll vagy második animációs keretrendszer.
+- GSAP core + ScrollTrigger a főoldali hero és az egyes kártyák lépcsőzetes belépéséhez; nincs smooth-scroll vagy második animációs keretrendszer.
 - SQLite a lokális alap; támogatott céladatbázis MySQL/MariaDB vagy PostgreSQL.
 - Database queue az értesítésekhez; külső SMTP nincs bekapcsolva.
 
@@ -12,9 +12,10 @@
 
 A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez mindkét típusnál a `publication_status=published` és `content_approved=true` együttesen szükséges. A képernyőképek helyi, verziókezelt médiafájlok; az eredetüket a `REFERENCE_MIGRATION.md` rögzíti.
 
-### V1.8 problémamegoldásra épülő főoldal
+### Vizuális megújulás a V1.8 visszajelzése után
 
-- A hero tisztán tipografikus, sík grafit háttérrel. A foglalási ábra, annak CSS-e és saját animációs modulja kikerült; a cím és a CTA késleltetés nélkül olvasható. Megfelelő jóváhagyott vektoros márkamotívum hiányában nincs új logó vagy dekoráció.
+- A hero kék fényátmenetes, finom rácsos háttéren a legelső publikálható, főoldalra kiemelt termék valódi képernyőképét mutatja. A térhatású keret a termékoldalra vezet; a státusz és a háromlépéses termékfolyamat szintén a katalógusból származik. Üres főoldali terméklistán a vizuál kimarad, a szöveg és a CTA megmarad.
+- Világos fejléc, három ikonos szolgáltatáskártya, közvetlenül alattuk a négy lépés; nagy, fekvő termékpanelek és képes referenciák. A kék/zöld termékfelületek valódi képeket használnak, új marketingállítás vagy fiktív képernyő nélkül.
 - A főoldali sorrend: hero → szolgáltatások → négylépéses közös munka → termékek → működési elvek → opcionális referenciák → technológiák → GYIK → kapcsolatfelvétel.
 - A technológiai lista és a GYIK forrásleltárát a `CONTENT_GUIDE.md` tartalmazza. A tartalom Blade-ben, szerveroldali HTML-ként jelenik meg; az FAQ natív `details`/`summary` elemeket használ.
 - A változtatás nem vezetett be új JavaScript-, CSS- vagy PHP-függőséget.
@@ -33,7 +34,8 @@ A kompakt referencia-blokkot a `PZDIGITAL_HOME_SHOW_REFERENCES` környezeti vál
 
 - A `resources/js/marketing/motion` moduljai külön kezelik a főoldali szekcióbelépéseket és a projektoldalakon felhasználó által indított folyamatszemléltetőt. A `pagehide` eseménykor az eseménykezelők, időzítők és ScrollTrigger-példányok takarítása megtörténik.
 - Animációs állapot csak sikeres inicializálás után kerül a DOM-ra. JavaScript-hibánál a címsor, minden főoldali tartalom, helyi kép és normál hivatkozás látható marad.
-- `prefers-reduced-motion: reduce` esetén a főoldali szekciók időzített belépése kimarad. A projektoldali folyamatlépések közvetlenül választhatók, az időzített lejátszás rejtett.
+- A hero elemei véges, kb. 1,5 másodperces kompozícióban érkeznek be. A szekciócímek és kártyák egyszeri görgetéses belépést, a folyamatvonal egyszeri kirajzolást kap. Nincs végtelen lebegés, scroll hijack vagy automatikus carousel.
+- `prefers-reduced-motion: reduce` esetén a belépések és a hover-elmozdulások kimaradnak. A GSAP matchMedia az élő beállításváltásnál is visszaállítja az inline animációs stílusokat. A projektoldali folyamatlépések közvetlenül választhatók, az időzített lejátszás rejtett.
 - A szemléltetők rögzített helyi szöveggel működnek; nincs AI-, Google Naptár-, MLSZ- vagy rendelési végpont a marketinginterakció mögött.
 
 ## Hiányzó, nem publikált média
