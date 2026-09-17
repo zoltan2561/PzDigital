@@ -45,3 +45,13 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Draft/nem jóváhagyott termék és referencia nem jelenik meg listán, részletoldalon, kapcsolatűrlapon vagy sitemapben.
 - [x] Böngészős audit: 360, 390, 768, 1024 és 1440 px; vizsgált főoldal, GyrosCity-részlet és FoodShop-oldal; 0 konzolhiba.
 - [x] V1.1 QA-képek: `storage/app/qa/v1-1` (figyelmen kívül hagyott lokális mappa).
+
+## V1.2 vizuális finomítás — 2026-09-17
+
+- [x] A fejléc és hero közös sötétkék nyitózónát, a fő tartalmi felületek kékesszürke hátteret, a CTA és lábléc összefüggő sötét lezárást kapott.
+- [x] A referenciablokk teljes szélességű sötét felület; a kártyák 16:10-es, semleges keretet és kizárólag az előnézeti képen alkalmazott enyhe `saturate(.72) brightness(.96)` szűrést használnak. A részletgaléria szűretlen.
+- [x] A GyrosCity publikus „Top Trendek” felülete 1440 × 1000 és 390 × 844 viewporton rögzítve; a hero, referencia-, FoodShop- és részletoldali kiemelt képek terméklistát mutatnak.
+- [x] Böngészős audit: 360, 390, 768, 1024, 1440 és 1920 px; 0 vízszintes túlcsordulás, 0 törött kép és 0 konzolhiba. Mobilmenü, GYIK és kapcsolatűrlap fókuszsorrend ellenőrizve.
+- [x] Kontrasztmérés: világos főszöveg 13,78:1, világos másodlagos szöveg 5,16:1, sötét főszöveg 17,18:1, sötét másodlagos szöveg 8,10:1, sötét felületi link 8,53:1.
+- [x] Célzott tesztek: 19 PASS, 114 assertion; Vite build PASS; Pint PASS; Composer validáció PASS.
+- [x] Előtte/utána és részletképek: `storage/app/qa/v1-2` (figyelmen kívül hagyott lokális mappa).

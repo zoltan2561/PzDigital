@@ -17,8 +17,9 @@ A régi portfólióban ezekhez nem azonosítottunk külön projektaloldalt; a fo
 
 | Projekt | Forráscím | Viewport | Helyi fájl | Képcél és alt szöveg | Állapot |
 |---|---|---:|---|---|---|
-| GyrosCity | `https://gyroscity.eu/` | 1440 × 1000 | `public/media/pzdigital/references/gyroscity/desktop.jpg` | Hero, kártya, galéria — „GyrosCity online étlap — asztali képernyőkép” | Ellenőrzött |
-| GyrosCity | `https://gyroscity.eu/` | 390 × 844 | `public/media/pzdigital/references/gyroscity/mobile.jpg` | Galéria — „GyrosCity mobilos kategóriafelület — képernyőkép” | Ellenőrzött |
+| GyrosCity | `https://gyroscity.eu/` → „Top Trendek” | 1440 × 1000 | `public/media/pzdigital/references/gyroscity/menu-desktop.jpg` | Hero, FoodShop és részletoldali fő kép — „GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal” | Ellenőrzött, 2026-09-17 |
+| GyrosCity | `https://gyroscity.eu/` → „Top Trendek” | 1440 × 900 célzott kivágás | `public/media/pzdigital/references/gyroscity/menu-card.jpg` | Referenciakártya 16:10-es előnézete — az asztali rögzítés termékrácsa | Ellenőrzött, 2026-09-17 |
+| GyrosCity | `https://gyroscity.eu/` → „Top Trendek” | 390 × 844 | `public/media/pzdigital/references/gyroscity/menu-mobile.jpg` | Mobilgaléria — „GyrosCity mobilos étlapja a népszerű termékek listájával” | Ellenőrzött, 2026-09-17 |
 | ZCutzBarber | `https://zcutzbarber.com/` | 1440 × 1000 | `public/media/pzdigital/references/zcutzbarber/desktop.jpg` | Hero, kártya, galéria — „ZCutzBarber szolgáltatói weboldal — asztali képernyőkép” | Ellenőrzött |
 | ZCutzBarber | `https://zcutzbarber.com/` | 390 × 844 | `public/media/pzdigital/references/zcutzbarber/mobile.jpg` | Galéria — „ZCutzBarber mobilos bemutatkozó felület — képernyőkép” | Ellenőrzött |
 | Tiszaszalka SE | `https://tiszaszalkase.com/` | 1440 × 1000 | `public/media/pzdigital/references/tiszaszalka-se/desktop.jpg` | Kártya, galéria — „Tiszaszalka SE sportegyesületi weboldal — asztali képernyőkép” | Ellenőrzött |
@@ -29,5 +30,6 @@ A régi portfólióban ezekhez nem azonosítottunk külön projektaloldalt; a fo
 ## Bizonyossági határok
 
 - A képek a publikus felület látható állapotát dokumentálják, nem igazolják a fizetés, foglalás vagy háttérautomatizálás teljes működését.
+- A GyrosCity korábbi `desktop.jpg` és `mobile.jpg` nyitóoldali rögzítése megmaradt forráselőzményként, de kiemelt előnézetként már nincs használatban.
 - A GyrosCity oldalon látható fejlesztési/sablonszöveg nem került át termékállításként.
 - A külső oldalak és a `pzoli.com` változatlanok maradtak; átirányítás nem történt.

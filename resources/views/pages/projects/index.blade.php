@@ -11,7 +11,7 @@
     </div>
 </section>
 
-<section class="section">
+<section class="section section-projects-dark">
     <div class="container">
         <div class="project-grid">
             @foreach($projects as $project)

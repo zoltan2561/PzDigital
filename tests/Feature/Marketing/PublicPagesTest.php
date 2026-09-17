@@ -28,10 +28,12 @@ class PublicPagesTest extends TestCase
             ->assertSee('Weboldalak és rendszerek, a')
             ->assertSee('vállalkozásodra szabva.')
             ->assertSee('Miben segítünk?')
-            ->assertSee('Különböző projektek, valós képernyőkkel')
+            ->assertSee('Válogatott munkáink')
             ->assertSee('Saját szoftvermegoldásaink')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
+            ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
+            ->assertSee('/media/pzdigital/references/gyroscity/menu-card.jpg', false)
             ->assertDontSee('A műhely átlátja a napot.')
             ->assertDontSee('Ügyfeleink mondták');
 
@@ -61,6 +63,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('Termékváltozat előkészítés alatt')
             ->assertSee('Érdeklődöm a megoldásról')
             ->assertSee('GyrosCity — a FoodShop éles előzménye. Referenciaképernyő.')
+            ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
             ->assertSee(route('projects.show', 'gyroscity'), false)
             ->assertDontSee('Demó kipróbálása');
 
@@ -86,6 +89,8 @@ class PublicPagesTest extends TestCase
         $this->get('/referenciak/gyroscity')
             ->assertOk()
             ->assertSee(route('contact', ['referencia' => 'gyroscity']), false)
+            ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
+            ->assertSee('/media/pzdigital/references/gyroscity/menu-mobile.jpg', false)
             ->assertSee('Éles referenciaoldal');
 
         $this->get('/kapcsolat?referencia=gyroscity')

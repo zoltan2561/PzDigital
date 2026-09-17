@@ -65,7 +65,7 @@ return [
             'accent' => 'green',
             'symbol' => '✦',
             'visual_label' => 'Éles előzmény',
-            'visual_title' => 'GyrosCity · referenciaképernyő',
+            'visual_title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete',
             'primary_cta' => 'Érdeklődöm a megoldásról',
             'benefits' => [
                 'Saját márkához illeszthető kínálati felület.',
@@ -78,8 +78,8 @@ return [
                 ['title' => 'Feldolgozás', 'text' => 'A beérkező rendelések kezelőoldali feldolgozásának koncepciója.'],
             ],
             'screenshots' => [
-                ['src' => '/media/pzdigital/references/gyroscity/desktop.jpg', 'alt' => 'GyrosCity online étlap — asztali képernyőkép', 'label' => 'Éles előzmény', 'title' => 'GyrosCity referenciaképernyő'],
-                ['src' => '/media/pzdigital/references/gyroscity/mobile.jpg', 'alt' => 'GyrosCity mobilos kategóriafelület — képernyőkép', 'label' => 'Mobilfelület', 'title' => 'Kategóriák mobilon'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'label' => 'Éles előzmény', 'title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'label' => 'Mobilfelület', 'title' => 'Termékkínálat mobilon'],
             ],
             'related_projects' => [
                 ['project_slug' => 'gyroscity', 'relationship' => 'origin'],
@@ -108,8 +108,8 @@ return [
             'public_url' => 'https://gyroscity.eu/',
             'accent' => 'amber',
             'media' => [
-                ['src' => '/media/pzdigital/references/gyroscity/desktop.jpg', 'alt' => 'GyrosCity online étlap — asztali képernyőkép', 'viewport' => '1440 × 1000'],
-                ['src' => '/media/pzdigital/references/gyroscity/mobile.jpg', 'alt' => 'GyrosCity mobilos kategóriafelület — képernyőkép', 'viewport' => '390 × 844'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'card_src' => '/media/pzdigital/references/gyroscity/menu-card.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'viewport' => '1440 × 1000'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'viewport' => '390 × 844'],
             ],
             'case_study_sections' => [
                 'task' => 'Egy éttermi kínálat és a rendelési út áttekinthető megjelenítése asztali és mobilfelületen.',

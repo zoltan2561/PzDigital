@@ -9,7 +9,7 @@
     @if(($noindex ?? false) || app()->environment() !== 'production')
         <meta name="robots" content="noindex, nofollow">
     @endif
-    <meta name="theme-color" content="#0b1220">
+    <meta name="theme-color" content="#0B1421">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

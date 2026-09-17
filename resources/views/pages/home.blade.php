@@ -37,7 +37,7 @@
     </div>
 </section>
 
-<section class="section section-soft" id="szolgaltatasok">
+<section class="section section-services" id="szolgaltatasok">
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Digitális megoldások, érthető üzleti céllal</h2></div><p>A megfelelő eszközt a működési problémához választjuk, majd követhetően végigvisszük a megvalósítást.</p></div>
         <div class="service-grid">
@@ -48,10 +48,10 @@
     </div>
 </section>
 
-<section id="munkaink" class="section">
+<section id="munkaink" class="section section-projects-dark">
     <div class="container">
         <div class="section-heading">
-            <div><span class="eyebrow">Munkáink</span><h2>Különböző projektek, valós képernyőkkel</h2></div>
+            <div><span class="eyebrow">Munkáink</span><h2>Válogatott munkáink</h2></div>
             <div class="section-heading-action"><p>Korábbi és jelenlegi munkák a PZ Digital mögötti fejlesztői tapasztalatból.</p><a class="text-link" href="{{ route('projects.index') }}">Összes referencia <span>→</span></a></div>
         </div>
         <div class="project-grid">
@@ -62,7 +62,7 @@
     </div>
 </section>
 
-<section id="megoldasok" class="section section-soft">
+<section id="megoldasok" class="section section-products">
     <div class="container">
         <div class="section-heading">
             <div><span class="eyebrow">Saját termékeink</span><h2>Saját szoftvermegoldásaink</h2></div>
@@ -76,7 +76,7 @@
     </div>
 </section>
 
-<section class="section">
+<section class="section section-process">
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Hogyan dolgozunk?</span><h2>Négy érthető lépés</h2></div><a class="text-link" href="{{ route('process') }}">A teljes folyamatról <span>→</span></a></div>
         <ol class="process-grid">
@@ -88,7 +88,7 @@
     </div>
 </section>
 
-<section class="section section-soft">
+<section class="section company-benefits-section">
     <div class="container proof-grid">
         <div>
             <span class="eyebrow">Miért PZ Digital?</span>
@@ -105,7 +105,7 @@
     </div>
 </section>
 
-<section class="section faq-section">
+<section class="section section-faq faq-section">
     <div class="container narrow">
         <div class="section-heading"><div><span class="eyebrow">Gyakori kérdések</span><h2>Az első egyeztetés előtt</h2></div></div>
         <div class="faq-list">

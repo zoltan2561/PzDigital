@@ -2,7 +2,7 @@
 
 <article class="project-card accent-{{ $project['accent'] }}" data-project-card="{{ $project['slug'] }}">
     <a class="project-card-image" href="{{ route('projects.show', $project['slug']) }}" aria-label="{{ $project['name'] }} projekt megtekintése">
-        <img src="{{ $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="1000" loading="lazy">
+        <img src="{{ $project['media'][0]['card_src'] ?? $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="{{ isset($project['media'][0]['card_src']) ? 900 : 1000 }}" loading="lazy">
         <span>Referenciamunka</span>
     </a>
     <div class="project-card-body">
