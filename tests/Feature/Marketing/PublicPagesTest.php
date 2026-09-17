@@ -25,36 +25,58 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Weboldalak és üzleti rendszerek, a vállalkozásodra szabva.')
-            ->assertSee('Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvereket készítünk. Összekapcsoljuk a rendszereidet, és egyszerűsítjük az ismétlődő feladatokat.')
-            ->assertSee('Termékeink megtekintése')
+            ->assertSee('Weboldal az ügyfeleidnek. Rendszer a napi munkádhoz.')
+            ->assertSee('Bemutatkozó oldalt, online rendelést, időpontfoglalást vagy belső kezelőfelületet készítünk. Elmondod, mire van szükséged, mi segítünk összeállítani a megoldást.')
+            ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
+            ->assertSee('Mire van szüksége a vállalkozásodnak?')
+            ->assertSee('Rendelési, foglalási és ügyviteli rendszer')
+            ->assertSee('Kevesebb kézi adatbevitel')
             ->assertSee('Saját szoftverek a napi működéshez')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
             ->assertSee('Bemutató elérhető')
             ->assertSee('Előkészítés alatt')
             ->assertSee('GyrosCity — a FoodShop éles előzménye.')
-            ->assertSee('Négy követhető lépés')
-            ->assertSee('Tudd, mi készül — és mi következik.')
+            ->assertSee('Innen indul a közös munka')
+            ->assertSee('Javaslatot és ajánlatot kapsz')
+            ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
+            ->assertSee('Ne neked kelljen összerakni a technikai részleteket.')
             ->assertSee('Nézd meg, min dolgoztunk.')
-            ->assertSee('Működési modell · szemléltetés')
-            ->assertSee('Így kapcsolódik össze a felület, az üzleti működés és a többi rendszer.')
+            ->assertSee('Egy időpontfoglalás a gyakorlatban')
+            ->assertSee('A vendég kiválasztja az időpontot.')
+            ->assertSee('A foglalás bekerül a naptárba.')
+            ->assertSee('Te látod, ki mikor érkezik.')
+            ->assertSee('Szemléltető példa.')
+            ->assertSee('Technológiák, amelyekkel dolgozunk')
+            ->assertSee('Nem kell ezek közül választanod. A feladathoz megfelelő eszközöket javasoljuk.')
+            ->assertSee('OpenAI API')
+            ->assertSee('Gyakori kérdések')
+            ->assertSee('Mikorra készülhet el a fejlesztés?')
+            ->assertSee('A domain, a tárhely és a céges e-mail ügyében is segítetek?')
+            ->assertSee('Mondd el, mire van szükséged.')
             ->assertSee('AI-val támogatott cikkgyártás')
             ->assertSee('Online rendelés és rendeléskezelő admin')
             ->assertSee('Időpontfoglalás Google Naptár-kapcsolattal')
             ->assertDontSee('data-product-placeholder', false)
             ->assertDontSee('capability-strip', false)
             ->assertDontSee('system-visual-base', false)
+            ->assertDontSee('Működési modell · szemléltetés')
+            ->assertDontSee('Felület</strong>', false)
+            ->assertDontSee('2–3 nap')
+            ->assertDontSee('ingyenes felmérés')
             ->assertDontSee('A műhely átlátja a napot.')
             ->assertDontSee('Ügyfeleink mondták')
             ->assertDontSee('data-hero-option', false)
             ->assertDontSee('data-project-story=', false);
 
         $html = $response->getContent();
-        $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="szolgaltatasok"'));
-        $this->assertLessThan(strpos($html, 'Négy követhető lépés'), strpos($html, 'id="megoldasok"'));
-        $this->assertLessThan(strpos($html, 'Tudd, mi készül'), strpos($html, 'Négy követhető lépés'));
+        $this->assertLessThan(strpos($html, 'Innen indul a közös munka'), strpos($html, 'id="szolgaltatasok"'));
+        $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'Innen indul a közös munka'));
+        $this->assertLessThan(strpos($html, 'Ne neked kelljen összerakni'), strpos($html, 'id="megoldasok"'));
+        $this->assertLessThan(strpos($html, 'Technológiák, amelyekkel dolgozunk'), strpos($html, 'id="referenciak"'));
+        $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'Technológiák, amelyekkel dolgozunk'));
+        $this->assertSame(6, substr_count($html, '<details>'));
         $this->assertSame(2, substr_count($html, 'data-home-product-slot'));
         $this->assertSame(1, substr_count($html, '<h1>'));
 
@@ -88,10 +110,16 @@ class PublicPagesTest extends TestCase
             'content_approved' => false,
         ])->all()]);
 
-        $this->get('/')->assertOk()->assertDontSee('id="referenciak"', false);
+        $this->get('/')
+            ->assertOk()
+            ->assertDontSee('id="referenciak"', false)
+            ->assertSee('Technológiák, amelyekkel dolgozunk');
 
         config(['pzdigital.home.show_references' => false]);
-        $this->get('/')->assertOk()->assertDontSee('id="referenciak"', false);
+        $this->get('/')
+            ->assertOk()
+            ->assertDontSee('id="referenciak"', false)
+            ->assertSee('Technológiák, amelyekkel dolgozunk');
         $this->get('/referenciak')->assertOk();
     }
 
@@ -139,7 +167,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('Weboldalak és rendszerek a gyakorlatban')
             ->assertSee('Korábbi és jelenlegi munkák a PZ Digital mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
             ->assertSee('project-grid project-grid-index', false)
-            ->assertSee('Beszéljük át a következő fejlesztésedet.')
+            ->assertSee('Mondd el, mire van szükséged.')
             ->assertDontSee('belső ellenőrzés');
 
         $this->assertSame(4, substr_count($response->getContent(), 'data-project-card='));
@@ -152,6 +180,18 @@ class PublicPagesTest extends TestCase
 
         $this->assertGreaterThanOrEqual(3, substr_count($html, $contactUrl));
         $this->assertSame(3, substr_count($html, 'Beszéljünk a projektedről'));
+    }
+
+    public function test_process_page_uses_the_same_customer_facing_four_steps(): void
+    {
+        $this->get('/hogyan-dolgozunk')
+            ->assertOk()
+            ->assertSee('Innen indul a közös munka')
+            ->assertSee('Átbeszéljük a feladatot')
+            ->assertSee('Javaslatot és ajánlatot kapsz')
+            ->assertSee('Megmutatjuk, hogyan készül')
+            ->assertSee('Kipróbáljuk és átadjuk')
+            ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.');
     }
 
     public function test_project_case_studies_explain_confirmed_workflows_without_internal_notes(): void

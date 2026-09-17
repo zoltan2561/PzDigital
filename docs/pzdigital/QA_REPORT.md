@@ -88,3 +88,13 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Billentyűzetes fókuszjelzés, globális Escape-es mobilmenü-zárás és fókuszvisszaadás, GYIK, JavaScript nélküli mobilnavigáció és reduced-motion állapot ellenőrizve.
 - [x] Célzott marketing- és megkereséstesztek: 26 PASS, 237 assertion; teljes tesztcsomag: 28 PASS, 239 assertion. Vite production build, Pint és Composer-validáció PASS.
 - [x] Előtte/utána desktop és mobil, hero-, termék-, referencia- és háromhelyes előnézeti képek, JSON audit és 2 másodperces 1440 × 900 motion videó: `storage/app/qa/v1-6`.
+
+## V1.7 ügyfélbarát tartalom, GYIK és technológia — 2026-09-17
+
+- [x] A főoldal sorrendje: szolgáltatások → négylépéses közös munka → termékek → működési elvek → opcionális referenciák → technológiák → hat kérdéses GYIK → záró CTA.
+- [x] A hero és a szolgáltatások közérthető szöveget, az időpontfoglalási szemléltető pedig három egyértelmű, fiktív adat nélküli lépést kapott. A régi rendszerarchitektúra és az ingyenességi ígéretek nem jelennek meg.
+- [x] Böngészős audit: 320/390/768/1024/1440/1920 px, 200%-os szövegméret és 320 px-es effektív nézet; 0 vízszintes túlcsordulás, 0 törött kép, 0 konzolhiba. Minden vizsgált publikus útvonal HTTP 200.
+- [x] Mobilmenü nyitás/Escape/fókuszvisszaadás, JavaScript nélküli navigáció, billentyűzetes GYIK, látható fókusz és reduced-motion állapot ellenőrizve.
+- [x] Kontrasztmérés: világos másodlagos szöveg 5,16:1, hero másodlagos szöveg 9,44:1, sötét másodlagos szöveg 9,29:1, technológiaszöveg 6,12:1.
+- [x] Teljes tesztcsomag: 29 PASS, 270 assertion. Vite production build, Pint és Composer-validáció PASS.
+- [x] V1.7 képek, JSON audit és motion videó: `storage/app/qa/v1-7` (figyelmen kívül hagyott helyi mappa).

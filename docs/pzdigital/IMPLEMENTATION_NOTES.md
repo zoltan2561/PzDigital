@@ -12,6 +12,13 @@
 
 A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez mindkét típusnál a `publication_status=published` és `content_approved=true` együttesen szükséges. A képernyőképek helyi, verziókezelt médiafájlok; az eredetüket a `REFERENCE_MIGRATION.md` rögzíti.
 
+### V1.7 ügyfélközpontú főoldal
+
+- A hero jobb oldali időpontfoglalási ábrája statikus HTML/CSS-szemléltetés. Nem élő naptár, nem kér és nem továbbít adatot, valamint nem állít valós ügyfél- vagy foglalásszámot.
+- A főoldali sorrend: hero → szolgáltatások → négylépéses közös munka → termékek → működési elvek → opcionális referenciák → technológiák → GYIK → kapcsolatfelvétel.
+- A technológiai lista és a GYIK forrásleltárát a `CONTENT_GUIDE.md` tartalmazza. A tartalom Blade-ben, szerveroldali HTML-ként jelenik meg; az FAQ natív `details`/`summary` elemeket használ.
+- A változtatás nem vezetett be új JavaScript-, CSS- vagy PHP-függőséget.
+
 ### A harmadik főoldali termékhely előnézete
 
 A nyilvános főoldal alapállapotban kizárólag a két jóváhagyott terméket mutatja. A „Következő saját termék” elem csak vizuális tervezési előnézet, nem katalógustermék. Lokális, DEV vagy tesztkörnyezetben a `PZDIGITAL_HOME_ENABLE_PRODUCT_DESIGN_PREVIEW=true` kapcsolja be; alapértéke `false`, production környezetben pedig a kód akkor sem jeleníti meg, ha a környezeti változó tévesen `true`. Nem készül hozzá hivatkozás, route, sitemap-bejegyzés vagy űrlapopció.

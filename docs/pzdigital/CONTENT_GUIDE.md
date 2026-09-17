@@ -41,3 +41,13 @@
 - Az általános projektkategóriák a `inquiry_interests` konfigurációból, a termékopciók kizárólag a publikálható termékkatalógusból származnak.
 - A termék- és referenciakontextust továbbra is külön, szerveroldalon ellenőrzött slug őrzi. Ismeretlen query-paraméter nem választ ki kategóriát.
 - Új weboldal, üzleti rendszer, meglévő rendszer továbbfejlesztése és más egyedi fejlesztés esetén rövid projektleírás kötelező; a meglévő CSRF-, honeypot-, rate-limit- és deduplikációs folyamat változatlan.
+
+## V1.7 forrásleltár
+
+A `pzoli.com` nyilvános főoldalát és készségoldalát 2026. szeptember 17-én kézzel ellenőriztük. A PZ Digital főoldalára kizárólag az ügyfelek döntését segítő, általánosan igazolható témák kerültek át:
+
+- GYIK: várható elkészülés, árképzési tényezők, meglévő weboldal továbbfejlesztése, automatizálható feladatok, valamint domain-, tárhely- és céges e-mail-kérdések.
+- Technológiai háttér: PHP, Laravel, HTML, CSS, JavaScript, MySQL, MariaDB, Linux, Docker, Git, OpenAI API és Python.
+- Saját kiegészítésként szerepel a műszaki terv nélküli indulás lehetősége; ez folyamatmagyarázat, nem külső forrásból átvett ígéret.
+
+Nem került át konkrét napokban vagy hetekben megadott vállalási idő, ingyenességi ígéret, személyes kapcsolat- vagy önéletrajzi adat, közösségimédia-hivatkozás, hardveres/általános IT-szolgáltatás, illetve a kiválasztott listán kívüli modell, eszköz vagy képzési irány. A későbbi frissítéseknél ezt a szűrést meg kell tartani.
