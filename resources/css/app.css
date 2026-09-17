@@ -461,7 +461,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
     .solution-screen-card { margin-inline: -8px; transform: none; }
     .product-gallery { grid-template-columns: 1fr; }
     .gallery-card-wide { grid-column: auto; }
-    .gallery-card-wide .gallery-image, .gallery-card:not(.gallery-card-wide) .gallery-image { aspect-ratio: 1.48; }
+    .gallery-card-wide .gallery-image, .gallery-card:not(.gallery-card-wide):not(.gallery-card-portrait) .gallery-image { aspect-ratio: 1.48; }
     .project-grid { grid-template-columns: 1fr; }
     .project-showcase-secondary, .project-brief { grid-template-columns: 1fr; }
     .project-card-compact .project-card-body { min-height: auto; }
