@@ -25,8 +25,20 @@ class PublicPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Üzleti szoftverek, amelyek egyszerűbbé teszik')
             ->assertSee('SzervizPRO')
+            ->assertSee('Működő demó')
+            ->assertSee('/media/pzdigital/szervizpro/dashboard.png', false)
             ->assertSee('FoodShop')
             ->assertDontSee('Ügyfeleink mondták');
+    }
+
+    public function test_szervizpro_page_displays_verified_product_screens(): void
+    {
+        $this->get('/termekek/szervizpro')
+            ->assertOk()
+            ->assertSee('Valódi képernyők')
+            ->assertSee('Digitális munkalapok és gyors státuszváltás.')
+            ->assertSee('/media/pzdigital/szervizpro/customer-home.png', false)
+            ->assertSee('/media/pzdigital/szervizpro/status-lookup.png', false);
     }
 
     public function test_unknown_product_returns_a_real_404(): void
