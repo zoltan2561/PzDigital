@@ -25,8 +25,8 @@
 <section class="section section-soft" id="bemutato">
     <div class="container">
         <div class="section-heading">
-            <div><span class="eyebrow">A te munkamenetedből kiindulva</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Miről egyeztetünk a bemutatón?' : 'Mit nézz meg a bemutatón?' }}</h2></div>
-            <p>{{ $product['lifecycle_status'] === 'preview' ? 'Ismerd meg a megoldás irányát, és mondd el, hogyan működik a vállalkozásod.' : 'Hozz egy jellemző feladatot a műhelyedből. Ezen keresztül megmutatjuk a fontos lépéseket.' }}</p>
+            <div><span class="eyebrow">A te munkamenetedből kiindulva</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Miről egyeztetünk a bemutatón?' : 'Ezt mutatjuk meg a bemutatón' }}</h2></div>
+            <p>{{ $product['lifecycle_status'] === 'preview' ? 'Ismerd meg a megoldás irányát, és mondd el, hogyan működik a vállalkozásod.' : 'Mondj egy tipikus műhelyfeladatot. Megmutatjuk, hogyan követheted végig a rendszerben.' }}</p>
         </div>
         <div class="product-tour">
             @foreach($product['demo_highlights'] as $highlight)
@@ -34,11 +34,6 @@
                     <div><h3>{{ $highlight['title'] }}</h3><p>{{ $highlight['text'] }}</p></div>
                     @if(! empty($highlight['image']))
                         <figure class="product-tour-image"><img src="{{ $highlight['image']['src'] }}" alt="{{ $highlight['image']['alt'] }}" width="1440" height="1000" loading="lazy"></figure>
-                    @else
-                        <div class="product-tour-media">
-                            <span>Képes bemutató hamarosan</span>
-                            <small>A részletes képsor előkészítés alatt.</small>
-                        </div>
                     @endif
                 </article>
             @endforeach
@@ -54,8 +49,8 @@
         <div class="section-heading"><div><span class="eyebrow">{{ $product['lifecycle_status'] === 'preview' ? 'Referenciaképernyők' : 'Valódi képernyők' }}</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Az éles előzmény felülete' : 'Nézd meg működés közben' }}</h2></div><p>{{ $product['lifecycle_status'] === 'preview' ? 'A képek a kapcsolódó éles projekt nyilvános felületéről készültek. A több vállalkozásnál bevezethető termékváltozat előkészítés alatt áll.' : 'A képek a jelenlegi demóverzióból készültek. A bevezetett rendszer arculata és beállításai a műhelyhez igazíthatók.' }}</p></div>
         <div class="product-gallery">
             @foreach($product['screenshots'] as $screenshot)
-                <figure @class(['gallery-card', 'gallery-card-wide' => $loop->first])>
-                    <div class="gallery-image"><img src="{{ $screenshot['src'] }}" alt="{{ $screenshot['alt'] }}" width="1440" height="1000" loading="lazy"></div>
+                <figure @class(['gallery-card', 'gallery-card-wide' => $loop->first, 'gallery-card-portrait' => ($screenshot['orientation'] ?? null) === 'portrait'])>
+                    <a class="gallery-image" href="{{ $screenshot['src'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $screenshot['title'] }} — teljes kép megnyitása"><img src="{{ $screenshot['src'] }}" alt="{{ $screenshot['alt'] }}" width="{{ $screenshot['width'] ?? 1440 }}" height="{{ $screenshot['height'] ?? 1000 }}" loading="lazy"></a>
                     <figcaption><span>{{ $screenshot['label'] }}</span><strong>{{ $screenshot['title'] }}</strong></figcaption>
                 </figure>
             @endforeach
@@ -67,7 +62,7 @@
 @if($relatedProjects->isNotEmpty())
 <section class="section related-project-section">
     <div class="container">
-        <div class="section-heading"><div><span class="eyebrow">Éles előzmény</span><h2>Valós projektből továbbépíthető termékirány</h2></div><p>GyrosCity — a FoodShop éles előzménye. Referenciaképernyő. Az élő oldal nem tesztkörnyezet.</p></div>
+        <div class="section-heading"><div><span class="eyebrow">Éles előzmény</span><h2>A FoodShop alapja: a GyrosCity</h2></div><p>GyrosCity — a FoodShop éles előzménye. Referenciaképernyő. Az élő oldal nem tesztkörnyezet.</p></div>
         <div class="project-grid project-grid-related">
             @foreach($relatedProjects as $project)
                 <x-marketing.project-card :project="$project" />

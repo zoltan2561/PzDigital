@@ -10,7 +10,7 @@
         <div class="hero-copy">
             <span class="eyebrow eyebrow-light hero-eyebrow"><span aria-hidden="true"></span> Szoftverfejlesztés · Automatizálás</span>
             <h1>Ami ma pluszmunka,<br> <span>arra fejlesztünk megoldást.</span></h1>
-            <p>Egyedi szoftvereket készítünk, összekötjük a rendszereidet, és automatizáljuk az ismétlődő feladatokat. Abból indulunk ki, hol veszítesz időt, és hogyan lehetne egyszerűbb a munkád.</p>
+            <p>Mondd el, mi nehezíti a munkát. Készítünk hozzá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk a felesleges kézi lépéseket.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
                 <a class="button button-outline" href="#megoldasok">Megnézem a termékeket</a>
@@ -23,7 +23,7 @@
         </div>
         @if($heroProduct)
             <div class="hero-showcase" data-hero-showcase>
-                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Saját fejlesztés. Valódi felület.</div>
+                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Egy saját fejlesztésünk: {{ $heroProduct['name'] }}</div>
                 <a class="showcase-window" href="{{ route('products.show', $heroProduct['slug']) }}" aria-label="{{ $heroProduct['name'] }}: a termék bemutatása">
                     <div class="showcase-toolbar" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>{{ $heroProduct['name'] }}</span><x-marketing.icon name="shield" /></div>
                     <img src="{{ $heroProduct['screenshots'][0]['src'] }}" alt="{{ $heroProduct['screenshots'][0]['alt'] }}" width="1440" height="1050" fetchpriority="high">
@@ -67,7 +67,7 @@
     <div class="container">
         <div class="section-heading">
             <div><span class="eyebrow">Saját termékeink</span><h2>Saját szoftverek a napi működéshez</h2></div>
-            <div class="section-heading-action"><p>Nem minden feladatnál kell nulláról indulni. Nézd meg saját megoldásainkat, a bemutatón pedig átbeszéljük a bevezetéshez szükséges lépéseket.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
+            <div class="section-heading-action"><p>Nem kell mindig nulláról indulni. Nézd meg saját termékeinket, és beszéljük át, melyik passzolhat a munkádhoz.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
         </div>
         <div @class(['home-products-grid', 'is-two-up' => ! $productPlaceholder])>
             @foreach($products as $product)
@@ -84,14 +84,14 @@
     <div class="container principles-layout">
         <div class="principles-intro">
             <span class="eyebrow">Miért PZ Digital?</span>
-            <h2>Ne neked kelljen összerakni a technikai részleteket.</h2>
-            <p>A szoftvert, a kezelőfelületet és a szükséges kapcsolatokat együtt nézzük. Így már a tervezésnél kiderül, minek kell együtt működnie.</p>
+            <h2>Beszéljük át a feladatot. A technikai részét megoldjuk.</h2>
+            <p>Elmondod, hogyan dolgoztok, és min szeretnél változtatni. Mi végiggondoljuk, minek kell együtt működnie.</p>
             <a class="text-link" href="{{ route('about') }}">A PZ Digitalról <span aria-hidden="true">→</span></a>
         </div>
         <div class="principles-list">
             <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>A feladatot a vállalkozásod nyelvén beszéljük át.</p></div></article>
-            <article><span>02</span><div><h3>Körülhatárolt munka</h3><p>Előre tisztázzuk, mit tartalmaz a megoldás.</p></div></article>
-            <article><span>03</span><div><h3>További lehetőségek</h3><p>A későbbi bővítésről külön is egyeztethetünk.</p></div></article>
+            <article><span>02</span><div><h3>Tudd, mit kapsz.</h3><p>Előre átbeszéljük a feladatokat és azt, mi tartozik az ajánlatba.</p></div></article>
+            <article><span>03</span><div><h3>A folytatást is átbeszéljük.</h3><p>Ha később új funkcióra van szükség, arról külön egyeztetünk.</p></div></article>
         </div>
     </div>
 </section>

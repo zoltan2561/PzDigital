@@ -28,7 +28,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('Ami ma pluszmunka,')
             ->assertSee('arra fejlesztünk megoldást.')
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('Egyedi szoftvereket készítünk, összekötjük a rendszereidet, és automatizáljuk az ismétlődő feladatokat. Abból indulunk ki, hol veszítesz időt, és hogyan lehetne egyszerűbb a munkád.')
+            ->assertSee('Mondd el, mi nehezíti a munkát. Készítünk hozzá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk a felesleges kézi lépéseket.')
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
             ->assertSee('Mire szeretnél megoldást?')
@@ -43,7 +43,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('Innen indul a közös munka')
             ->assertSee('Javaslatot és ajánlatot kapsz')
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
-            ->assertSee('Ne neked kelljen összerakni a technikai részleteket.')
+            ->assertSee('Beszéljük át a feladatot. A technikai részét megoldjuk.')
             ->assertSee('Nézd meg, min dolgoztunk.')
             ->assertDontSee('Egy időpontfoglalás a gyakorlatban')
             ->assertDontSee('A vendég kiválasztja az időpontot.')
@@ -75,7 +75,7 @@ class PublicPagesTest extends TestCase
         $html = $response->getContent();
         $this->assertLessThan(strpos($html, 'Innen indul a közös munka'), strpos($html, 'id="szolgaltatasok"'));
         $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'Innen indul a közös munka'));
-        $this->assertLessThan(strpos($html, 'Ne neked kelljen összerakni'), strpos($html, 'id="megoldasok"'));
+        $this->assertLessThan(strpos($html, 'Beszéljük át a feladatot.'), strpos($html, 'id="megoldasok"'));
         $this->assertLessThan(strpos($html, 'Technológiák, amelyekkel dolgozunk'), strpos($html, 'id="referenciak"'));
         $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'Technológiák, amelyekkel dolgozunk'));
         $this->assertSame(6, substr_count($html, '<details>'));
@@ -210,7 +210,9 @@ class PublicPagesTest extends TestCase
         $product = $this->get('/termekek/szervizpro')->assertOk();
         $this->assertMatchesRegularExpression('/href="[^"]*"\\s+aria-current="page"[^>]*>Főoldal<\\/a>/', $home);
         $this->assertDoesNotMatchRegularExpression('/aria-current="page"[^>]*>Főoldal<\\/a>/', $product->getContent());
-        $product->assertSee('Képes bemutató hamarosan')
+        $product->assertDontSee('Képes bemutató hamarosan')
+            ->assertSee('Ezt mutatjuk meg a bemutatón')
+            ->assertSee('Egy munkalap, a felvételtől az átadásig')
             ->assertSee(route('contact', ['erdeklodes' => 'szervizpro']), false);
         $this->get('/termekek/foodshop')->assertOk()
             ->assertSee('Előkészítés alatt')
@@ -228,6 +230,35 @@ class PublicPagesTest extends TestCase
             ->assertSee('Megmutatjuk, hogyan készül')
             ->assertSee('Kipróbáljuk és átadjuk')
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.');
+    }
+
+    public function test_product_media_and_customer_copy_preserve_context_without_empty_boxes(): void
+    {
+        $this->get('/termekek/foodshop')->assertOk()
+            ->assertDontSee('Képes bemutató hamarosan')
+            ->assertSee('A FoodShop alapja: a GyrosCity')
+            ->assertSee('A kínálattól a rendelésig')
+            ->assertSee('gallery-card-portrait', false)
+            ->assertSee('href="/media/pzdigital/references/gyroscity/menu-mobile.jpg"', false);
+
+        $this->get('/referenciak/gyroscity')->assertOk()
+            ->assertSee('Amit megvalósítottunk')
+            ->assertSee('A rendelés útja — szemléltető bemutató.')
+            ->assertSee('Hasonló rendelési rendszert szeretnél?')
+            ->assertSee('A beérkező rendelések az adminfelületen kezelhetők.')
+            ->assertSee(route('contact', ['referencia' => 'gyroscity']), false)
+            ->assertDontSee('Konkrét státuszokat, fizetési vagy futárintegrációt');
+
+        $this->get('/kapcsolat?referencia=gyroscity')->assertOk()
+            ->assertSee('Írj nekünk')
+            ->assertSee('value="project_reference" data-project-option="gyroscity" selected', false);
+
+        config(['pzdigital.products.szervizpro.demo_highlights.0.image' => [
+            'src' => '/media/approved-detail.png', 'alt' => 'Jóváhagyott részlet',
+        ]]);
+        $this->get('/termekek/szervizpro')->assertOk()
+            ->assertSee('src="/media/approved-detail.png"', false)
+            ->assertDontSee('Képes bemutató hamarosan');
     }
 
     public function test_project_case_studies_explain_confirmed_workflows_without_internal_notes(): void

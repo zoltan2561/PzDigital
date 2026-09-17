@@ -100,7 +100,7 @@ return [
             ],
             'screenshots' => [
                 ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'label' => 'Éles előzmény', 'title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete'],
-                ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'label' => 'Mobilfelület', 'title' => 'Termékkínálat mobilon'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'label' => 'Mobilfelület', 'title' => 'Termékkínálat mobilon', 'orientation' => 'portrait', 'width' => 390, 'height' => 844],
             ],
             'demo_highlights' => [
                 ['title' => 'A kínálattól a rendelésig', 'text' => 'A GyrosCity éles előzménye alapján bemutatjuk a vendégoldali rendelési utat. A FoodShop termékváltozatának pontos funkcióit egyeztetjük.', 'image' => null],
@@ -151,7 +151,7 @@ return [
                 'lead' => 'Az éttermi kínálat böngészésétől a rendelés kezelőoldali feldolgozásáig egy összefüggő webes folyamat készült.',
                 'audience' => 'Éttermi vendégek és a rendeléseket kezelő csapat',
                 'blocks' => [
-                    ['type' => 'overview', 'heading' => 'A vendégoldal és a háttérfolyamat', 'public_side' => 'A vendég kategóriák szerint böngészi a kínálatot, terméket választ, majd a rendelési úton halad tovább.', 'admin_side' => 'A beérkező rendelés a kezelőoldali feldolgozásba kerül. Konkrét státuszokat, fizetési vagy futárintegrációt a bemutató nem állít.', 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
+                    ['type' => 'overview', 'heading' => 'A vendégoldal és a háttérfolyamat', 'public_side' => 'A vendég kategóriák szerint böngészi a kínálatot, terméket választ, majd a rendelési úton halad tovább.', 'admin_side' => 'A beérkező rendelések az adminfelületen kezelhetők.', 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                     ['type' => 'workflow', 'heading' => 'Hogyan működik?', 'steps' => [
                         ['title' => 'Étlap', 'body' => 'A valós terméklistán kategóriák, terméknevek és árak jelennek meg.'],
                         ['title' => 'Rendelés', 'body' => 'A kiválasztott tételek a vendégoldali rendelési folyamatba kerülnek.'],
@@ -159,7 +159,7 @@ return [
                     ], 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                     ['type' => 'integration', 'heading' => 'Éles előzmény a FoodShop mögött', 'body' => 'Az itt bemutatott rendszer a FoodShop előkészítés alatt álló termékváltozatának éles előzménye. Ez nem jelent kész, több vállalkozásnál azonnal bevezethető terméket.', 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                     ['type' => 'gallery', 'heading' => 'A valódi étlapfelület', 'body' => 'Nyilvános asztali és mobilképek; a háttérfolyamatot külön, jelölt szemléltető magyarázza.', 'publication_status' => 'published', 'evidence_status' => 'public_screen'],
-                    ['type' => 'outcome', 'heading' => 'Igazoltan elkészült', 'items' => ['Kategóriákba rendezett, reszponzív étlap', 'Vendégoldali rendelési út', 'Rendeléskezelő adminisztráció'], 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
+                    ['type' => 'outcome', 'heading' => 'Amit megvalósítottunk', 'items' => ['Kategóriákba rendezett, reszponzív étlap', 'Vendégoldali rendelési út', 'Rendeléskezelő adminisztráció'], 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                 ],
                 'missing_assets' => ['Jóváhagyott, szintetikus adatú admin-képernyő'],
             ],

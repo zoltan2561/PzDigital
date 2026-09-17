@@ -14,7 +14,7 @@ A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.ph
 
 ### Vizuális megújulás a V1.8 visszajelzése után
 
-- A hero kék fényátmenetes, finom rácsos háttéren a legelső publikálható, főoldalra kiemelt termék valódi képernyőképét mutatja. A térhatású keret a termékoldalra vezet; a státusz és a háromlépéses termékfolyamat szintén a katalógusból származik. Üres főoldali terméklistán a vizuál kimarad, a szöveg és a CTA megmarad.
+- A hero kék fényátmenetes, finom rácsos háttéren a legelső publikálható, főoldalra kiemelt termék valódi képernyőképét mutatja. Az egyenes böngészőkeret a termékoldalra vezet; a státusz és a háromlépéses termékfolyamat szintén a katalógusból származik. Üres főoldali terméklistán a vizuál kimarad, a szöveg és a CTA megmarad.
 - Világos fejléc, három ikonos szolgáltatáskártya, közvetlenül alattuk a négy lépés; nagy, fekvő termékpanelek és képes referenciák. A kék/zöld termékfelületek valódi képeket használnak, új marketingállítás vagy fiktív képernyő nélkül.
 - A főoldali sorrend: hero → szolgáltatások → négylépéses közös munka → termékek → működési elvek → opcionális referenciák → technológiák → GYIK → kapcsolatfelvétel.
 - A technológiai lista és a GYIK forrásleltárát a `CONTENT_GUIDE.md` tartalmazza. A tartalom Blade-ben, szerveroldali HTML-ként jelenik meg; az FAQ natív `details`/`summary` elemeket használ.
@@ -34,7 +34,7 @@ A kompakt referencia-blokkot a `PZDIGITAL_HOME_SHOW_REFERENCES` környezeti vál
 
 - A `resources/js/marketing/motion` moduljai külön kezelik a főoldali szekcióbelépéseket és a projektoldalakon felhasználó által indított folyamatszemléltetőt. A `pagehide` eseménykor az eseménykezelők, időzítők és ScrollTrigger-példányok takarítása megtörténik.
 - Animációs állapot csak sikeres inicializálás után kerül a DOM-ra. JavaScript-hibánál a címsor, minden főoldali tartalom, helyi kép és normál hivatkozás látható marad.
-- A hero elemei véges, kb. 1,5 másodperces kompozícióban érkeznek be. A szekciócímek és kártyák egyszeri görgetéses belépést, a folyamatvonal egyszeri kirajzolást kap. Nincs végtelen lebegés, scroll hijack vagy automatikus carousel.
+- V1.9: a főcím és a CTA azonnal látható. A hero képe és címkéje legfeljebb 8–10 px függőleges mozgással, kb. 0,6 másodperc alatt jelenik meg; nincs forgatás, perspektíva vagy vízszintes belépés. A szekciócímek és kártyák egyszeri, 10 px-es görgetéses belépést, a folyamatvonal egyszeri kirajzolást kap. Nincs végtelen lebegés, scroll hijack vagy automatikus carousel.
 - `prefers-reduced-motion: reduce` esetén a belépések és a hover-elmozdulások kimaradnak. A GSAP matchMedia az élő beállításváltásnál is visszaállítja az inline animációs stílusokat. A projektoldali folyamatlépések közvetlenül választhatók, az időzített lejátszás rejtett.
 - A szemléltetők rögzített helyi szöveggel működnek; nincs AI-, Google Naptár-, MLSZ- vagy rendelési végpont a marketinginterakció mögött.
 
@@ -65,9 +65,9 @@ Az éles SMTP, queue worker és scheduler konfiguráció külön launch gate.
 
 Ebben a munkacsomagban nincs PROD-deploy, DNS-, HTTPS- vagy SMTP-módosítás. Éles indulás előtt végleges jogi tartalom, szolgáltatói adatok, jóváhagyott termékígéretek, valódi média és tesztelt levélkézbesítés szükséges.
 
-## V1.8 vizuális és termékbemutató-frissítés
+## V1.8 vizuális és termékbemutató-frissítés (történeti előzmény)
 
 - A közös marketingtokenek grafit, törtfehér és visszafogott márkakék palettát használnak; a nagy felületek és a CTA-k kék fényudvara megszűnt. A meglévő betűcsalád maradt, a címek 600–650-es hangsúlyt kaptak.
 - A Főoldal link valódi route-ra vezet, és csak azon kap `aria-current="page"` jelölést. 1320 px alatt a teljes menü a meglévő mobilnavigációba kerül.
 - A főoldali termékkártyák igazolt funkciókat, részletoldali és kontextusos bemutatókérő hivatkozást tartalmaznak.
-- A termékoldali `demo_highlights` blokkok későbbi képsorok helyét készítik elő. A helykitöltők egyértelműen jelöltek; nem mutatnak kitalált alkalmazást. Nem jött létre új termék, demókörnyezet vagy külső kapcsolat.
+- A termékoldali `demo_highlights` blokkok későbbi képsorok helyét készítik elő. V1.9-től a hiányzó képek helykitöltői nem jelennek meg; a funkcióleírások megmaradnak. Nem jött létre új termék, demókörnyezet vagy külső kapcsolat.

@@ -52,8 +52,12 @@ A `pzoli.com` nyilvános főoldalát és készségoldalát 2026. szeptember 17-�
 
 Nem került át konkrét napokban vagy hetekben megadott vállalási idő, ingyenességi ígéret, személyes kapcsolat- vagy önéletrajzi adat, közösségimédia-hivatkozás, hardveres/általános IT-szolgáltatás, illetve a kiválasztott listán kívüli modell, eszköz vagy képzési irány. A későbbi frissítéseknél ezt a szűrést meg kell tartani.
 
-## V1.8 termékbemutatók képeinek bővítése
+## Termékbemutatók képeinek bővítése (V1.9)
 
-A termék `demo_highlights` listája a bemutató témáit tartalmazza, `title`, `text` és `image` mezőkkel. Az `image=null` helyén „Képes bemutató hamarosan” felirat jelenik meg. Jóváhagyott, anonimizált helyi kép érkezésekor az érték például `['src' => '/media/pzdigital/szervizpro/munkalap.png', 'alt' => 'A munkalap részletes nézete tesztadatokkal']` lehet; ez kizárólag formátumpélda, a fájl jelenleg nem létezik. A forrást a meglévő médiamanifesztben is rögzíteni kell.
+A termék `demo_highlights` listája a bemutató témáit tartalmazza, `title`, `text` és `image` mezőkkel. Az `image=null` esetén a médiaelem nem jelenik meg a nyilvános nézetben; a cím, leírás és bemutatókérés megmarad. Jóváhagyott, anonimizált helyi kép érkezésekor az érték például `['src' => '/media/pzdigital/szervizpro/munkalap.png', 'alt' => 'A munkalap részletes nézete tesztadatokkal']` lehet; ez kizárólag formátumpélda, a fájl jelenleg nem létezik. A forrást a meglévő médiamanifesztben is rögzíteni kell.
 
 A SzervizPRO bemutatókérése a termékkontextusos kapcsolatoldalra vezet. A FoodShop előkészítés alatt áll; a GyrosCity éles előzmény, nem írható tesztkörnyezet. A nyilvános galéria és a később feltöltendő képsorok nem jelentenek automatikusan megnyitott élő demót.
+
+A FoodShop `menu-mobile.jpg` képe meglévő, valódi GyrosCity-forrás. Az `orientation=portrait`, `width=390`, `height=844` mezők alapján álló, teljes képet mutat a galéria, külön teljesméretű hivatkozással. Nem készült új admin- vagy termékkép.
+
+V1.9: a GyrosCity publikus leírása rövidült, de továbbra sincs igazolt konkrét rendelési státuszlista, fizetési vagy futárintegráció. Ezek nem kerülhetnek funkcióígéretként a felületre új bizonyíték nélkül. A kapcsolatoldal jogi jóváhagyási megjegyzése és az éles indulás adatkezelési/SMTP-korlátja változatlanul nyitott.

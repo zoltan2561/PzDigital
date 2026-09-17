@@ -45,6 +45,26 @@ class InquiryTest extends TestCase
         Bus::assertDispatched(SendInquiryNotification::class, 1);
     }
 
+    public function test_validation_summary_distinguishes_field_errors_from_form_failures(): void
+    {
+        Bus::fake();
+        config(['pzdigital.inquiry_rate_limit' => 1]);
+        $payload = [...$this->validPayload((string) Str::uuid()), 'name' => ''];
+
+        $this->followingRedirects()->from('/kapcsolat')->post('/kapcsolat', $payload)->assertOk()
+            ->assertSee('Nézd át a megjelölt mezőket.')
+            ->assertSee('Javítsd az adatokat, majd küldd el újra.')
+            ->assertSee('aria-invalid="true" aria-describedby="name-error"', false);
+
+        $this->followingRedirects()->from('/kapcsolat')->post('/kapcsolat', $payload)->assertOk()
+            ->assertSee('A beküldést nem tudtuk feldolgozni.')
+            ->assertSee('Túl sok beküldési kísérlet érkezett.')
+            ->assertDontSee('Javítsd az adatokat, majd küldd el újra.');
+
+        $this->assertDatabaseCount('inquiries', 0);
+        Bus::assertNothingDispatched();
+    }
+
     public function test_custom_development_requires_a_message(): void
     {
         Bus::fake();

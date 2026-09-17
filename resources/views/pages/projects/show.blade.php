@@ -62,7 +62,7 @@
 
     <section class="case-closing">
         <div class="container case-closing-grid">
-            <div><span class="eyebrow eyebrow-light">Hasonló feladatod van?</span><h2>A megkeresésben a {{ $project['name'] }} referencia már ki lesz választva.</h2><a class="button" href="{{ route('contact', ['referencia' => $project['slug']]) }}">Beszéljünk róla <span aria-hidden="true">→</span></a></div>
+            <div><span class="eyebrow eyebrow-light">Hasonló feladatod van?</span><h2>{{ $project['slug'] === 'gyroscity' ? 'Hasonló rendelési rendszert szeretnél?' : 'A megkeresésben a '.$project['name'].' referencia már ki lesz választva.' }}</h2><a class="button" href="{{ route('contact', ['referencia' => $project['slug']]) }}">Beszéljünk róla <span aria-hidden="true">→</span></a></div>
             @if($nextProject)
                 <a class="next-project" href="{{ route('projects.show', $nextProject['slug']) }}"><span>Következő projekt</span><strong>{{ $nextProject['name'] }}</strong><small>{{ $nextProject['showcase_title'] ?? $nextProject['summary'] }}</small><b aria-hidden="true">↗</b></a>
             @endif

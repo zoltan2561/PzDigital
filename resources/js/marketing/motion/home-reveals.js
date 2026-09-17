@@ -9,11 +9,10 @@ export function initHomeReveals(gsap, ScrollTrigger) {
     try {
         media.add('(prefers-reduced-motion: no-preference)', () => {
             const intro = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform,opacity' } });
-            intro.from('.company-home-hero .hero-copy > *', { y: 28, opacity: 0.35, duration: 0.85, stagger: 0.1 });
+            // The headline and contact CTA never wait for an entrance animation.
             if (document.querySelector('[data-hero-showcase]')) {
-                intro.from('.showcase-window', { x: 45, y: 32, rotation: -3, opacity: 0.25, duration: 1.25 }, 0.15)
-                    .from('.showcase-label', { y: 15, opacity: 0, duration: 0.65 }, 0.55)
-                    .from('.showcase-flow', { y: 35, opacity: 0, duration: 0.8 }, 0.75);
+                intro.from('.showcase-window', { y: 10, opacity: 0.65, duration: 0.6 }, 0)
+                    .from('.showcase-flow', { y: 8, opacity: 0.65, duration: 0.5 }, 0.1);
             }
 
             document.querySelectorAll('[data-home-reveal]').forEach((section) => {
@@ -25,14 +24,14 @@ export function initHomeReveals(gsap, ScrollTrigger) {
                     const elements = section.querySelectorAll(selector);
                     if (!elements.length) return;
                     gsap.from(elements, {
-                        y: 36, opacity: 0.3, duration: 0.85, stagger: 0.11, ease: 'power3.out',
+                        y: 10, opacity: 0.65, duration: 0.55, stagger: 0.06, ease: 'power3.out',
                         clearProps: 'transform,opacity',
                         scrollTrigger: { trigger: elements[0], start: 'top 92%', once: true },
                     });
                 });
                 section.querySelectorAll('.home-product-card, .reference-preview').forEach((element) => {
                     gsap.from(element, {
-                        y: 48, opacity: 0.35, duration: 1, ease: 'power3.out',
+                        y: 10, opacity: 0.65, duration: 0.6, ease: 'power3.out',
                         clearProps: 'transform,opacity',
                         scrollTrigger: { trigger: element, start: 'top 93%', once: true },
                     });

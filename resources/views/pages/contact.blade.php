@@ -6,10 +6,10 @@
 @section('content')
 <section class="contact-hero">
     <div class="container contact-grid">
-        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd le a célodat és azt, mi nem működik most jól. Nem szükséges kész műszaki specifikációval érkezned.</p><p class="contact-supporting">Új projekt és meglévő rendszer továbbfejlesztése kapcsán is egyeztethetünk, a tényleges feladat és a vállalható keretek áttekintésével.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük a megkeresésedet, és egyeztetjük a következő lépést.</p></div><p class="contact-direct">Közvetlen e-mail: <a href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a></p></div>
+        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd meg, mire van szükséged. Nem kell kész tervet vagy műszaki leírást küldened. Új fejlesztésről és meglévő rendszer továbbfejlesztéséről is egyeztethetünk.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük, amit írtál, és jelentkezünk, hogy átbeszéljük a részleteket.</p></div><p class="contact-direct">Közvetlen e-mail: <a href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a></p></div>
         <div class="form-card">
-            <div class="form-heading"><span>Projekt- és bemutatókérés</span><p>A *-gal jelölt mezők kötelezők.</p></div>
-            @if($errors->any())<div class="form-alert" role="alert"><strong>A beküldést nem tudtuk feldolgozni.</strong><p>Kérjük, ellenőrizd a megjelölt mezőket.</p>@error('form')<p>{{ $message }}</p>@enderror</div>@endif
+            <div class="form-heading"><span>Írj nekünk</span><p>A *-gal jelölt mezők kötelezők.</p></div>
+            @if($errors->any())<div class="form-alert" role="alert"><strong>{{ $errors->has('form') ? 'A beküldést nem tudtuk feldolgozni.' : 'Nézd át a megjelölt mezőket.' }}</strong>@if($errors->has('form'))<p>{{ $errors->first('form') }}</p>@else<p>Javítsd az adatokat, majd küldd el újra.</p>@endif</div>@endif
             <form method="post" action="{{ route('contact.store') }}" data-inquiry-form>
                 @csrf
                 <input type="hidden" name="submission_token" value="{{ old('submission_token', $submissionToken) }}">
