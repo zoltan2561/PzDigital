@@ -18,6 +18,7 @@ class Inquiry extends Model
         'phone',
         'interest_type',
         'product_slug',
+        'project_slug',
         'message',
         'source_path',
         'utm_source',

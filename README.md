@@ -1,6 +1,6 @@
 # PZ Digital weboldal
 
-Laravel 13 + Blade + Tailwind/Vite alapú céges weboldal. A projekt saját termékoldalakat, szolgáltatási és folyamatoldalakat, valamint tartósan mentett, queue-alapú kapcsolatfelvételt tartalmaz.
+Laravel 13 + Blade + Tailwind/Vite alapú céges weboldal. A projekt adatvezérelt termék- és referenciaoldalakat, szolgáltatási és folyamatoldalakat, valamint tartósan mentett, queue-alapú kapcsolatfelvételt tartalmaz.
 
 ## Helyi indítás
 

@@ -20,14 +20,22 @@ const inquiryForm = document.querySelector('[data-inquiry-form]');
 if (inquiryForm) {
     const interest = inquiryForm.querySelector('[data-interest]');
     const productSlug = inquiryForm.querySelector('[data-product-slug]');
+    const projectSlug = inquiryForm.querySelector('[data-project-slug]');
     const submit = inquiryForm.querySelector('[data-submit]');
 
-    const syncProductSlug = () => {
-        productSlug.value = ['szervizpro', 'foodshop'].includes(interest.value) ? interest.value : '';
+    const syncCatalogSelection = () => {
+        const selected = interest.selectedOptions[0];
+        productSlug.value = selected?.dataset.productOption ?? '';
+
+        if (interest.value !== 'project_reference') {
+            projectSlug.value = '';
+        } else {
+            projectSlug.value = selected?.dataset.projectOption ?? projectSlug.value;
+        }
     };
 
-    interest?.addEventListener('change', syncProductSlug);
-    syncProductSlug();
+    interest?.addEventListener('change', syncCatalogSelection);
+    syncCatalogSelection();
 
     inquiryForm.addEventListener('submit', () => {
         submit.disabled = true;

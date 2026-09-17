@@ -7,9 +7,9 @@
 - SQLite a lokális alap; támogatott céladatbázis MySQL/MariaDB vagy PostgreSQL.
 - Database queue az értesítésekhez; külső SMTP nincs bekapcsolva.
 
-## Tartalom és termékképek
+## Tartalom és média
 
-A termékadatok a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez a `publication_status=published` és `content_approved=true` együttesen szükséges. A jelenlegi dashboardok kódból rajzolt, egyértelműen „Látványterv” jelölésű illusztrációk. Ezeket jóváhagyott, szintetikus adatokat mutató valódi képernyőképekre kell cserélni.
+A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez mindkét típusnál a `publication_status=published` és `content_approved=true` együttesen szükséges. A képernyőképek helyi, verziókezelt médiafájlok; az eredetüket a `REFERENCE_MIGRATION.md` rögzíti.
 
 ## Megkeresések és értesítés
 

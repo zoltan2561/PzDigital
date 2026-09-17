@@ -28,6 +28,7 @@
             </button>
 
             <nav id="main-navigation" class="main-nav" aria-label="Fő navigáció" data-nav>
+                <a @class(['active' => request()->routeIs('projects.*')]) href="{{ route('projects.index') }}">Munkáink</a>
                 <a @class(['active' => request()->routeIs('products.*')]) href="{{ route('products.index') }}">Termékek</a>
                 <a @class(['active' => request()->routeIs('services')]) href="{{ route('services') }}">Szolgáltatások</a>
                 <a @class(['active' => request()->routeIs('process')]) href="{{ route('process') }}">Hogyan dolgozunk</a>
@@ -48,6 +49,7 @@
                 <p>Üzleti szoftverek. Valódi működésre tervezve.</p>
             </div>
             <nav aria-label="Lábléc navigáció">
+                <a href="{{ route('projects.index') }}">Munkáink</a>
                 <a href="{{ route('products.index') }}">Termékek</a>
                 <a href="{{ route('services') }}">Szolgáltatások</a>
                 <a href="{{ route('contact') }}">Kapcsolat</a>

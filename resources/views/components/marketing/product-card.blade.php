@@ -1,8 +1,8 @@
 @props(['product', 'featured' => false])
-<article @class(['product-card', 'product-card-featured' => $featured, 'accent-green' => $product['accent'] === 'green'])>
+<article data-product-card="{{ $product['slug'] }}" @class(['product-card', 'product-card-featured' => $featured, 'accent-green' => $product['accent'] === 'green'])>
     <div class="product-card-copy">
         <div class="product-heading">
-            <span class="product-symbol">{{ $product['slug'] === 'szervizpro' ? '⌁' : '✦' }}</span>
+            <span class="product-symbol">{{ $product['symbol'] }}</span>
             <div><h3>{{ $product['name'] }}</h3><p>{{ $product['audience'] }}</p></div>
         </div>
         <span class="status-badge">{{ $product['status_label'] }}</span>

@@ -3,27 +3,50 @@
 namespace App\Http\Controllers\Marketing;
 
 use App\Http\Controllers\Controller;
+use App\Support\MarketingCatalog;
 use Illuminate\Contracts\View\View;
 
 class PageController extends Controller
 {
+    public function __construct(private readonly MarketingCatalog $catalog) {}
+
     public function home(): View
     {
-        return view('pages.home', ['products' => $this->publishedProducts()]);
+        return view('pages.home', [
+            'products' => $this->catalog->featuredProducts(),
+            'projects' => $this->catalog->featuredProjects(),
+        ]);
     }
 
     public function products(): View
     {
-        return view('pages.products.index', ['products' => $this->publishedProducts()]);
+        return view('pages.products.index', ['products' => $this->catalog->products()]);
     }
 
     public function product(string $slug): View
     {
-        $product = $this->publishedProducts()->get($slug);
+        $product = $this->catalog->products()->get($slug);
 
         abort_unless($product, 404);
 
-        return view('pages.products.show', compact('product'));
+        return view('pages.products.show', [
+            'product' => $product,
+            'relatedProjects' => $this->catalog->relatedProjects($product),
+        ]);
+    }
+
+    public function projects(): View
+    {
+        return view('pages.projects.index', ['projects' => $this->catalog->projects()]);
+    }
+
+    public function project(string $slug): View
+    {
+        $project = $this->catalog->projects()->get($slug);
+
+        abort_unless($project, 404);
+
+        return view('pages.projects.show', compact('project'));
     }
 
     public function page(string $view): View
@@ -31,11 +54,5 @@ class PageController extends Controller
         abort_unless(view()->exists("pages.$view"), 404);
 
         return view("pages.$view");
-    }
-
-    private function publishedProducts()
-    {
-        return collect(config('pzdigital.products'))
-            ->filter(fn (array $product): bool => $product['publication_status'] === 'published' && $product['content_approved']);
     }
 }

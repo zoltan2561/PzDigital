@@ -60,6 +60,42 @@ class InquiryTest extends TestCase
         Bus::assertNothingDispatched();
     }
 
+    public function test_reference_context_is_validated_and_persisted(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+
+        $this->post('/kapcsolat', [
+            ...$this->validPayload($token),
+            'interest_type' => 'project_reference',
+            'product_slug' => null,
+            'project_slug' => 'gyroscity',
+        ])->assertRedirect('/koszonjuk');
+
+        $this->assertDatabaseHas('inquiries', [
+            'submission_token' => $token,
+            'interest_type' => 'project_reference',
+            'project_slug' => 'gyroscity',
+        ]);
+    }
+
+    public function test_product_interest_options_follow_the_published_catalog(): void
+    {
+        $products = config('pzdigital.products');
+        $products['uj-termek'] = [
+            ...$products['szervizpro'],
+            'slug' => 'uj-termek',
+            'name' => 'Új termék',
+            'sort_order' => 30,
+        ];
+        config(['pzdigital.products' => $products]);
+
+        $this->get('/kapcsolat?erdeklodes=uj-termek')
+            ->assertOk()
+            ->assertSee('Új termék — bemutató')
+            ->assertSee('value="uj-termek"', false);
+    }
+
     public function test_honeypot_and_unknown_product_are_rejected(): void
     {
         $this->post('/kapcsolat', [
@@ -122,6 +158,7 @@ class InquiryTest extends TestCase
             'phone' => '+36 30 123 4567',
             'interest_type' => 'szervizpro',
             'product_slug' => 'szervizpro',
+            'project_slug' => null,
             'message' => 'Szeretnék bemutatót kérni.',
             'source_path' => '/termekek/szervizpro',
             'utm_source' => 'manual-test',

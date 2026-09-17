@@ -1,6 +1,7 @@
 @extends('layouts.marketing')
 @php($title = 'Kapcsolat — PZ Digital')
 @php($description = 'Kérj termékbemutatót vagy írj a PZ Digitalnak egyedi webes fejlesztési elképzelésedről.')
+@php($activeProject = old('project_slug', $selectedProject))
 
 @section('content')
 <section class="contact-hero">
@@ -13,7 +14,8 @@
                 @csrf
                 <input type="hidden" name="submission_token" value="{{ old('submission_token', $submissionToken) }}">
                 <input type="hidden" name="source_path" value="{{ old('source_path', request()->path() === '/' ? '/' : '/'.request()->path()) }}">
-                <input type="hidden" name="product_slug" value="{{ old('product_slug', in_array($selectedInterest, ['szervizpro', 'foodshop'], true) ? $selectedInterest : '') }}" data-product-slug>
+                <input type="hidden" name="product_slug" value="{{ old('product_slug', $selectedProduct) }}" data-product-slug>
+                <input type="hidden" name="project_slug" value="{{ old('project_slug', $selectedProject) }}" data-project-slug>
                 @foreach(['utm_source', 'utm_medium', 'utm_campaign'] as $utm)<input type="hidden" name="{{ $utm }}" value="{{ old($utm, request()->query($utm)) }}">@endforeach
                 <div class="honeypot" aria-hidden="true"><label for="website">Weboldal</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
                 <div class="form-row">
@@ -24,7 +26,23 @@
                     <div class="field"><label for="company">Cég <span>(opcionális)</span></label><input id="company" name="company" type="text" value="{{ old('company') }}" autocomplete="organization" maxlength="160"></div>
                     <div class="field"><label for="phone">Telefon <span>(opcionális)</span></label><input id="phone" name="phone" type="tel" value="{{ old('phone') }}" autocomplete="tel" maxlength="40"></div>
                 </div>
-                <div class="field"><label for="interest_type">Miben segíthetünk? *</label><select id="interest_type" name="interest_type" required data-interest><option value="">Válassz egy lehetőséget</option><option value="szervizpro" @selected(old('interest_type', $selectedInterest) === 'szervizpro')>SzervizPRO bemutató</option><option value="foodshop" @selected(old('interest_type', $selectedInterest) === 'foodshop')>FoodShop bemutató</option><option value="custom_development" @selected(old('interest_type', $selectedInterest) === 'custom_development')>Egyedi fejlesztés</option><option value="other" @selected(old('interest_type', $selectedInterest) === 'other')>Más kérdés</option></select>@error('interest_type')<span class="field-error">{{ $message }}</span>@enderror</div>
+                <div class="field">
+                    <label for="interest_type">Miben segíthetünk? *</label>
+                    <select id="interest_type" name="interest_type" required data-interest>
+                        <option value="">Válassz egy lehetőséget</option>
+                        @foreach($products as $product)
+                            <option value="{{ $product['slug'] }}" data-product-option="{{ $product['slug'] }}" @selected(old('interest_type', $selectedInterest) === $product['slug'])>{{ $product['name'] }} — {{ $product['lifecycle_status'] === 'preview' ? 'egyeztetés' : 'bemutató' }}</option>
+                        @endforeach
+                        @if($activeProject && $projects->has($activeProject))
+                            <option value="project_reference" data-project-option="{{ $activeProject }}" @selected(old('interest_type', $selectedInterest) === 'project_reference')>{{ $projects[$activeProject]['name'] }} projekthez hasonló fejlesztés</option>
+                        @endif
+                        <option value="custom_development" @selected(old('interest_type', $selectedInterest) === 'custom_development')>Egyedi fejlesztés</option>
+                        <option value="other" @selected(old('interest_type', $selectedInterest) === 'other')>Más kérdés</option>
+                    </select>
+                    @error('interest_type')<span class="field-error">{{ $message }}</span>@enderror
+                    @error('product_slug')<span class="field-error">{{ $message }}</span>@enderror
+                    @error('project_slug')<span class="field-error">{{ $message }}</span>@enderror
+                </div>
                 <div class="field"><label for="message">Rövid leírás <span>(egyedi fejlesztésnél kötelező)</span></label><textarea id="message" name="message" rows="5" maxlength="3000" placeholder="Mivel foglalkozol, és melyik folyamat okozza a legtöbb pluszmunkát?">{{ old('message') }}</textarea>@error('message')<span class="field-error">{{ $message }}</span>@enderror</div>
                 <p class="privacy-note">A megadott adatokat a kapcsolatfelvétel kezelésére használjuk. Az éles indulás előtt a végleges <a href="{{ route('privacy') }}">adatkezelési tájékoztató</a> jóváhagyása szükséges.</p>
                 <button class="button button-full" type="submit" data-submit>Megkeresés elküldése <span aria-hidden="true">→</span></button>

@@ -1,10 +1,10 @@
 @props(['product', 'compact' => false])
-@if($product['slug'] === 'szervizpro' && ! empty($product['screenshots']))
-    <figure @class(['product-visual', 'product-visual-real', 'product-visual-compact' => $compact])>
-        <div class="visual-label visual-label-verified"><span></span>Működő demó</div>
-        <div class="browser-bar"><i></i><i></i><i></i><span>SzervizPRO · napi műhelyközpont</span></div>
+@if(! empty($product['screenshots']))
+    <figure @class(['product-visual', 'product-visual-real', 'product-visual-compact' => $compact, 'accent-green' => $product['accent'] === 'green'])>
+        <div class="visual-label visual-label-verified"><span></span>{{ $product['visual_label'] }}</div>
+        <div class="browser-bar"><i></i><i></i><i></i><span>{{ $product['visual_title'] }}</span></div>
         <div class="product-screen">
-            <img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="1440" height="1050" @if($compact) loading="lazy" @else fetchpriority="high" @endif>
+            <img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="1440" height="1000" @if($compact) loading="lazy" @else fetchpriority="high" @endif>
         </div>
     </figure>
 @else
@@ -20,7 +20,7 @@
                 <span class="nav-pill"></span>
             </aside>
             <div class="app-content">
-                <div class="app-top"><b>Rendelések</b><span></span></div>
+                <div class="app-top"><b>Felület</b><span></span></div>
                 <div class="stat-row"><i></i><i></i><i></i></div>
                 <div class="data-card">
                     @foreach(range(1, 4) as $row)

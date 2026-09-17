@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInquiryRequest;
 use App\Jobs\SendInquiryNotification;
 use App\Models\Inquiry;
+use App\Support\MarketingCatalog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
@@ -14,13 +15,25 @@ use Illuminate\Support\Str;
 
 class InquiryController extends Controller
 {
+    public function __construct(private readonly MarketingCatalog $catalog) {}
+
     public function create(): View
     {
         $interest = request()->string('erdeklodes')->toString();
-        $allowed = ['szervizpro', 'foodshop', 'custom_development', 'other'];
+        $project = request()->string('referencia')->toString();
+        $products = $this->catalog->products();
+        $projects = $this->catalog->projects();
+        $allowed = [...$products->keys()->all(), 'custom_development', 'other'];
+        $selectedProject = $projects->has($project) ? $project : '';
 
         return view('pages.contact', [
-            'selectedInterest' => in_array($interest, $allowed, true) ? $interest : '',
+            'selectedInterest' => $selectedProject !== ''
+                ? 'project_reference'
+                : (in_array($interest, $allowed, true) ? $interest : ''),
+            'selectedProduct' => $products->has($interest) ? $interest : '',
+            'selectedProject' => $selectedProject,
+            'products' => $products,
+            'projects' => $projects,
             'submissionToken' => (string) Str::uuid(),
         ]);
     }
@@ -34,7 +47,7 @@ class InquiryController extends Controller
                 ['submission_token' => $data['submission_token']],
                 [
                     ...Arr::only($data, [
-                        'name', 'email', 'company', 'phone', 'interest_type', 'product_slug',
+                        'name', 'email', 'company', 'phone', 'interest_type', 'product_slug', 'project_slug',
                         'message', 'source_path', 'utm_source', 'utm_medium', 'utm_campaign',
                     ]),
                     'privacy_version' => config('pzdigital.privacy_version'),
