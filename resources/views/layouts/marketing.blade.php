@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="hu">
+<html lang="hu" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +10,7 @@
         <meta name="robots" content="noindex, nofollow">
     @endif
     <meta name="theme-color" content="#0B1421">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -33,7 +34,7 @@
                 <a @class(['active' => request()->routeIs('process')]) href="{{ route('process') }}">Hogyan dolgozunk</a>
                 <a @class(['active' => request()->routeIs('about')]) href="{{ route('about') }}">Rólunk</a>
                 <a @class(['active' => request()->routeIs('projects.*')]) href="{{ route('projects.index') }}">Munkáink</a>
-                <a class="button button-small" href="{{ route('contact') }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
+                <a class="button button-small" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
             </nav>
         </div>
     </header>
@@ -47,6 +48,7 @@
             <div>
                 <a class="brand brand-inverse" href="{{ route('home') }}"><span class="brand-mark">PZ</span><span>Digital</span></a>
                 <p>Üzleti szoftverek. Valódi működésre tervezve.</p>
+                <a class="footer-email" href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a>
             </div>
             <nav aria-label="Lábléc navigáció">
                 <a href="{{ route('projects.index') }}">Munkáink</a>

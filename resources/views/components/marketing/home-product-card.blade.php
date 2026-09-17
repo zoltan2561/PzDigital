@@ -1,7 +1,7 @@
 @props(['product'])
 <article class="home-product-card accent-{{ $product['accent'] }}" data-home-product-slot data-product-card="{{ $product['slug'] }}">
     <figure class="home-product-media">
-        <img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="1440" height="1000" loading="lazy">
+        <div class="home-product-image-frame"><img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="1440" height="1000" loading="lazy"></div>
         @if($product['slug'] === 'foodshop')
             <figcaption>GyrosCity — a FoodShop éles előzménye.</figcaption>
         @else

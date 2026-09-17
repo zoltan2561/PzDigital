@@ -6,32 +6,24 @@
     <div class="container company-home-hero-grid">
         <div class="hero-copy" data-hero-copy>
             <span class="eyebrow eyebrow-light">PZ Digital · Szoftverfejlesztés</span>
-            <h1>Fejlesztési partner a vállalkozásod mellé.</h1>
-            <p>Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvermegoldásokat készítünk. A feladat megértésétől a működő megoldásig.</p>
+            <h1>Weboldalak és üzleti rendszerek, a vállalkozásodra szabva.</h1>
+            <p>Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvereket készítünk. Összekapcsoljuk a rendszereidet, és egyszerűsítjük az ismétlődő feladatokat.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
-                <a class="button button-outline" href="#megoldasok">Saját megoldásaink</a>
+                <a class="button button-outline" href="#megoldasok">Termékeink megtekintése</a>
             </div>
         </div>
         <x-marketing.company-system-visual />
     </div>
 </section>
 
-<div class="capability-strip" aria-label="Kiemelt képességek">
-    <div class="container">
-        <span>Egyedi fejlesztés</span><i aria-hidden="true"></i>
-        <span>Saját szoftverek</span><i aria-hidden="true"></i>
-        <span>Rendszerintegráció</span>
-    </div>
-</div>
-
 <section class="section section-services" id="szolgaltatasok" data-home-reveal>
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Három terület, egy átgondolt megoldás</h2></div><p>Az üzleti céltól indulunk, és ahhoz választjuk meg a megfelelő webes eszközöket.</p></div>
         <div class="service-rows">
-            <article><span>01</span><h3>Céges weboldalak</h3><p>A vállalkozásodhoz illő bemutatkozás, áttekinthető szolgáltatások és egyszerű kapcsolatfelvétel.</p><a href="{{ route('services') }}#weboldalak">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>02</span><h3>Egyedi üzleti rendszerek</h3><p>A napi működéshez igazított webes alkalmazások, kezelőfelületek és jogosultságok.</p><a href="{{ route('services') }}#rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>03</span><h3>Integrációk és automatizálás</h3><p>Meglévő rendszerek összekapcsolása és az ismétlődő feladatok egyszerűsítése.</p><a href="{{ route('services') }}#integraciok">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>01</span><h3>Céges weboldalak</h3><p>A vállalkozásodhoz illő bemutatkozás, áttekinthető szolgáltatások és egyszerű kapcsolatfelvétel.</p><a href="{{ route('services') }}#weboldalak" aria-label="Részletek: Céges weboldalak">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>02</span><h3>Egyedi üzleti rendszerek</h3><p>A napi működéshez igazított webes alkalmazások, kezelőfelületek és jogosultságok.</p><a href="{{ route('services') }}#rendszerek" aria-label="Részletek: Egyedi üzleti rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>03</span><h3>Integrációk és automatizálás</h3><p>Meglévő rendszerek összekapcsolása és az ismétlődő feladatok egyszerűsítése.</p><a href="{{ route('services') }}#integraciok" aria-label="Részletek: Integrációk és automatizálás">Részletek <span aria-hidden="true">→</span></a></article>
         </div>
     </div>
 </section>
@@ -39,8 +31,8 @@
 <section id="megoldasok" class="section section-products home-products-section" data-home-reveal>
     <div class="container">
         <div class="section-heading">
-            <div><span class="eyebrow">Saját termékeink</span><h2>Megoldások valós működési helyzetekre</h2></div>
-            <div class="section-heading-action"><p>Két bemutatható irány és egy tudatosan jelölt következő termékhely — mindig a tényleges készültségi állapottal.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
+            <div><span class="eyebrow">Saját termékeink</span><h2>Saját szoftverek a napi működéshez</h2></div>
+            <div class="section-heading-action"><p>Ismerd meg termékeinket, és nézd meg, melyik illeszkedhet a vállalkozásod működéséhez.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
         </div>
         <div @class(['home-products-grid', 'is-two-up' => ! $productPlaceholder])>
             @foreach($products as $product)
@@ -69,8 +61,8 @@
     <div class="container principles-layout">
         <div class="principles-intro">
             <span class="eyebrow">Miért PZ Digital?</span>
-            <h2>Átlátható együttműködés. Átgondolt megvalósítás.</h2>
-            <p>A feladatot a működési célból indítjuk, a döntési pontokat pedig végig érthetően tartjuk.</p>
+            <h2>Tudd, mi készül — és mi következik.</h2>
+            <p>Egyeztetett feladatokkal, bemutatható fejlesztési állapotokkal és világos döntési pontokkal dolgozunk.</p>
             <a class="text-link" href="{{ route('about') }}">A PZ Digitalról <span aria-hidden="true">→</span></a>
         </div>
         <div class="principles-list">
@@ -88,7 +80,7 @@
         <div><span class="eyebrow eyebrow-light">Referenciák</span><h2>Nézd meg, min dolgoztunk.</h2><p>Weboldalak, üzleti felületek és automatizált megoldások a gyakorlatban.</p></div>
         <div class="compact-reference-links">
             @foreach($projects->take(3) as $project)
-                <a href="{{ route('projects.show', $project['slug']) }}"><span>{{ $project['showcase_label'] }}</span><strong>{{ $project['name'] }}</strong><b aria-hidden="true">→</b></a>
+                <a href="{{ route('projects.show', $project['slug']) }}"><span>{{ $project['name'] }}</span><strong>{{ $project['home_feature'] ?? $project['showcase_title'] }}</strong><b aria-hidden="true">→</b></a>
             @endforeach
             <a class="compact-reference-all" href="{{ route('projects.index') }}">Munkáink megtekintése <span aria-hidden="true">→</span></a>
         </div>
@@ -108,5 +100,5 @@
     </div>
 </section>
 
-<x-marketing.contact-cta title="Van egy projekt, amit érdemes lenne egyszerűbben megoldani?" />
+<x-marketing.contact-cta />
 @endsection

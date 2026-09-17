@@ -12,11 +12,14 @@ class PageController extends Controller
 
     public function home(): View
     {
+        $showProductDesignPreview = app()->environment(['local', 'development', 'dev', 'testing'])
+            && (bool) config('pzdigital.home.enable_product_design_preview', false);
+
         return view('pages.home', [
             'products' => $this->catalog->featuredProducts(),
             'projects' => $this->catalog->homepageStoryProjects(),
             'showReferences' => (bool) config('pzdigital.home.show_references', true),
-            'productPlaceholder' => config('pzdigital.home.show_product_placeholder', false)
+            'productPlaceholder' => $showProductDesignPreview
                 ? config('pzdigital.home.product_placeholder')
                 : null,
         ]);

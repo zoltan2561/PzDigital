@@ -14,13 +14,13 @@ export function initHero(gsap) {
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
             timeline
-                .fromTo(copy, { y: 18 }, { y: 0, duration: 0.58 })
-                .fromTo(visual, { y: 16 }, { y: 0, duration: 0.58 }, '-=0.38')
-                .fromTo(visualParts, { x: -12 }, {
+                .fromTo(copy, { y: 10 }, { y: 0, duration: 0.45 }, 0)
+                .fromTo(visual, { y: 12 }, { y: 0, duration: 0.48 }, 0.04)
+                .fromTo(visualParts, { x: -8 }, {
                     x: 0,
-                    duration: 0.42,
-                    stagger: 0.1,
-                }, '-=0.32');
+                    duration: 0.32,
+                    stagger: 0.04,
+                }, 0.08);
         }
 
         cleanups.push(() => {

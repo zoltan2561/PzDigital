@@ -25,19 +25,27 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Fejlesztési partner a vállalkozásod mellé.')
-            ->assertSee('Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvermegoldásokat készítünk.')
-            ->assertSee('Egyedi fejlesztés')
+            ->assertSee('Weboldalak és üzleti rendszerek, a vállalkozásodra szabva.')
+            ->assertSee('Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvereket készítünk. Összekapcsoljuk a rendszereidet, és egyszerűsítjük az ismétlődő feladatokat.')
+            ->assertSee('Termékeink megtekintése')
             ->assertSee('Miben segítünk?')
-            ->assertSee('Megoldások valós működési helyzetekre')
+            ->assertSee('Saját szoftverek a napi működéshez')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
-            ->assertSee('Új saját megoldás')
+            ->assertSee('Bemutató elérhető')
+            ->assertSee('Előkészítés alatt')
             ->assertSee('GyrosCity — a FoodShop éles előzménye.')
             ->assertSee('Négy követhető lépés')
-            ->assertSee('Átlátható együttműködés. Átgondolt megvalósítás.')
+            ->assertSee('Tudd, mi készül — és mi következik.')
             ->assertSee('Nézd meg, min dolgoztunk.')
-            ->assertSee('Szemléltető rendszerábra — nem egy működő termék kezelőfelülete.')
+            ->assertSee('Működési modell · szemléltetés')
+            ->assertSee('Így kapcsolódik össze a felület, az üzleti működés és a többi rendszer.')
+            ->assertSee('AI-val támogatott cikkgyártás')
+            ->assertSee('Online rendelés és rendeléskezelő admin')
+            ->assertSee('Időpontfoglalás Google Naptár-kapcsolattal')
+            ->assertDontSee('data-product-placeholder', false)
+            ->assertDontSee('capability-strip', false)
+            ->assertDontSee('system-visual-base', false)
             ->assertDontSee('A műhely átlátja a napot.')
             ->assertDontSee('Ügyfeleink mondták')
             ->assertDontSee('data-hero-option', false)
@@ -46,8 +54,8 @@ class PublicPagesTest extends TestCase
         $html = $response->getContent();
         $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="szolgaltatasok"'));
         $this->assertLessThan(strpos($html, 'Négy követhető lépés'), strpos($html, 'id="megoldasok"'));
-        $this->assertLessThan(strpos($html, 'Átlátható együttműködés.'), strpos($html, 'Négy követhető lépés'));
-        $this->assertSame(3, substr_count($html, 'data-home-product-slot'));
+        $this->assertLessThan(strpos($html, 'Tudd, mi készül'), strpos($html, 'Négy követhető lépés'));
+        $this->assertSame(2, substr_count($html, 'data-home-product-slot'));
         $this->assertSame(1, substr_count($html, '<h1>'));
 
         $this->assertLessThan(strpos($html, 'Termékek</a>'), strpos($html, 'Szolgáltatások</a>'));
@@ -87,27 +95,63 @@ class PublicPagesTest extends TestCase
         $this->get('/referenciak')->assertOk();
     }
 
-    public function test_homepage_placeholder_is_display_only_and_two_product_variant_stays_balanced(): void
+    public function test_homepage_preview_placeholder_is_explicit_non_interactive_and_environment_safe(): void
     {
-        $response = $this->get('/')
-            ->assertOk()
-            ->assertSee('data-product-placeholder', false)
-            ->assertSee('A harmadik termék részletes bemutatója előkészítés alatt.')
-            ->assertDontSee('/termekek/uj-sajat-megoldas', false);
-
-        $this->assertSame(3, substr_count($response->getContent(), 'data-home-product-slot'));
-        $this->get('/termekek')->assertDontSee('Új saját megoldás');
-        $this->get('/kapcsolat')->assertDontSee('Új saját megoldás');
-        $this->get('/sitemap.xml')->assertDontSee('uj-sajat-megoldas');
-        $this->get('/termekek/uj-sajat-megoldas')->assertNotFound();
-
-        config(['pzdigital.home.show_product_placeholder' => false]);
-        $withoutPlaceholder = $this->get('/')
+        $this->get('/')
             ->assertOk()
             ->assertDontSee('data-product-placeholder', false)
             ->assertSee('home-products-grid is-two-up', false);
 
-        $this->assertSame(2, substr_count($withoutPlaceholder->getContent(), 'data-home-product-slot'));
+        config(['pzdigital.home.enable_product_design_preview' => true]);
+        $response = $this->get('/')
+            ->assertOk()
+            ->assertSee('data-product-placeholder', false)
+            ->assertSee('Következő saját termék')
+            ->assertSee('A részletes bemutató előkészítés alatt.')
+            ->assertDontSee('/termekek/uj-sajat-megoldas', false)
+            ->assertDontSee('A célcsoport a végleges terméktartalommal érkezik.');
+
+        $this->assertSame(3, substr_count($response->getContent(), 'data-home-product-slot'));
+        $placeholder = substr($response->getContent(), strpos($response->getContent(), '<article class="home-product-card home-product-placeholder"'));
+        $placeholder = substr($placeholder, 0, strpos($placeholder, '</article>') + 10);
+        $this->assertStringNotContainsString('href=', $placeholder);
+        $this->assertStringNotContainsString('role=', $placeholder);
+        $this->assertStringNotContainsString('tabindex=', $placeholder);
+
+        $this->get('/termekek')->assertDontSee('Következő saját termék');
+        $this->get('/kapcsolat')->assertDontSee('Következő saját termék');
+        $this->get('/sitemap.xml')->assertDontSee('uj-sajat-megoldas');
+        $this->get('/termekek/uj-sajat-megoldas')->assertNotFound();
+
+        $this->app->detectEnvironment(fn (): string => 'production');
+        $production = $this->get('/')
+            ->assertOk()
+            ->assertDontSee('data-product-placeholder', false)
+            ->assertSee('home-products-grid is-two-up', false);
+
+        $this->assertSame(2, substr_count($production->getContent(), 'data-home-product-slot'));
+    }
+
+    public function test_projects_index_uses_customer_facing_copy_and_data_driven_two_column_grid(): void
+    {
+        $response = $this->get('/referenciak')
+            ->assertOk()
+            ->assertSee('Weboldalak és rendszerek a gyakorlatban')
+            ->assertSee('Korábbi és jelenlegi munkák a PZ Digital mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
+            ->assertSee('project-grid project-grid-index', false)
+            ->assertSee('Beszéljük át a következő fejlesztésedet.')
+            ->assertDontSee('belső ellenőrzés');
+
+        $this->assertSame(4, substr_count($response->getContent(), 'data-project-card='));
+    }
+
+    public function test_primary_calls_to_action_share_the_general_contact_route(): void
+    {
+        $contactUrl = route('contact', ['erdeklodes' => 'other']);
+        $html = $this->get('/')->assertOk()->getContent();
+
+        $this->assertGreaterThanOrEqual(3, substr_count($html, $contactUrl));
+        $this->assertSame(3, substr_count($html, 'Beszéljünk a projektedről'));
     }
 
     public function test_project_case_studies_explain_confirmed_workflows_without_internal_notes(): void
@@ -176,7 +220,8 @@ class PublicPagesTest extends TestCase
 
         $this->get('/termekek/foodshop')
             ->assertOk()
-            ->assertSee('Termékváltozat előkészítés alatt')
+            ->assertSee('Előkészítés alatt')
+            ->assertSee('A GyrosCity rendelési rendszerére épülő megoldás. A több vállalkozásnál bevezethető változat előkészítés alatt áll.')
             ->assertSee('Érdeklődöm a megoldásról')
             ->assertSee('GyrosCity — a FoodShop éles előzménye. Referenciaképernyő.')
             ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
@@ -244,7 +289,7 @@ class PublicPagesTest extends TestCase
     public function test_product_layout_supports_two_three_and_five_items_with_home_limit(): void
     {
         $base = config('pzdigital.products.szervizpro');
-        config(['pzdigital.home.show_product_placeholder' => false]);
+        config(['pzdigital.home.enable_product_design_preview' => false]);
 
         foreach ([2, 3, 5] as $count) {
             $products = [];

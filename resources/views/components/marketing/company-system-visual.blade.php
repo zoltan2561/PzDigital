@@ -1,7 +1,7 @@
 <figure class="company-system-visual" data-company-visual aria-labelledby="company-system-caption">
     <div class="system-visual-topline">
         <span class="brand-mark" aria-hidden="true">PZ</span>
-        <span>Összefüggő digitális rendszer</span>
+        <span>Működési modell · szemléltetés</span>
     </div>
     <div class="system-visual-flow" aria-hidden="true">
         <div class="system-visual-node" data-company-visual-part>
@@ -13,7 +13,7 @@
         <div class="system-visual-node is-primary" data-company-visual-part>
             <span>02</span>
             <strong>Üzleti logika</strong>
-            <small>A működés szabályai</small>
+            <small>A munkafolyamataid szabályai</small>
         </div>
         <span class="system-visual-arrow" data-company-visual-part>→</span>
         <div class="system-visual-node" data-company-visual-part>
@@ -22,8 +22,5 @@
             <small>Kapcsolódó rendszerek</small>
         </div>
     </div>
-    <div class="system-visual-base" data-company-visual-part aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-    </div>
-    <figcaption id="company-system-caption">Szemléltető rendszerábra — nem egy működő termék kezelőfelülete.</figcaption>
+    <figcaption id="company-system-caption">Így kapcsolódik össze a felület, az üzleti működés és a többi rendszer.</figcaption>
 </figure>

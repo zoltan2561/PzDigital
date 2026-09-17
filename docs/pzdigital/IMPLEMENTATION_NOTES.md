@@ -12,11 +12,11 @@
 
 A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez mindkét típusnál a `publication_status=published` és `content_approved=true` együttesen szükséges. A képernyőképek helyi, verziókezelt médiafájlok; az eredetüket a `REFERENCE_MIGRATION.md` rögzíti.
 
-### A harmadik főoldali termékhely cseréje
+### A harmadik főoldali termékhely előnézete
 
-A „Új saját megoldás” elem kizárólag főoldali megjelenítési helykitöltő, nem katalógustermék. Lokális/DEV környezetben a `PZDIGITAL_HOME_SHOW_PRODUCT_PLACEHOLDER=true` kapcsolja be; production környezetben az alapérték kikapcsolt. Nem készül hozzá route, sitemap-bejegyzés vagy űrlapopció.
+A nyilvános főoldal alapállapotban kizárólag a két jóváhagyott terméket mutatja. A „Következő saját termék” elem csak vizuális tervezési előnézet, nem katalógustermék. Lokális, DEV vagy tesztkörnyezetben a `PZDIGITAL_HOME_ENABLE_PRODUCT_DESIGN_PREVIEW=true` kapcsolja be; alapértéke `false`, production környezetben pedig a kód akkor sem jeleníti meg, ha a környezeti változó tévesen `true`. Nem készül hozzá hivatkozás, route, sitemap-bejegyzés vagy űrlapopció.
 
-Ha megérkezik a valós harmadik termék, a `config/pzdigital.php` `products` gyűjteményébe kell új, publikálási állapottal, jóváhagyással és médiával rendelkező elemet felvenni. Ezután a helykitöltő kapcsoló kikapcsolható; új Blade-nézet másolása nem szükséges. Éles környezetben a helykitöltő csak külön tartalmi jóváhagyással maradhat látható.
+Ha megérkezik a valós harmadik termék, a `config/pzdigital.php` `products` gyűjteményébe kell új, publikálási állapottal, jóváhagyással és médiával rendelkező elemet felvenni. Az adatvezérelt főoldali lista ezt külön Blade-nézet másolása nélkül kezeli.
 
 ### Főoldali referenciák kapcsolása
 
@@ -42,6 +42,8 @@ A kompakt referencia-blokkot a `PZDIGITAL_HOME_SHOW_REFERENCES` környezeti vál
 Az űrlap CSRF-védett, rate limitált és honeypot mezőt használ. A rekord mentése után, commitot követően kerül queue-ba az értesítés. A címzettet kizárólag a `PZDIGITAL_CONTACT_EMAIL` környezeti változó adja. Sikertelen vagy függő értesítések PII nélküli listája:
 
 A szolgáltatási érdeklődési kategóriák a `pzdigital.inquiry_interests` konfigurációból, a termék- és referenciaválasztás pedig a publikálható katalógusból épül. Az ismeretlen kategória vagy slug nem kerülhet a mentett rekordba.
+
+A publikus kapcsolatfelvételi e-mail-cím a `PZDIGITAL_CONTACT_EMAIL` értékéből jelenik meg a kapcsolatoldalon és a láblécben is. Publikálható kapcsolattartói név és szerepkör jelenleg nincs megadva; ezt jóváhagyott adat érkezéséig nem helyettesíti kitalált személy.
 
 ```powershell
 php artisan inquiries:notifications

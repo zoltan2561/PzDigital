@@ -77,3 +77,14 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Hash-alapú projektaktiválás, hero egér/billentyűzet, workflow közvetlen és véges lejátszás, továbbá SzervizPRO/FoodShop útvonal regresszió ellenőrizve.
 - [x] Célzott marketingtesztek: 23 PASS, 186 assertion; Vite production build, Pint és Composer-validáció PASS; `npm audit` 0 sérülékenységet jelzett a GSAP telepítésekor.
 - [x] Bizonyítékok: `storage/app/qa/v1-4`; a `motion-proof-28s.mp4` tényleges, 28 másodperces 1440 × 900 képernyőfelvétel.
+
+## V1.6 UX, tartalom és konverzió — 2026-09-17
+
+- [x] A publikus főoldal kizárólag a két jóváhagyott terméket mutatja. A háromhelyes vizuális előnézet külön, alapból kikapcsolt local/DEV/test kapcsoló mögött van; production környezetben a kapcsoló értékétől függetlenül tiltott.
+- [x] Az előnézeti harmadik elem nem tartalmaz hivatkozást, szerepkört vagy fókuszpontot, és nincs hovermozgása. A valós harmadik termék továbbra is az adatvezérelt katalógusba vehető fel.
+- [x] A hero, termék-, bizalom-, referencia-, kapcsolat- és záró CTA-szövegek ügyfélközpontú változatra frissültek. A fejléc, hero és záró CTA ugyanarra az általános kapcsolatfelvételi útvonalra vezet.
+- [x] A referencialista rövidebb hero után 2 × 2-es desktop és egyoszlopos mobilrácsot használ; mind a négy publikált projekt az adatvezérelt katalógusból jelenik meg.
+- [x] Böngészős audit: 320/360/390/768/1024/1440/1920 px, továbbá 200%-os szövegméret és 320 px-es effektív nézet; 0 vízszintes túlcsordulás, 0 konzolhiba. A mért szövegkontrasztok 5,16:1 és 9,77:1 közöttiek.
+- [x] Billentyűzetes fókuszjelzés, globális Escape-es mobilmenü-zárás és fókuszvisszaadás, GYIK, JavaScript nélküli mobilnavigáció és reduced-motion állapot ellenőrizve.
+- [x] Célzott marketing- és megkereséstesztek: 26 PASS, 237 assertion; teljes tesztcsomag: 28 PASS, 239 assertion. Vite production build, Pint és Composer-validáció PASS.
+- [x] Előtte/utána desktop és mobil, hero-, termék-, referencia- és háromhelyes előnézeti képek, JSON audit és 2 másodperces 1440 × 900 motion videó: `storage/app/qa/v1-6`.

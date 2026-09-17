@@ -6,7 +6,7 @@
 @section('content')
 <section class="contact-hero">
     <div class="container contact-grid">
-        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd le a célodat és azt, mi nem működik most jól. Nem szükséges kész műszaki specifikációval érkezned.</p><p class="contact-supporting">Új projekt és meglévő rendszer továbbfejlesztése kapcsán is egyeztethetünk, a tényleges feladat és a vállalható keretek áttekintésével.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük a megkeresést, és egyeztetjük, mi lehet a következő lépés. Ha pontosítás szükséges, célzott kérdésekkel jelentkezünk.</p></div></div>
+        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd le a célodat és azt, mi nem működik most jól. Nem szükséges kész műszaki specifikációval érkezned.</p><p class="contact-supporting">Új projekt és meglévő rendszer továbbfejlesztése kapcsán is egyeztethetünk, a tényleges feladat és a vállalható keretek áttekintésével.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük a megkeresésedet, és egyeztetjük a következő lépést.</p></div><p class="contact-direct">Közvetlen e-mail: <a href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a></p></div>
         <div class="form-card">
             <div class="form-heading"><span>Projekt- és bemutatókérés</span><p>A *-gal jelölt mezők kötelezők.</p></div>
             @if($errors->any())<div class="form-alert" role="alert"><strong>A beküldést nem tudtuk feldolgozni.</strong><p>Kérjük, ellenőrizd a megjelölt mezőket.</p>@error('form')<p>{{ $message }}</p>@enderror</div>@endif

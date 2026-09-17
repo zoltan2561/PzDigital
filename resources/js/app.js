@@ -4,15 +4,26 @@ import { initMarketingMotion } from './marketing/motion/index.js';
 const navigationToggle = document.querySelector('[data-nav-toggle]');
 const navigation = document.querySelector('[data-nav]');
 
+const closeNavigation = (restoreFocus = false) => {
+    navigation?.classList.remove('open');
+    navigationToggle?.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) navigationToggle?.focus();
+};
+
 navigationToggle?.addEventListener('click', () => {
     const isOpen = navigation?.classList.toggle('open') ?? false;
     navigationToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navigation?.classList.contains('open')) {
+        closeNavigation(true);
+    }
+});
+
 navigation?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-        navigation.classList.remove('open');
-        navigationToggle?.setAttribute('aria-expanded', 'false');
+        closeNavigation();
     });
 });
 
