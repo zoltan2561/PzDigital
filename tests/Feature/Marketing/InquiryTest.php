@@ -1,0 +1,133 @@
+<?php
+
+namespace Tests\Feature\Marketing;
+
+use App\Jobs\SendInquiryNotification;
+use App\Mail\InquiryReceived;
+use App\Models\Inquiry;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Tests\TestCase;
+
+class InquiryTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_valid_inquiry_is_persisted_and_notification_is_queued(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+
+        $response = $this->post('/kapcsolat', $this->validPayload($token));
+
+        $response->assertRedirect('/koszonjuk');
+        $this->assertDatabaseHas('inquiries', [
+            'submission_token' => $token,
+            'email' => 'teszt@example.com',
+            'product_slug' => 'szervizpro',
+            'notification_status' => 'pending',
+        ]);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+    }
+
+    public function test_same_submission_token_is_idempotent(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+        $payload = $this->validPayload($token);
+
+        $this->post('/kapcsolat', $payload)->assertRedirect('/koszonjuk');
+        $this->post('/kapcsolat', $payload)->assertRedirect('/koszonjuk');
+
+        $this->assertDatabaseCount('inquiries', 1);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+    }
+
+    public function test_custom_development_requires_a_message(): void
+    {
+        Bus::fake();
+
+        $this->from('/kapcsolat')->post('/kapcsolat', [
+            ...$this->validPayload((string) Str::uuid()),
+            'interest_type' => 'custom_development',
+            'product_slug' => null,
+            'message' => '',
+        ])->assertRedirect('/kapcsolat')->assertSessionHasErrors('message');
+
+        $this->assertDatabaseCount('inquiries', 0);
+        Bus::assertNothingDispatched();
+    }
+
+    public function test_honeypot_and_unknown_product_are_rejected(): void
+    {
+        $this->post('/kapcsolat', [
+            ...$this->validPayload((string) Str::uuid()),
+            'website' => 'spam.example',
+            'product_slug' => 'ismeretlen',
+        ])->assertSessionHasErrors(['website', 'product_slug']);
+
+        $this->assertDatabaseCount('inquiries', 0);
+    }
+
+    public function test_notification_job_sends_to_configured_address_and_updates_state(): void
+    {
+        Mail::fake();
+        config(['pzdigital.contact_email' => 'inbox@pzdigital.test']);
+
+        $inquiry = Inquiry::create([
+            'submission_token' => (string) Str::uuid(),
+            'name' => 'Teszt Elek',
+            'email' => 'teszt@example.com',
+            'interest_type' => 'other',
+            'message' => 'Teszt megkeresés',
+            'privacy_version' => 'test-v1',
+            'process_version' => 'v1',
+            'notification_status' => 'pending',
+        ]);
+
+        (new SendInquiryNotification($inquiry))->handle();
+
+        Mail::assertSent(InquiryReceived::class, fn (InquiryReceived $mail): bool => $mail->hasTo('inbox@pzdigital.test'));
+        $this->assertSame('sent', $inquiry->fresh()->notification_status);
+        $this->assertSame(1, $inquiry->fresh()->notification_attempts);
+    }
+
+    public function test_exhausted_notification_job_marks_the_inquiry_as_failed(): void
+    {
+        $inquiry = Inquiry::create([
+            'submission_token' => (string) Str::uuid(),
+            'name' => 'Teszt Elek',
+            'email' => 'teszt@example.com',
+            'interest_type' => 'other',
+            'privacy_version' => 'test-v1',
+            'process_version' => 'v1',
+            'notification_status' => 'pending',
+        ]);
+
+        (new SendInquiryNotification($inquiry))->failed(new \RuntimeException('SMTP unavailable'));
+
+        $this->assertSame('failed', $inquiry->fresh()->notification_status);
+        $this->assertNotNull($inquiry->fresh()->notification_failed_at);
+    }
+
+    private function validPayload(string $token): array
+    {
+        return [
+            'submission_token' => $token,
+            'name' => 'Teszt Elek',
+            'email' => 'teszt@example.com',
+            'company' => 'Teszt Műhely',
+            'phone' => '+36 30 123 4567',
+            'interest_type' => 'szervizpro',
+            'product_slug' => 'szervizpro',
+            'message' => 'Szeretnék bemutatót kérni.',
+            'source_path' => '/termekek/szervizpro',
+            'utm_source' => 'manual-test',
+            'utm_medium' => 'web',
+            'utm_campaign' => 'v1',
+            'website' => null,
+        ];
+    }
+}
