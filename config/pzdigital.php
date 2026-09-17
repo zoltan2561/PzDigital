@@ -58,6 +58,10 @@ return [
                 ['src' => '/media/pzdigital/szervizpro/customer-home.png', 'alt' => 'A SzervizPRO ügyféloldali kezdőképernyője állapot-előnézettel', 'label' => 'Ügyféloldal', 'title' => 'Kevesebb telefon, érthetőbb tájékoztatás'],
                 ['src' => '/media/pzdigital/szervizpro/status-lookup.png', 'alt' => 'Javítási állapot lekérdezése rendszám és kapott azonosító alapján', 'label' => 'Biztonságos lekérdezés', 'title' => 'Rendszám és azonosító alapján'],
             ],
+            'demo_highlights' => [
+                ['title' => 'Egy munkalap, a felvételtől az átadásig', 'text' => 'A bemutatón végignézzük a munkafelvételt és az állapotok követését. Így a saját műhelyed egy tipikus feladatán keresztül ismerheted meg a rendszert.', 'image' => null],
+                ['title' => 'Az ügyfél is látja, hol tart a javítás', 'text' => 'Megmutatjuk az azonosítós státuszkövetést, az üzeneteket és a megosztható fotókat. Átbeszéljük, mely információkat szeretnéd láthatóvá tenni.', 'image' => null],
+            ],
             'related_projects' => [],
             'questions' => [
                 ['question' => 'Mit láthatok a bemutatón?', 'answer' => 'A működő műhelynézetet, a digitális munkalapot és az ügyféloldali státuszkövetést mutatjuk meg, a saját folyamataidra koncentrálva.'],
@@ -97,6 +101,10 @@ return [
             'screenshots' => [
                 ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'label' => 'Éles előzmény', 'title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete'],
                 ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'label' => 'Mobilfelület', 'title' => 'Termékkínálat mobilon'],
+            ],
+            'demo_highlights' => [
+                ['title' => 'A kínálattól a rendelésig', 'text' => 'A GyrosCity éles előzménye alapján bemutatjuk a vendégoldali rendelési utat. A FoodShop termékváltozatának pontos funkcióit egyeztetjük.', 'image' => null],
+                ['title' => 'Mi történik a rendelés beérkezése után?', 'text' => 'Átbeszéljük a kezelőoldali feldolgozást és az éttermed igényeit. A termékváltozat előkészítés alatt áll; nyilvános tesztrendelés jelenleg nem érhető el.', 'image' => null],
             ],
             'related_projects' => [
                 ['project_slug' => 'gyroscity', 'relationship' => 'origin'],

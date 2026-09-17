@@ -15,6 +15,14 @@
         </div>
         <span class="status-badge">{{ $product['status_label'] }}</span>
         <p>{{ $product['summary'] }}</p>
-        <a class="text-link" href="{{ route('products.show', $product['slug']) }}">Megismerem <span aria-hidden="true">→</span></a>
+        <ul class="home-product-benefits">
+            @foreach(array_slice($product['benefits'], 0, 3) as $benefit)
+                <li>{{ $benefit }}</li>
+            @endforeach
+        </ul>
+        <div class="home-product-actions">
+            <a class="text-link" href="{{ route('products.show', $product['slug']) }}" aria-label="{{ $product['name'] }} termékbemutató">Termékbemutató <span aria-hidden="true">→</span></a>
+            <a class="button button-dark-outline" href="{{ route('contact', ['erdeklodes' => $product['slug']]) }}">{{ $product['primary_cta'] }}</a>
+        </div>
     </div>
 </article>

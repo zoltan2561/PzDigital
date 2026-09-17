@@ -98,3 +98,16 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Kontrasztmérés: világos másodlagos szöveg 5,16:1, hero másodlagos szöveg 9,44:1, sötét másodlagos szöveg 9,29:1, technológiaszöveg 6,12:1.
 - [x] Teljes tesztcsomag: 29 PASS, 270 assertion. Vite production build, Pint és Composer-validáció PASS.
 - [x] V1.7 képek, JSON audit és motion videó: `storage/app/qa/v1-7` (figyelmen kívül hagyott helyi mappa).
+
+## V1.8 pozicionálás, arculat és termékbemutatók — 2026-09-17
+
+- [x] Új, problémamegoldásra épülő hero; egyetlen H1, általános kapcsolati CTA, termékhorgony. A foglalási panel és a hozzá tartozó kizárólagos CSS/JS kikerült.
+- [x] Grafit/törtfehér közös színek, visszafogott cím- és gombsúlyok. A szolgáltatások és a közvetlenül utánuk álló négy lépés közös világos felületet használ.
+- [x] Főoldal menüpont desktopon és mobilon, kizárólag a kezdőoldalon aktuális jelöléssel; aloldalról visszalépés, Escape, fókuszvisszaadás, rejtett mobilmenü és JavaScript nélküli menü ellenőrizve.
+- [x] 320/390/768/1024/1280/1440/1920 px: nincs vízszintes túlcsordulás, törött kép vagy konzolhiba. 200%-os szövegméret és 320 px-es effektív reflow vizsgálva. Ez nem teljes akadálymentességi tanúsítás.
+- [x] Tényleges számított színeken mért kontraszt: hero cím 16,31:1; hero leírás 9,51:1; elsődleges gomb 5,70:1; világos leírás 5,56:1; technológiai lista 5,19:1; GYIK kérdés 15,26:1. Az elsődleges, körvonalas és világos gomb hoverállapota is ellenőrizve, elugrás nélkül.
+- [x] SzervizPRO, FoodShop és GyrosCity közös stílusa desktopon és 390 px-en ellenőrizve. Kapcsolati oldalon natív és szerveroldali hiányzó név/e-mail hibák megjelennek; a böngészős teszt nem küldött érvényes megkeresést.
+- [x] A termékkártyák konkrét funkciókat és kontextusos bemutatókérést kaptak. A részletoldalak két-két jelölt képsorhelye konfigurációból tölthető. A FoodShop státusza, a GyrosCity-kapcsolat és a harmadik termékhely védelme változatlan.
+- [x] Célzott marketing- és kapcsolatút-tesztek: 28 PASS, 278 assertion; Vite build és Pint PASS. Értesítés a regressziós tesztekben fake, nincs külső üzenet.
+- [x] Előtte/utána 1440 és 390 px főoldalkép, olvasható hero-, szolgáltatás/folyamat-, termék- és mobilmenü-részlet; termék-, referencia- és űrlaphibaképek; JSON audit és 3 másodperces, 1440 × 900-as gyorsított mozgáselőnézet: `storage/app/qa/v1-8`.
+- [x] A screenshotok és a nyers képkockák helyi, figyelmen kívül hagyott QA-artifactok. PROD- vagy DEV-deploy nem része ennek a változtatásnak.

@@ -16,9 +16,9 @@
 
 ### Főoldali projektpéldák
 
-- A hero alapállapota GyrosCity; a `showcase_label`, `showcase_flow` és első média adja a kézi választó tartalmát. A váltás nem automatikus carousel.
-- A sticky történet a `homepage_story_project_slugs` szerinti NapiInfo–GyrosCity–ZCutzBarber sorrendet használja. Üres publikálható listán a teljes szekció rejtve marad.
-- A projekt neve, leírása és részletoldali linkje mindig szerveroldali HTML-ben marad; a JavaScript kizárólag a képi aktív állapotot kezeli.
+- A V1.8 hero tipografikus; nem tartalmaz projektválasztót vagy foglalási ábrát.
+- A kompakt főoldali referencialista a `homepage_story_project_slugs` szerinti NapiInfo–GyrosCity–ZCutzBarber sorrendet használja. Üres publikálható listán a teljes szekció rejtve marad.
+- A projekt neve, leírása és részletoldali linkje szerveroldali HTML-ben szerepel. A külön projektoldalakon a meglévő részletes esettanulmány és folyamatbemutató marad.
 
 ### Esettanulmányblokkok
 
@@ -51,3 +51,9 @@ A `pzoli.com` nyilvános főoldalát és készségoldalát 2026. szeptember 17-�
 - Saját kiegészítésként szerepel a műszaki terv nélküli indulás lehetősége; ez folyamatmagyarázat, nem külső forrásból átvett ígéret.
 
 Nem került át konkrét napokban vagy hetekben megadott vállalási idő, ingyenességi ígéret, személyes kapcsolat- vagy önéletrajzi adat, közösségimédia-hivatkozás, hardveres/általános IT-szolgáltatás, illetve a kiválasztott listán kívüli modell, eszköz vagy képzési irány. A későbbi frissítéseknél ezt a szűrést meg kell tartani.
+
+## V1.8 termékbemutatók képeinek bővítése
+
+A termék `demo_highlights` listája a bemutató témáit tartalmazza, `title`, `text` és `image` mezőkkel. Az `image=null` helyén „Képes bemutató hamarosan” felirat jelenik meg. Jóváhagyott, anonimizált helyi kép érkezésekor az érték például `['src' => '/media/pzdigital/szervizpro/munkalap.png', 'alt' => 'A munkalap részletes nézete tesztadatokkal']` lehet; ez kizárólag formátumpélda, a fájl jelenleg nem létezik. A forrást a meglévő médiamanifesztben is rögzíteni kell.
+
+A SzervizPRO bemutatókérése a termékkontextusos kapcsolatoldalra vezet. A FoodShop előkészítés alatt áll; a GyrosCity éles előzmény, nem írható tesztkörnyezet. A nyilvános galéria és a később feltöltendő képsorok nem jelentenek automatikusan megnyitott élő demót.

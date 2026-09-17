@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { initHero } from './hero';
 import { initHomeReveals } from './home-reveals';
 import { initWorkflowDemos } from './workflow-demo';
 
@@ -10,7 +9,6 @@ export function initMarketingMotion() {
     const cleanups = [];
 
     try {
-        cleanups.push(initHero(gsap));
         cleanups.push(initHomeReveals(gsap, ScrollTrigger));
         cleanups.push(initWorkflowDemos());
     } catch (error) {

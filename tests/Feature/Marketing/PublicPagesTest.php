@@ -25,13 +25,13 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Weboldal az ügyfeleidnek. Rendszer a napi munkádhoz.')
-            ->assertSee('Bemutatkozó oldalt, online rendelést, időpontfoglalást vagy belső kezelőfelületet készítünk. Elmondod, mire van szükséged, mi segítünk összeállítani a megoldást.')
+            ->assertSee('Ami ma pluszmunka, arra fejlesztünk megoldást.')
+            ->assertSee('Egyedi szoftvereket készítünk, összekötjük a rendszereidet, és automatizáljuk az ismétlődő feladatokat. Abból indulunk ki, hol veszítesz időt, és hogyan lehetne egyszerűbb a munkád.')
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
-            ->assertSee('Mire van szüksége a vállalkozásodnak?')
-            ->assertSee('Rendelési, foglalási és ügyviteli rendszer')
-            ->assertSee('Kevesebb kézi adatbevitel')
+            ->assertSee('Mire szeretnél megoldást?')
+            ->assertSee('Egyedi szoftverek')
+            ->assertSee('Automatizálás és összekapcsolás')
             ->assertSee('Saját szoftverek a napi működéshez')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
@@ -43,11 +43,11 @@ class PublicPagesTest extends TestCase
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
             ->assertSee('Ne neked kelljen összerakni a technikai részleteket.')
             ->assertSee('Nézd meg, min dolgoztunk.')
-            ->assertSee('Egy időpontfoglalás a gyakorlatban')
-            ->assertSee('A vendég kiválasztja az időpontot.')
-            ->assertSee('A foglalás bekerül a naptárba.')
-            ->assertSee('Te látod, ki mikor érkezik.')
-            ->assertSee('Szemléltető példa.')
+            ->assertDontSee('Egy időpontfoglalás a gyakorlatban')
+            ->assertDontSee('A vendég kiválasztja az időpontot.')
+            ->assertDontSee('A foglalás bekerül a naptárba.')
+            ->assertDontSee('Te látod, ki mikor érkezik.')
+            ->assertDontSee('Szemléltető példa.')
             ->assertSee('Technológiák, amelyekkel dolgozunk')
             ->assertSee('Nem kell ezek közül választanod. A feladathoz megfelelő eszközöket javasoljuk.')
             ->assertSee('OpenAI API')
@@ -179,7 +179,21 @@ class PublicPagesTest extends TestCase
         $html = $this->get('/')->assertOk()->getContent();
 
         $this->assertGreaterThanOrEqual(3, substr_count($html, $contactUrl));
-        $this->assertSame(3, substr_count($html, 'Beszéljünk a projektedről'));
+        $this->assertSame(3, substr_count($html, 'Beszéljünk a feladatról'));
+    }
+
+    public function test_home_navigation_and_product_demo_context_are_preserved(): void
+    {
+        $home = $this->get('/')->assertOk()->getContent();
+        $product = $this->get('/termekek/szervizpro')->assertOk();
+        $this->assertMatchesRegularExpression('/href="[^"]*"\\s+aria-current="page"[^>]*>Főoldal<\\/a>/', $home);
+        $this->assertDoesNotMatchRegularExpression('/aria-current="page"[^>]*>Főoldal<\\/a>/', $product->getContent());
+        $product->assertSee('Képes bemutató hamarosan')
+            ->assertSee(route('contact', ['erdeklodes' => 'szervizpro']), false);
+        $this->get('/termekek/foodshop')->assertOk()
+            ->assertSee('Előkészítés alatt')
+            ->assertSee('nyilvános tesztrendelés jelenleg nem érhető el.')
+            ->assertSee(route('contact', ['erdeklodes' => 'foodshop']), false);
     }
 
     public function test_process_page_uses_the_same_customer_facing_four_steps(): void

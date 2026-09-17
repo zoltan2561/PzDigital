@@ -9,7 +9,7 @@
     @if(($noindex ?? false) || app()->environment() !== 'production')
         <meta name="robots" content="noindex, nofollow">
     @endif
-    <meta name="theme-color" content="#0B1421">
+    <meta name="theme-color" content="#141A21">
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -29,12 +29,13 @@
             </button>
 
             <nav id="main-navigation" class="main-nav" aria-label="Fő navigáció" data-nav>
+                <a @class(['active' => request()->routeIs('home')]) href="{{ route('home') }}" @if(request()->routeIs('home')) aria-current="page" @endif>Főoldal</a>
                 <a @class(['active' => request()->routeIs('services')]) href="{{ route('services') }}">Szolgáltatások</a>
                 <a @class(['active' => request()->routeIs('products.*')]) href="{{ route('products.index') }}">Termékek</a>
                 <a @class(['active' => request()->routeIs('process')]) href="{{ route('process') }}">Hogyan dolgozunk</a>
                 <a @class(['active' => request()->routeIs('about')]) href="{{ route('about') }}">Rólunk</a>
                 <a @class(['active' => request()->routeIs('projects.*')]) href="{{ route('projects.index') }}">Munkáink</a>
-                <a class="button button-small" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
+                <a class="button button-small" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
             </nav>
         </div>
     </header>

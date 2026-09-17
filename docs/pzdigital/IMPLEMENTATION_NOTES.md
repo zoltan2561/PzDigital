@@ -4,7 +4,7 @@
 
 - Laravel 13.32, PHP 8.3+.
 - Szerveroldali Blade oldalak, Tailwind CSS 4/Vite build és scope-olt marketing JavaScript.
-- GSAP core + ScrollTrigger kizárólag a hero egyszeri összeállásához és a főoldali szekciók visszafogott belépéséhez; nincs smooth-scroll vagy második animációs keretrendszer.
+- GSAP core + ScrollTrigger a főoldali szekciók visszafogott belépéséhez; nincs smooth-scroll vagy második animációs keretrendszer.
 - SQLite a lokális alap; támogatott céladatbázis MySQL/MariaDB vagy PostgreSQL.
 - Database queue az értesítésekhez; külső SMTP nincs bekapcsolva.
 
@@ -12,9 +12,9 @@
 
 A termék- és referenciaadatok külön gyűjteményként a `config/pzdigital.php` fájlban szerkeszthetők. A nyilvános megjelenéshez mindkét típusnál a `publication_status=published` és `content_approved=true` együttesen szükséges. A képernyőképek helyi, verziókezelt médiafájlok; az eredetüket a `REFERENCE_MIGRATION.md` rögzíti.
 
-### V1.7 ügyfélközpontú főoldal
+### V1.8 problémamegoldásra épülő főoldal
 
-- A hero jobb oldali időpontfoglalási ábrája statikus HTML/CSS-szemléltetés. Nem élő naptár, nem kér és nem továbbít adatot, valamint nem állít valós ügyfél- vagy foglalásszámot.
+- A hero tisztán tipografikus, sík grafit háttérrel. A foglalási ábra, annak CSS-e és saját animációs modulja kikerült; a cím és a CTA késleltetés nélkül olvasható. Megfelelő jóváhagyott vektoros márkamotívum hiányában nincs új logó vagy dekoráció.
 - A főoldali sorrend: hero → szolgáltatások → négylépéses közös munka → termékek → működési elvek → opcionális referenciák → technológiák → GYIK → kapcsolatfelvétel.
 - A technológiai lista és a GYIK forrásleltárát a `CONTENT_GUIDE.md` tartalmazza. A tartalom Blade-ben, szerveroldali HTML-ként jelenik meg; az FAQ natív `details`/`summary` elemeket használ.
 - A változtatás nem vezetett be új JavaScript-, CSS- vagy PHP-függőséget.
@@ -31,9 +31,9 @@ A kompakt referencia-blokkot a `PZDIGITAL_HOME_SHOW_REFERENCES` környezeti vál
 
 ## Mozgás és progresszív működés
 
-- A `resources/js/marketing/motion` moduljai külön kezelik a céges herót, a főoldali szekcióbelépéseket és a projektoldalakon felhasználó által indított folyamatszemléltetőt. A `pagehide` eseménykor az eseménykezelők, időzítők és ScrollTrigger-példányok takarítása megtörténik.
+- A `resources/js/marketing/motion` moduljai külön kezelik a főoldali szekcióbelépéseket és a projektoldalakon felhasználó által indított folyamatszemléltetőt. A `pagehide` eseménykor az eseménykezelők, időzítők és ScrollTrigger-példányok takarítása megtörténik.
 - Animációs állapot csak sikeres inicializálás után kerül a DOM-ra. JavaScript-hibánál a címsor, minden főoldali tartalom, helyi kép és normál hivatkozás látható marad.
-- `prefers-reduced-motion: reduce` esetén a hero és a főoldali szekciók időzített belépése kimarad. A projektoldali folyamatlépések közvetlenül választhatók, az időzített lejátszás rejtett.
+- `prefers-reduced-motion: reduce` esetén a főoldali szekciók időzített belépése kimarad. A projektoldali folyamatlépések közvetlenül választhatók, az időzített lejátszás rejtett.
 - A szemléltetők rögzített helyi szöveggel működnek; nincs AI-, Google Naptár-, MLSZ- vagy rendelési végpont a marketinginterakció mögött.
 
 ## Hiányzó, nem publikált média
@@ -62,3 +62,10 @@ Az éles SMTP, queue worker és scheduler konfiguráció külön launch gate.
 ## Élesítés
 
 Ebben a munkacsomagban nincs PROD-deploy, DNS-, HTTPS- vagy SMTP-módosítás. Éles indulás előtt végleges jogi tartalom, szolgáltatói adatok, jóváhagyott termékígéretek, valódi média és tesztelt levélkézbesítés szükséges.
+
+## V1.8 vizuális és termékbemutató-frissítés
+
+- A közös marketingtokenek grafit, törtfehér és visszafogott márkakék palettát használnak; a nagy felületek és a CTA-k kék fényudvara megszűnt. A meglévő betűcsalád maradt, a címek 600–650-es hangsúlyt kaptak.
+- A Főoldal link valódi route-ra vezet, és csak azon kap `aria-current="page"` jelölést. 1320 px alatt a teljes menü a meglévő mobilnavigációba kerül.
+- A főoldali termékkártyák igazolt funkciókat, részletoldali és kontextusos bemutatókérő hivatkozást tartalmaznak.
+- A termékoldali `demo_highlights` blokkok későbbi képsorok helyét készítik elő. A helykitöltők egyértelműen jelöltek; nem mutatnak kitalált alkalmazást. Nem jött létre új termék, demókörnyezet vagy külső kapcsolat.
