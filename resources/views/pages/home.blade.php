@@ -1,78 +1,102 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="hero company-hero motion-hero" data-motion-hero>
+<section class="hero company-home-hero motion-hero" data-motion-hero>
     <div class="hero-glow"></div>
-    <div class="container hero-grid motion-hero-grid">
+    <div class="container company-home-hero-grid">
         <div class="hero-copy" data-hero-copy>
             <span class="eyebrow eyebrow-light">PZ Digital · Szoftverfejlesztés</span>
-            <h1>Weboldalak.<br><span>Rendszerek.</span><br>Automatizációk.</h1>
-            <p>Nem csak a felületet készítjük el. A mögötte működő folyamatokat is megtervezzük és összekapcsoljuk.</p>
+            <h1>Fejlesztési partner a vállalkozásod mellé.</h1>
+            <p>Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvermegoldásokat készítünk. A feladat megértésétől a működő megoldásig.</p>
             <div class="button-row">
-                <a class="button" href="{{ route('contact', ['erdeklodes' => 'custom_development']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
-                <a class="button button-outline" href="#munkaink">Megnézem a munkákat</a>
+                <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
+                <a class="button button-outline" href="#megoldasok">Saját megoldásaink</a>
             </div>
-            <p class="hero-proof">Felület <span aria-hidden="true">→</span> üzleti logika <span aria-hidden="true">→</span> követhető működés</p>
         </div>
-        <x-marketing.hero-stage :projects="$projects" />
+        <x-marketing.company-system-visual />
     </div>
 </section>
 
-<section class="section section-services" id="szolgaltatasok">
+<div class="capability-strip" aria-label="Kiemelt képességek">
     <div class="container">
-        <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Digitális megoldások, érthető üzleti céllal</h2></div><p>A megfelelő eszközt a működési problémához választjuk, majd követhetően végigvisszük a megvalósítást.</p></div>
+        <span>Egyedi fejlesztés</span><i aria-hidden="true"></i>
+        <span>Saját szoftverek</span><i aria-hidden="true"></i>
+        <span>Rendszerintegráció</span>
+    </div>
+</div>
+
+<section class="section section-services" id="szolgaltatasok" data-home-reveal>
+    <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Három terület, egy átgondolt megoldás</h2></div><p>Az üzleti céltól indulunk, és ahhoz választjuk meg a megfelelő webes eszközöket.</p></div>
         <div class="service-rows">
             <article><span>01</span><h3>Céges weboldalak</h3><p>A vállalkozásodhoz illő bemutatkozás, áttekinthető szolgáltatások és egyszerű kapcsolatfelvétel.</p><a href="{{ route('services') }}#weboldalak">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>02</span><h3>Egyedi üzleti rendszerek</h3><p>A működésedhez illeszkedő webes alkalmazás, a szükséges kezelőfelületekkel és jogosultságokkal.</p><a href="{{ route('services') }}#rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
-            <article><span>03</span><h3>Integrációk és automatizálás</h3><p>Rendszereid összekapcsolása, hogy kevesebb adatot kelljen kézzel mozgatni.</p><a href="{{ route('services') }}#integraciok">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>02</span><h3>Egyedi üzleti rendszerek</h3><p>A napi működéshez igazított webes alkalmazások, kezelőfelületek és jogosultságok.</p><a href="{{ route('services') }}#rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>03</span><h3>Integrációk és automatizálás</h3><p>Meglévő rendszerek összekapcsolása és az ismétlődő feladatok egyszerűsítése.</p><a href="{{ route('services') }}#integraciok">Részletek <span aria-hidden="true">→</span></a></article>
         </div>
     </div>
 </section>
 
-<x-marketing.project-story :projects="$projects" />
-
-<section id="megoldasok" class="section section-products">
+<section id="megoldasok" class="section section-products home-products-section" data-home-reveal>
     <div class="container">
         <div class="section-heading">
-            <div><span class="eyebrow">Saját termékeink</span><h2>Saját szoftvermegoldásaink</h2></div>
-            <div class="section-heading-action"><p>Minden terméknél külön jelezzük, mi működő demó és mi áll még előkészítés alatt.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span>→</span></a></div>
+            <div><span class="eyebrow">Saját termékeink</span><h2>Megoldások valós működési helyzetekre</h2></div>
+            <div class="section-heading-action"><p>Két bemutatható irány és egy tudatosan jelölt következő termékhely — mindig a tényleges készültségi állapottal.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
         </div>
-        <div class="products-grid">
+        <div @class(['home-products-grid', 'is-two-up' => ! $productPlaceholder])>
             @foreach($products as $product)
-                <x-marketing.product-card :product="$product" />
+                <x-marketing.home-product-card :product="$product" />
             @endforeach
+            @if($productPlaceholder)
+                <x-marketing.product-placeholder :placeholder="$productPlaceholder" />
+            @endif
         </div>
     </div>
 </section>
 
-<section class="section section-process">
+<section class="section section-process home-process-section" data-home-reveal>
     <div class="container">
-        <div class="section-heading"><div><span class="eyebrow">Hogyan dolgozunk?</span><h2>Négy érthető lépés</h2></div><a class="text-link" href="{{ route('process') }}">A teljes folyamatról <span>→</span></a></div>
+        <div class="section-heading"><div><span class="eyebrow">Hogyan dolgozunk?</span><h2>Négy követhető lépés</h2></div><a class="text-link" href="{{ route('process') }}">A teljes folyamatról <span aria-hidden="true">→</span></a></div>
         <ol class="process-grid">
-            <li><span>1</span><h3>Megértjük a feladatot</h3><p>Átbeszéljük a célt, a jelenlegi működést és a legfontosabb igényt.</p><small>Igények és prioritások</small></li>
-            <li><span>2</span><h3>Rögzítjük a kereteket</h3><p>Tisztázzuk, mi készül el és mi tartozik az adott szakaszba.</p><small>Egyeztetett feladat és ajánlat</small></li>
-            <li><span>3</span><h3>Bemutatjuk és teszteljük</h3><p>A megbeszélt pontokon működő változatot mutatunk, amelyre visszajelezhetsz.</p><small>Bemutatható változat és visszajelzés</small></li>
-            <li><span>4</span><h3>Átadjuk a megoldást</h3><p>A használatba vétel és az átadás feltételeit is egyértelműen rögzítjük.</p><small>Átadás és következő lépések</small></li>
+            <li><span>1</span><h3>Igényfelmérés</h3><p>A cél, a jelenlegi működés és a prioritások tisztázása.</p><small>Egyeztetett igények</small></li>
+            <li><span>2</span><h3>Tervezés és specifikáció</h3><p>A megoldás és a feladat kereteinek rögzítése.</p><small>Megoldási terv és feladatkör</small></li>
+            <li><span>3</span><h3>Fejlesztés és bemutatás</h3><p>Bemutatható változatok, visszajelzés és ellenőrzés.</p><small>Követhető fejlesztési állapot</small></li>
+            <li><span>4</span><h3>Átadás és továbbfejlesztés</h3><p>A használatba vétel és a következő lépések egyeztetése.</p><small>Átadás és további lehetőségek</small></li>
         </ol>
     </div>
 </section>
 
-<section class="section company-benefits-section">
-    <div class="container proof-grid">
-        <div>
+<section class="section company-principles-section" data-home-reveal>
+    <div class="container principles-layout">
+        <div class="principles-intro">
             <span class="eyebrow">Miért PZ Digital?</span>
-            <h2>Közvetlen egyeztetés. Átlátható fejlesztés.</h2>
-            <p>A feladatot azzal beszéled át, aki a megoldáson dolgozik. A cél, a vállalt keretek és a következő döntési pont végig követhető marad.</p>
-            <a class="text-link" href="{{ route('about') }}">A PZ Digitalról <span>→</span></a>
+            <h2>Átlátható együttműködés. Átgondolt megvalósítás.</h2>
+            <p>A feladatot a működési célból indítjuk, a döntési pontokat pedig végig érthetően tartjuk.</p>
+            <a class="text-link" href="{{ route('about') }}">A PZ Digitalról <span aria-hidden="true">→</span></a>
         </div>
-        <div class="trust-profile">
-            <span class="brand-mark trust-monogram" aria-hidden="true">PZ</span>
-            <div><span class="eyebrow">Szakmai háttér</span><h3>Laravel, PHP és webes rendszerek</h3><p>Saját üzleti termékeken és körülhatárolt egyedi fejlesztéseken szerzett tapasztalat, a felméréstől a tesztelt átadásig.</p></div>
+        <div class="principles-list">
+            <article><span>01</span><div><h3>Üzleti szemlélet</h3><p>A feladatot a működési célból indítjuk, nem egy előre kiválasztott eszközből.</p></div></article>
+            <article><span>02</span><div><h3>Egyeztetett keretek</h3><p>Világos marad, mi készül el, mi a következő lépés és miről kell dönteni.</p></div></article>
+            <article><span>03</span><div><h3>Rendszerszintű gondolkodás</h3><p>A felületet, a mögöttes logikát és a kapcsolódásokat együtt tervezzük.</p></div></article>
+            <article><span>04</span><div><h3>Továbbfejleszthető megoldások</h3><p>Az átadás utáni bővítés és együttműködés lehetőségeit is figyelembe vesszük.</p></div></article>
         </div>
     </div>
 </section>
 
-<section class="section section-faq faq-section">
+@if($showReferences && $projects->isNotEmpty())
+<section class="compact-references" id="referenciak" data-home-reveal>
+    <div class="container compact-references-inner">
+        <div><span class="eyebrow eyebrow-light">Referenciák</span><h2>Nézd meg, min dolgoztunk.</h2><p>Weboldalak, üzleti felületek és automatizált megoldások a gyakorlatban.</p></div>
+        <div class="compact-reference-links">
+            @foreach($projects->take(3) as $project)
+                <a href="{{ route('projects.show', $project['slug']) }}"><span>{{ $project['showcase_label'] }}</span><strong>{{ $project['name'] }}</strong><b aria-hidden="true">→</b></a>
+            @endforeach
+            <a class="compact-reference-all" href="{{ route('projects.index') }}">Munkáink megtekintése <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
+</section>
+@endif
+
+<section class="section section-faq faq-section" data-home-reveal>
     <div class="container narrow">
         <div class="section-heading"><div><span class="eyebrow">Gyakori kérdések</span><h2>Az első egyeztetés előtt</h2></div></div>
         <div class="faq-list">
@@ -80,7 +104,6 @@
             <details><summary>Meglévő rendszer továbbfejlesztéséről is egyeztethetünk?</summary><p>Erről is egyeztethetünk. A jelenlegi rendszer és a kívánt változás rövid áttekintése után meg tudjuk mondani, vállalható-e a feladat és mi legyen a következő lépés.</p></details>
             <details><summary>Hogyan indul egy új projekt?</summary><p>Röviden megismerjük a célt és a jelenlegi működést, majd kijelöljük az első ellenőrizhető eredményt és a szükséges döntéseket.</p></details>
             <details><summary>Hogyan alakul ki a költség?</summary><p>A feladat, az átadandó eredmény, a szükséges integrációk és a támogatási keret felmérése után készülhet felelős ajánlat.</p></details>
-            <details><summary>Mi történik az átadás után?</summary><p>A támogatás és a további fejlesztés konkrét keretét az ajánlatban és az átadáskor rögzítjük.</p></details>
         </div>
     </div>
 </section>

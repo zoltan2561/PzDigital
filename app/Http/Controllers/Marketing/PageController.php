@@ -15,6 +15,10 @@ class PageController extends Controller
         return view('pages.home', [
             'products' => $this->catalog->featuredProducts(),
             'projects' => $this->catalog->homepageStoryProjects(),
+            'showReferences' => (bool) config('pzdigital.home.show_references', true),
+            'productPlaceholder' => config('pzdigital.home.show_product_placeholder', false)
+                ? config('pzdigital.home.product_placeholder')
+                : null,
         ]);
     }
 

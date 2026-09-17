@@ -6,6 +6,19 @@ return [
     'inquiry_rate_limit' => (int) env('PZDIGITAL_INQUIRY_RATE_LIMIT', 8),
     'featured_project_slug' => 'gyroscity',
     'homepage_story_project_slugs' => ['napiinfo', 'gyroscity', 'zcutzbarber'],
+    'home' => [
+        'show_references' => (bool) env('PZDIGITAL_HOME_SHOW_REFERENCES', true),
+        'show_product_placeholder' => (bool) env(
+            'PZDIGITAL_HOME_SHOW_PRODUCT_PLACEHOLDER',
+            env('APP_ENV', 'production') !== 'production'
+        ),
+        'product_placeholder' => [
+            'name' => 'Új saját megoldás',
+            'summary' => 'A harmadik termék részletes bemutatója előkészítés alatt.',
+            'status_label' => 'Bemutató előkészítés alatt',
+            'audience' => 'A célcsoport a végleges terméktartalommal érkezik.',
+        ],
+    ],
     'inquiry_interests' => [
         'website' => 'Új céges weboldal',
         'business_system' => 'Egyedi üzleti rendszer',

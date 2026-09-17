@@ -28,11 +28,11 @@
             </button>
 
             <nav id="main-navigation" class="main-nav" aria-label="Fő navigáció" data-nav>
-                <a @class(['active' => request()->routeIs('projects.*')]) href="{{ route('projects.index') }}">Munkáink</a>
-                <a @class(['active' => request()->routeIs('products.*')]) href="{{ route('products.index') }}">Termékek</a>
                 <a @class(['active' => request()->routeIs('services')]) href="{{ route('services') }}">Szolgáltatások</a>
+                <a @class(['active' => request()->routeIs('products.*')]) href="{{ route('products.index') }}">Termékek</a>
                 <a @class(['active' => request()->routeIs('process')]) href="{{ route('process') }}">Hogyan dolgozunk</a>
                 <a @class(['active' => request()->routeIs('about')]) href="{{ route('about') }}">Rólunk</a>
+                <a @class(['active' => request()->routeIs('projects.*')]) href="{{ route('projects.index') }}">Munkáink</a>
                 <a class="button button-small" href="{{ route('contact') }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
             </nav>
         </div>

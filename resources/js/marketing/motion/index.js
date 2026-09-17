@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initHero } from './hero';
-import { initProjectShowcase } from './project-showcase';
+import { initHomeReveals } from './home-reveals';
 import { initWorkflowDemos } from './workflow-demo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +11,7 @@ export function initMarketingMotion() {
 
     try {
         cleanups.push(initHero(gsap));
-        cleanups.push(initProjectShowcase(gsap, ScrollTrigger));
+        cleanups.push(initHomeReveals(gsap, ScrollTrigger));
         cleanups.push(initWorkflowDemos());
     } catch (error) {
         document.querySelectorAll('[data-motion-ready], [data-enhanced]').forEach((element) => {

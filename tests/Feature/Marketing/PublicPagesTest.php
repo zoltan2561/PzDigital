@@ -25,38 +25,46 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Weboldalak.')
-            ->assertSee('Rendszerek.')
-            ->assertSee('Automatizációk.')
+            ->assertSee('Fejlesztési partner a vállalkozásod mellé.')
+            ->assertSee('Céges weboldalakat, egyedi üzleti rendszereket és saját szoftvermegoldásokat készítünk.')
+            ->assertSee('Egyedi fejlesztés')
             ->assertSee('Miben segítünk?')
-            ->assertSee('A felülettől a működő háttérfolyamatig.')
-            ->assertSee('Saját szoftvermegoldásaink')
+            ->assertSee('Megoldások valós működési helyzetekre')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
-            ->assertSee('Tulajdonosi utasításból szerkeszthető cikk')
-            ->assertSee('Rendelési felület és kezelőoldali feldolgozás')
-            ->assertSee('Online időpontfoglalás naptárkapcsolattal')
-            ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
-            ->assertSee('/media/pzdigital/references/gyroscity/menu-card.jpg', false)
+            ->assertSee('Új saját megoldás')
+            ->assertSee('GyrosCity — a FoodShop éles előzménye.')
+            ->assertSee('Négy követhető lépés')
+            ->assertSee('Átlátható együttműködés. Átgondolt megvalósítás.')
+            ->assertSee('Nézd meg, min dolgoztunk.')
+            ->assertSee('Szemléltető rendszerábra — nem egy működő termék kezelőfelülete.')
             ->assertDontSee('A műhely átlátja a napot.')
-            ->assertDontSee('Ügyfeleink mondták');
+            ->assertDontSee('Ügyfeleink mondták')
+            ->assertDontSee('data-hero-option', false)
+            ->assertDontSee('data-project-story=', false);
 
         $html = $response->getContent();
-        $this->assertLessThan(strpos($html, 'id="munkaink"'), strpos($html, 'id="szolgaltatasok"'));
-        $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="munkaink"'));
-        $this->assertSame(3, substr_count($html, 'data-hero-option'));
-        $this->assertSame(3, substr_count($html, 'data-project-story='));
-        $this->assertSame(3, substr_count($html, 'data-project-media='));
+        $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="szolgaltatasok"'));
+        $this->assertLessThan(strpos($html, 'Négy követhető lépés'), strpos($html, 'id="megoldasok"'));
+        $this->assertLessThan(strpos($html, 'Átlátható együttműködés.'), strpos($html, 'Négy követhető lépés'));
+        $this->assertSame(3, substr_count($html, 'data-home-product-slot'));
+        $this->assertSame(1, substr_count($html, '<h1>'));
+
+        $this->assertLessThan(strpos($html, 'Termékek</a>'), strpos($html, 'Szolgáltatások</a>'));
+        $this->assertLessThan(strpos($html, 'Hogyan dolgozunk</a>'), strpos($html, 'Termékek</a>'));
+        $this->assertLessThan(strpos($html, 'Rólunk</a>'), strpos($html, 'Hogyan dolgozunk</a>'));
+        $this->assertLessThan(strpos($html, 'Munkáink</a>'), strpos($html, 'Rólunk</a>'));
     }
 
-    public function test_homepage_project_showcase_uses_configured_project_and_safe_fallbacks(): void
+    public function test_homepage_references_are_compact_configurable_and_publication_safe(): void
     {
         config(['pzdigital.homepage_story_project_slugs' => ['napiinfo', 'gyroscity']]);
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('data-project-story="napiinfo"', false)
-            ->assertSee('data-project-story="gyroscity"', false);
+            ->assertSee(route('projects.show', 'napiinfo'), false)
+            ->assertSee(route('projects.show', 'gyroscity'), false)
+            ->assertDontSee('data-project-story=', false);
 
         $projects = config('pzdigital.projects');
         $projects['napiinfo']['content_approved'] = false;
@@ -64,15 +72,42 @@ class PublicPagesTest extends TestCase
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('data-project-story="gyroscity"', false)
-            ->assertDontSee('data-project-story="napiinfo"', false);
+            ->assertSee(route('projects.show', 'gyroscity'), false)
+            ->assertDontSee(route('projects.show', 'napiinfo'), false);
 
         config(['pzdigital.projects' => collect($projects)->map(fn (array $project): array => [
             ...$project,
             'content_approved' => false,
         ])->all()]);
 
-        $this->get('/')->assertOk()->assertDontSee('id="munkaink"', false);
+        $this->get('/')->assertOk()->assertDontSee('id="referenciak"', false);
+
+        config(['pzdigital.home.show_references' => false]);
+        $this->get('/')->assertOk()->assertDontSee('id="referenciak"', false);
+        $this->get('/referenciak')->assertOk();
+    }
+
+    public function test_homepage_placeholder_is_display_only_and_two_product_variant_stays_balanced(): void
+    {
+        $response = $this->get('/')
+            ->assertOk()
+            ->assertSee('data-product-placeholder', false)
+            ->assertSee('A harmadik termék részletes bemutatója előkészítés alatt.')
+            ->assertDontSee('/termekek/uj-sajat-megoldas', false);
+
+        $this->assertSame(3, substr_count($response->getContent(), 'data-home-product-slot'));
+        $this->get('/termekek')->assertDontSee('Új saját megoldás');
+        $this->get('/kapcsolat')->assertDontSee('Új saját megoldás');
+        $this->get('/sitemap.xml')->assertDontSee('uj-sajat-megoldas');
+        $this->get('/termekek/uj-sajat-megoldas')->assertNotFound();
+
+        config(['pzdigital.home.show_product_placeholder' => false]);
+        $withoutPlaceholder = $this->get('/')
+            ->assertOk()
+            ->assertDontSee('data-product-placeholder', false)
+            ->assertSee('home-products-grid is-two-up', false);
+
+        $this->assertSame(2, substr_count($withoutPlaceholder->getContent(), 'data-home-product-slot'));
     }
 
     public function test_project_case_studies_explain_confirmed_workflows_without_internal_notes(): void
@@ -209,6 +244,7 @@ class PublicPagesTest extends TestCase
     public function test_product_layout_supports_two_three_and_five_items_with_home_limit(): void
     {
         $base = config('pzdigital.products.szervizpro');
+        config(['pzdigital.home.show_product_placeholder' => false]);
 
         foreach ([2, 3, 5] as $count) {
             $products = [];
