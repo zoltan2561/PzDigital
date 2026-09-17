@@ -11,14 +11,22 @@
 
 1. Adj új rekordot a `projects` gyűjteményhez: valós név, tömör összefoglaló, kategóriák, eredet, saját szerep, helyi média és forrásnyilvántartás szükséges.
 2. A részletoldal és route közös sablonból készül; új Blade-nézet vagy route nem szükséges.
-3. `featured_on_home=true` esetén a `sort_order` szerinti első három projekt kerül a főoldalra. A teljes listán minden publikálható referencia megjelenik.
+3. A főoldali működési történetek sorrendjét a `homepage_story_project_slugs` lista adja. Csak publikált és jóváhagyott projekt jelenik meg; hiányzó elem automatikusan kiesik.
 4. Ne adj meg feltételezett technológiát, évszámot, eredményszázalékot vagy ügyfélidézetet.
 
-### Főoldali kiemelt referencia
+### Főoldali projektpéldák
 
-- A `featured_project_slug` az elsődleges főoldali projektet választja ki a publikált és `featured_on_home=true` referenciák közül.
-- Hiányzó, hibás vagy visszavont slug esetén a `sort_order` szerinti első publikálható kiemelt referencia a visszaesés; üres listán a teljes főoldali referenciaszekció rejtve marad.
-- A kiemelt kártya a közös projektadatokból épül. A `showcase_headline` opcionális; feladat- és megoldásszöveget a `case_study_sections` adataiból kap, ezért külön GyrosCity-specifikus nézet nem szükséges.
+- A hero alapállapota GyrosCity; a `showcase_label`, `showcase_flow` és első média adja a kézi választó tartalmát. A váltás nem automatikus carousel.
+- A sticky történet a `homepage_story_project_slugs` szerinti NapiInfo–GyrosCity–ZCutzBarber sorrendet használja. Üres publikálható listán a teljes szekció rejtve marad.
+- A projekt neve, leírása és részletoldali linkje mindig szerveroldali HTML-ben marad; a JavaScript kizárólag a képi aktív állapotot kezeli.
+
+### Esettanulmányblokkok
+
+- A projekt `case_study` része közös `headline`, `lead`, `audience` mezőből és `blocks` listából áll.
+- Engedélyezett publikus blokktípusok: `overview`, `workflow`, `integration`, `gallery`, `outcome`. Más típushoz a sablon nem választ dinamikus view-t és nem renderel tartalmat.
+- Egy blokk csak `publication_status=published` állapotban jelenik meg. Az `evidence_status` és `missing_assets` belső szerkesztési adat; ezeket a Blade nem írja HTML-be vagy kliensoldali JSON-ba.
+- A `workflow.steps` elemeihez csak rövid cím és magyarázat kell. A szemléltető nem hív külső API-t és nem módosít éles adatot.
+- A `gallery` a projekt jóváhagyott `media` listáját használja. Videó csak tényleges fájl és jóváhagyás után adható hozzá; üres lejátszó nem jelenhet meg.
 
 ## Státuszok és kapcsolatok
 

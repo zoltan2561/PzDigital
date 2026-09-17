@@ -1,72 +1,35 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="hero company-hero">
+<section class="hero company-hero motion-hero" data-motion-hero>
     <div class="hero-glow"></div>
-    <div class="container hero-grid company-hero-grid">
-        <div class="hero-copy">
+    <div class="container hero-grid motion-hero-grid">
+        <div class="hero-copy" data-hero-copy>
             <span class="eyebrow eyebrow-light">PZ Digital · Szoftverfejlesztés</span>
-            <h1>Weboldalak és rendszerek, a <span>vállalkozásodra szabva.</span></h1>
-            <p>Egyedi weboldalakat, üzleti alkalmazásokat és saját szoftvermegoldásokat fejlesztünk. A céges bemutatkozástól a rendelési és ügyviteli folyamatokig.</p>
+            <h1>Weboldalak.<br><span>Rendszerek.</span><br>Automatizációk.</h1>
+            <p>Nem csak a felületet készítjük el. A mögötte működő folyamatokat is megtervezzük és összekapcsoljuk.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'custom_development']) }}">Beszéljünk a projektedről <span aria-hidden="true">→</span></a>
                 <a class="button button-outline" href="#munkaink">Megnézem a munkákat</a>
             </div>
-            <div class="hero-points">
-                <span><x-marketing.icon name="globe" /> Céges weboldalak</span>
-                <span><x-marketing.icon name="code" /> Üzleti rendszerek</span>
-                <span><x-marketing.icon name="flow" /> Integrációk</span>
-            </div>
+            <p class="hero-proof">Felület <span aria-hidden="true">→</span> üzleti logika <span aria-hidden="true">→</span> követhető működés</p>
         </div>
-
-        <div class="hero-projects" aria-label="Válogatás a PZ Digital munkáiból és termékeiből">
-            @foreach($projects->take(2) as $project)
-                <a @class(['hero-project-card', 'hero-project-card-main' => $loop->first, 'hero-project-card-secondary' => ! $loop->first]) href="{{ route('projects.show', $project['slug']) }}">
-                    <img src="{{ $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="1000" @if($loop->first) fetchpriority="high" @endif>
-                    <span><small>Referenciamunka</small><strong>{{ $project['name'] }}</strong></span>
-                </a>
-            @endforeach
-            @if($products->isNotEmpty())
-                @php($heroProduct = $products->first())
-                <a class="hero-project-card hero-project-card-product" href="{{ route('products.show', $heroProduct['slug']) }}">
-                    <img src="{{ $heroProduct['screenshots'][0]['src'] }}" alt="{{ $heroProduct['screenshots'][0]['alt'] }}" width="1440" height="1000">
-                    <span><small>Saját termék</small><strong>{{ $heroProduct['name'] }}</strong></span>
-                </a>
-            @endif
-        </div>
+        <x-marketing.hero-stage :projects="$projects" />
     </div>
 </section>
 
 <section class="section section-services" id="szolgaltatasok">
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Digitális megoldások, érthető üzleti céllal</h2></div><p>A megfelelő eszközt a működési problémához választjuk, majd követhetően végigvisszük a megvalósítást.</p></div>
-        <div class="service-grid">
-            <article class="service-card"><span class="icon-box"><x-marketing.icon name="globe" /></span><h3>Céges weboldalak</h3><p>A vállalkozásodhoz illő bemutatkozás, áttekinthető szolgáltatások és egyszerű kapcsolatfelvétel.</p><a href="{{ route('services') }}#weboldalak">Részletek <span aria-hidden="true">→</span></a></article>
-            <article class="service-card"><span class="icon-box"><x-marketing.icon name="code" /></span><h3>Egyedi üzleti rendszerek</h3><p>A működésedhez illeszkedő webes alkalmazás, a szükséges kezelőfelületekkel és jogosultságokkal.</p><a href="{{ route('services') }}#rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
-            <article class="service-card"><span class="icon-box"><x-marketing.icon name="flow" /></span><h3>Integrációk és automatizálás</h3><p>Rendszereid összekapcsolása, hogy kevesebb adatot kelljen kézzel mozgatni.</p><a href="{{ route('services') }}#integraciok">Részletek <span aria-hidden="true">→</span></a></article>
+        <div class="service-rows">
+            <article><span>01</span><h3>Céges weboldalak</h3><p>A vállalkozásodhoz illő bemutatkozás, áttekinthető szolgáltatások és egyszerű kapcsolatfelvétel.</p><a href="{{ route('services') }}#weboldalak">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>02</span><h3>Egyedi üzleti rendszerek</h3><p>A működésedhez illeszkedő webes alkalmazás, a szükséges kezelőfelületekkel és jogosultságokkal.</p><a href="{{ route('services') }}#rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><span>03</span><h3>Integrációk és automatizálás</h3><p>Rendszereid összekapcsolása, hogy kevesebb adatot kelljen kézzel mozgatni.</p><a href="{{ route('services') }}#integraciok">Részletek <span aria-hidden="true">→</span></a></article>
         </div>
     </div>
 </section>
 
-@if($projects->isNotEmpty())
-    @php($featuredProject = $projects->first())
-    <section id="munkaink" class="section section-projects-dark">
-        <div class="container">
-            <div class="section-heading">
-                <div><span class="eyebrow">Munkáink</span><h2>Válogatott munkáink</h2></div>
-                <div class="section-heading-action"><p>Konkrét feladatok, megvalósított felületek és a projektben vállalt szerepünk.</p><a class="text-link" href="{{ route('projects.index') }}">Összes referencia <span>→</span></a></div>
-            </div>
-            <div class="project-showcase">
-                <x-marketing.featured-project :project="$featuredProject" />
-                <div class="project-showcase-secondary">
-                    @foreach($projects->slice(1) as $project)
-                        <x-marketing.project-card :project="$project" compact />
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-@endif
+<x-marketing.project-story :projects="$projects" />
 
 <section id="megoldasok" class="section section-products">
     <div class="container">

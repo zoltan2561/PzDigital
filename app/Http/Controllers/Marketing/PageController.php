@@ -14,7 +14,7 @@ class PageController extends Controller
     {
         return view('pages.home', [
             'products' => $this->catalog->featuredProducts(),
-            'projects' => $this->catalog->homepageProjects(),
+            'projects' => $this->catalog->homepageStoryProjects(),
         ]);
     }
 
@@ -46,7 +46,10 @@ class PageController extends Controller
 
         abort_unless($project, 404);
 
-        return view('pages.projects.show', compact('project'));
+        return view('pages.projects.show', [
+            'project' => $project,
+            'nextProject' => $this->catalog->nextProject($slug),
+        ]);
     }
 
     public function page(string $view): View

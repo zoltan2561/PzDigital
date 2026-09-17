@@ -25,15 +25,17 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Weboldalak és rendszerek, a')
-            ->assertSee('vállalkozásodra szabva.')
+            ->assertSee('Weboldalak.')
+            ->assertSee('Rendszerek.')
+            ->assertSee('Automatizációk.')
             ->assertSee('Miben segítünk?')
-            ->assertSee('Válogatott munkáink')
+            ->assertSee('A felülettől a működő háttérfolyamatig.')
             ->assertSee('Saját szoftvermegoldásaink')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
-            ->assertSee('GyrosCity — saját étlap és rendelési felület')
-            ->assertSee('Kiemelt referenciamunka')
+            ->assertSee('Tulajdonosi utasításból szerkeszthető cikk')
+            ->assertSee('Rendelési felület és kezelőoldali feldolgozás')
+            ->assertSee('Online időpontfoglalás naptárkapcsolattal')
             ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
             ->assertSee('/media/pzdigital/references/gyroscity/menu-card.jpg', false)
             ->assertDontSee('A műhely átlátja a napot.')
@@ -42,18 +44,19 @@ class PublicPagesTest extends TestCase
         $html = $response->getContent();
         $this->assertLessThan(strpos($html, 'id="munkaink"'), strpos($html, 'id="szolgaltatasok"'));
         $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'id="munkaink"'));
-        $this->assertSame(1, substr_count($html, 'data-project-featured='));
-        $this->assertSame(2, substr_count($html, 'data-project-card='));
+        $this->assertSame(3, substr_count($html, 'data-hero-option'));
+        $this->assertSame(3, substr_count($html, 'data-project-story='));
+        $this->assertSame(3, substr_count($html, 'data-project-media='));
     }
 
     public function test_homepage_project_showcase_uses_configured_project_and_safe_fallbacks(): void
     {
-        config(['pzdigital.featured_project_slug' => 'napiinfo']);
+        config(['pzdigital.homepage_story_project_slugs' => ['napiinfo', 'gyroscity']]);
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('data-project-featured="napiinfo"', false)
-            ->assertSee('data-project-card="gyroscity"', false);
+            ->assertSee('data-project-story="napiinfo"', false)
+            ->assertSee('data-project-story="gyroscity"', false);
 
         $projects = config('pzdigital.projects');
         $projects['napiinfo']['content_approved'] = false;
@@ -61,8 +64,8 @@ class PublicPagesTest extends TestCase
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('data-project-featured="gyroscity"', false)
-            ->assertDontSee('data-project-card="napiinfo"', false);
+            ->assertSee('data-project-story="gyroscity"', false)
+            ->assertDontSee('data-project-story="napiinfo"', false);
 
         config(['pzdigital.projects' => collect($projects)->map(fn (array $project): array => [
             ...$project,
@@ -70,6 +73,55 @@ class PublicPagesTest extends TestCase
         ])->all()]);
 
         $this->get('/')->assertOk()->assertDontSee('id="munkaink"', false);
+    }
+
+    public function test_project_case_studies_explain_confirmed_workflows_without_internal_notes(): void
+    {
+        $expectations = [
+            '/referenciak/napiinfo' => ['NapiInfo — az utasítástól a cikkig.', 'Utasítás', 'AI-cikktervezet', 'felügyelet nélküli automatikus publikálást'],
+            '/referenciak/gyroscity' => ['GyrosCity — étlap és rendeléskezelés egy rendszerben.', 'Étlap', 'Rendelés', 'Rendeléskezelő adminisztráció'],
+            '/referenciak/tiszaszalka-se' => ['Tiszaszalka SE — eredmények, kézi másolgatás nélkül.', 'MLSZ Adatbank', 'Automatikus átvétel', 'valós idejű'],
+            '/referenciak/zcutzbarber' => ['ZCutzBarber — online foglalás, naptárkapcsolattal.', 'Időpontválasztás', 'Google Naptár', 'Kétirányú szinkront'],
+        ];
+
+        foreach ($expectations as $route => $texts) {
+            $response = $this->get($route)->assertOk();
+
+            foreach ($texts as $text) {
+                $response->assertSee($text);
+            }
+
+            $response
+                ->assertSee('Szemléltetett folyamat')
+                ->assertSee('Nem élő futtatás')
+                ->assertSee('Lejátszás')
+                ->assertSee('Szünet')
+                ->assertSee('Újra')
+                ->assertDontSee('evidence_status')
+                ->assertDontSee('missing_assets');
+        }
+    }
+
+    public function test_unknown_or_unpublished_case_study_blocks_are_not_rendered(): void
+    {
+        $projects = config('pzdigital.projects');
+        $projects['napiinfo']['case_study']['blocks'][] = [
+            'type' => 'arbitrary_view',
+            'body' => 'INTERNAL-DO-NOT-PUBLISH',
+            'publication_status' => 'published',
+        ];
+        $projects['napiinfo']['case_study']['blocks'][] = [
+            'type' => 'integration',
+            'heading' => 'Draft heading',
+            'body' => 'DRAFT-DO-NOT-PUBLISH',
+            'publication_status' => 'draft',
+        ];
+        config(['pzdigital.projects' => $projects]);
+
+        $this->get('/referenciak/napiinfo')
+            ->assertOk()
+            ->assertDontSee('INTERNAL-DO-NOT-PUBLISH')
+            ->assertDontSee('DRAFT-DO-NOT-PUBLISH');
     }
 
     public function test_szervizpro_page_displays_verified_product_screens(): void
@@ -147,7 +199,7 @@ class PublicPagesTest extends TestCase
         $projects['napiinfo']['content_approved'] = false;
         config(['pzdigital.projects' => $projects]);
 
-        $this->get('/')->assertDontSee('data-project-card="napiinfo"', false);
+        $this->get('/')->assertDontSee('data-project-story="napiinfo"', false);
         $this->get('/referenciak')->assertDontSee(route('projects.show', 'napiinfo'), false);
         $this->get('/referenciak/napiinfo')->assertNotFound();
         $this->get('/kapcsolat?referencia=napiinfo')->assertDontSee('NapiInfo projekthez hasonló fejlesztés');

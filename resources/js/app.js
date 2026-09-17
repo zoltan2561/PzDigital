@@ -1,4 +1,5 @@
 import './bootstrap';
+import { initMarketingMotion } from './marketing/motion/index.js';
 
 const navigationToggle = document.querySelector('[data-nav-toggle]');
 const navigation = document.querySelector('[data-nav]');
@@ -42,3 +43,6 @@ if (inquiryForm) {
         submit.textContent = 'Beküldés folyamatban…';
     });
 }
+
+const destroyMarketingMotion = initMarketingMotion();
+window.addEventListener('pagehide', destroyMarketingMotion, { once: true });

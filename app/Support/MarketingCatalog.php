@@ -47,6 +47,30 @@ class MarketingCatalog
             ->take($limit);
     }
 
+    public function homepageStoryProjects(int $limit = 3): Collection
+    {
+        $projects = $this->projects();
+        $preferredSlugs = config('pzdigital.homepage_story_project_slugs', []);
+
+        return collect($preferredSlugs)
+            ->map(fn (string $slug): ?array => $projects->get($slug))
+            ->filter()
+            ->take($limit)
+            ->values();
+    }
+
+    public function nextProject(string $slug): ?array
+    {
+        $projects = $this->projects()->values();
+        $currentIndex = $projects->search(fn (array $project): bool => $project['slug'] === $slug);
+
+        if ($currentIndex === false || $projects->count() < 2) {
+            return null;
+        }
+
+        return $projects->get(($currentIndex + 1) % $projects->count());
+    }
+
     public function inquiryInterests(): Collection
     {
         return collect(config('pzdigital.inquiry_interests', []));

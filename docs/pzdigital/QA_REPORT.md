@@ -65,3 +65,15 @@ A lokális QA-képek a figyelmen kívül hagyott `storage/app/qa` könyvtárban 
 - [x] Böngészős audit: 360, 390, 768, 1024, 1440 és 1920 px; 0 vízszintes túlcsordulás, 0 törött kép, 0 konzolhiba. Mobilmenü, GYIK, űrlapfókusz és az általános/SzervizPRO/GyrosCity/meglévő rendszer/érvénytelen kategóriaútvonal ellenőrizve.
 - [x] Célzott tesztek: 21 PASS, 132 assertion; Vite build PASS; Pint PASS; Composer validáció PASS.
 - [x] Előtte/utána desktop és mobil, valamint referencia- és bizalomrészlet: `storage/app/qa/v1-3` (figyelmen kívül hagyott lokális mappa).
+
+## V1.4 motion és projektoldalak — 2026-09-17
+
+- [x] Új aszimmetrikus hero, kézzel és nyílbillentyűvel váltható GyrosCity/ZCutzBarber/NapiInfo példa; nincs automatikus carousel vagy blokkoló intro.
+- [x] A szolgáltatások három számozott sorra, a főoldali referenciák natív sticky képtérre és három szerveroldali történetre váltottak. ScrollTrigger nem fogja el a természetes görgetést és nem használ snapet.
+- [x] NapiInfo, GyrosCity, Tiszaszalka SE és ZCutzBarber közös, allowlistes esettanulmányblokkokkal, projektspecifikus folyamattal, igazolt eredményekkel és kontextusos kapcsolatúttal működik.
+- [x] A szemléltetők helyi, rögzített adatokkal futnak; mindegyik „nem élő futtatás” jelölést, közvetlen lépésválasztást és véges Lejátszás/Szünet/Újra vezérlést kapott.
+- [x] Böngészős audit: 360/390/768/1024/1440/1920 px, valamint 1024 × 650 alacsony viewport; 0 vízszintes túlcsordulás, 0 törött kép, 0 konzolhiba.
+- [x] Reduced-motion állapotban nincs sticky projektváltás vagy időzített workflow; JavaScript nélkül mindhárom főoldali projektkép, szöveg és link látható.
+- [x] Hash-alapú projektaktiválás, hero egér/billentyűzet, workflow közvetlen és véges lejátszás, továbbá SzervizPRO/FoodShop útvonal regresszió ellenőrizve.
+- [x] Célzott marketingtesztek: 23 PASS, 186 assertion; Vite production build, Pint és Composer-validáció PASS; `npm audit` 0 sérülékenységet jelzett a GSAP telepítésekor.
+- [x] Bizonyítékok: `storage/app/qa/v1-4`; a `motion-proof-28s.mp4` tényleges, 28 másodperces 1440 × 900 képernyőfelvétel.
