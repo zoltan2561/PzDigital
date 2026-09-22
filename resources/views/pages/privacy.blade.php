@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@php($title = 'Adatkezelési tájékoztató — PZ Digital')
+@php($title = 'Adatkezelési tájékoztató — SzoftPont')
 @php($noindex = true)
 @section('content')
 <section class="page-hero compact"><div class="container narrow"><span class="eyebrow eyebrow-light">Jogi tartalom</span><h1>Adatkezelési tájékoztató</h1></div></section>

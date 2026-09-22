@@ -21,6 +21,17 @@ class PublicPagesTest extends TestCase
         }
     }
 
+    public function test_public_brand_and_metadata_use_szoftpont(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('SzoftPont')
+            ->assertDontSee('PZ Digital')
+            ->assertSee('property="og:site_name" content="SzoftPont"', false)
+            ->assertSee('application/ld+json', false)
+            ->assertSee('favicon.svg', false);
+    }
+
     public function test_homepage_has_company_focus_and_expected_section_order(): void
     {
         $response = $this->get('/')
@@ -187,7 +198,7 @@ class PublicPagesTest extends TestCase
         $response = $this->get('/referenciak')
             ->assertOk()
             ->assertSee('Weboldalak és rendszerek a gyakorlatban')
-            ->assertSee('Korábbi és jelenlegi munkák a PZ Digital mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
+            ->assertSee('Korábbi és jelenlegi munkák a SzoftPont mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
             ->assertSee('project-grid project-grid-index', false)
             ->assertSee('Mondd el, mire van szükséged.')
             ->assertDontSee('belső ellenőrzés');

@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "pzdigital/website",
     "type": "project",
-    "description": "PZ Digital marketing website and inquiry flow.",
+    "description": "SzoftPont marketing website and inquiry flow.",
     "keywords": ["pzdigital", "laravel", "marketing"],
     "license": "MIT",
     "require": {

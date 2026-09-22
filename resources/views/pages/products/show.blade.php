@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@php($title = $product['name'].' — PZ Digital')
+@php($title = $product['name'].' — SzoftPont')
 @php($description = $product['summary'])
 
 @section('content')

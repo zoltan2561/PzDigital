@@ -20,7 +20,7 @@ class InquiryReceived extends Mailable
     {
         return new Envelope(
             replyTo: [new Address($this->inquiry->email, $this->inquiry->name)],
-            subject: 'Új PZ Digital megkeresés: '.$this->inquiry->interest_type,
+            subject: 'Új '.config('pzdigital.brand.name').' megkeresés: '.$this->inquiry->interest_type,
         );
     }
 

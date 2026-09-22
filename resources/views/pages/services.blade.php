@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@php($title = 'Szolgáltatások — PZ Digital')
+@php($title = 'Szolgáltatások — SzoftPont')
 @section('content')
 <section class="page-hero"><div class="container narrow"><span class="eyebrow eyebrow-light">Szolgáltatások</span><h1>Digitális megoldás, érthető üzleti keretekkel</h1><p>A tervezéstől az átadásig követhető folyamatban dolgozunk. A pontos tartalmat és támogatást minden projektnél külön rögzítjük.</p></div></section>
 <section class="section"><div class="container detail-list">

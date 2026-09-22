@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'brand' => [
+        'name' => 'SzoftPont',
+        'tagline' => 'Üzleti szoftverek. Valódi működésre tervezve.',
+        // Set only after the new mailbox has been provisioned and approved.
+        'contact_email' => env('SZOFTPONT_CONTACT_EMAIL'),
+    ],
     'contact_email' => env('PZDIGITAL_CONTACT_EMAIL', 'hello@pzdigital.hu'),
     'privacy_version' => env('PZDIGITAL_PRIVACY_VERSION', 'draft-2026-09'),
     'inquiry_rate_limit' => (int) env('PZDIGITAL_INQUIRY_RATE_LIMIT', 8),
@@ -129,7 +135,7 @@ return [
             'categories' => ['Éttermi weboldal', 'Online rendelés'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a PZ Digital mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -176,7 +182,7 @@ return [
             'categories' => ['Szolgáltatói weboldal', 'Időpontfoglalás'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a PZ Digital mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -222,7 +228,7 @@ return [
             'categories' => ['Egyesületi weboldal', 'Sporttartalom'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a PZ Digital mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -269,7 +275,7 @@ return [
             'categories' => ['Tartalmi portál', 'Szerkesztett cikkek'],
             'project_type' => 'unspecified',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a PZ Digital mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,

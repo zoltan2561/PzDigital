@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@php($title = 'PZ Digital – Szoftverfejlesztés és automatizálás')
+@php($title = 'SzoftPont – Szoftverfejlesztés és automatizálás')
 @php($description = 'Egyedi szoftverek, automatizálás és rendszerkapcsolatok a vállalkozásod működéséhez. Saját termékek, bemutatók és átlátható megvalósítás.')
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="hero-orbit" aria-hidden="true"></div>
     <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
         <div class="hero-copy">
-            <span class="eyebrow eyebrow-light hero-eyebrow"><span aria-hidden="true"></span> Szoftverfejlesztés · Automatizálás</span>
+            <span class="eyebrow eyebrow-light hero-eyebrow"><span aria-hidden="true"></span> Szoftver · Automatizálás · Integráció</span>
             <h1>Ami ma pluszmunka,<br> <span>arra fejlesztünk megoldást.</span></h1>
             <p>Mondd el, mi nehezíti a munkát. Készítünk hozzá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk a felesleges kézi lépéseket.</p>
             <div class="button-row">
@@ -83,15 +83,15 @@
 <section class="section company-principles-section" data-home-reveal>
     <div class="container principles-layout">
         <div class="principles-intro">
-            <span class="eyebrow">Miért PZ Digital?</span>
+            <span class="eyebrow">Miért SzoftPont?</span>
             <h2>Beszéljük át a feladatot. A technikai részét megoldjuk.</h2>
             <p>Elmondod, hogyan dolgoztok, és min szeretnél változtatni. Mi végiggondoljuk, minek kell együtt működnie.</p>
-            <a class="text-link" href="{{ route('about') }}">A PZ Digitalról <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="{{ route('about') }}">A SzoftPontról <span aria-hidden="true">→</span></a>
         </div>
         <div class="principles-list">
-            <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>A feladatot a vállalkozásod nyelvén beszéljük át.</p></div></article>
-            <article><span>02</span><div><h3>Tudd, mit kapsz.</h3><p>Előre átbeszéljük a feladatokat és azt, mi tartozik az ajánlatba.</p></div></article>
-            <article><span>03</span><div><h3>A folytatást is átbeszéljük.</h3><p>Ha később új funkcióra van szükség, arról külön egyeztetünk.</p></div></article>
+            <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>Nem kell fejlesztői nyelven elmagyaráznod a problémát.</p></div></article>
+            <article><span>02</span><div><h3>Tudd, mit kapsz</h3><p>Előre átbeszéljük, mi készül és mi tartozik a feladatba.</p></div></article>
+            <article><span>03</span><div><h3>Később is bővíthető</h3><p>Ha később új igény jön, nem kell feltétlenül mindent elölről kezdeni.</p></div></article>
         </div>
     </div>
 </section>

@@ -1,6 +1,6 @@
 @extends('layouts.marketing')
-@php($title = 'Kapcsolat — PZ Digital')
-@php($description = 'Kérj termékbemutatót vagy írj a PZ Digitalnak egyedi webes fejlesztési elképzelésedről.')
+@php($title = 'Kapcsolat — SzoftPont')
+@php($description = 'Kérj termékbemutatót vagy írj a SzoftPontnak egyedi webes fejlesztési elképzelésedről.')
 @php($activeProject = old('project_slug', $selectedProject))
 
 @section('content')

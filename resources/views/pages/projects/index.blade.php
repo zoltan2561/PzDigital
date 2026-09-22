@@ -1,13 +1,13 @@
 @extends('layouts.marketing')
-@php($title = 'Munkáink — PZ Digital')
-@php($description = 'Korábbi és jelenlegi webes munkák a PZ Digital mögötti fejlesztői tapasztalatból.')
+@php($title = 'Munkáink — SzoftPont')
+@php($description = 'Korábbi és jelenlegi webes munkák a SzoftPont mögötti fejlesztői tapasztalatból.')
 
 @section('content')
 <section class="page-hero projects-index-hero">
     <div class="container narrow">
         <span class="eyebrow eyebrow-light">Munkáink</span>
         <h1>Weboldalak és rendszerek a gyakorlatban</h1>
-        <p>Korábbi és jelenlegi munkák a PZ Digital mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.</p>
+        <p>Korábbi és jelenlegi munkák a SzoftPont mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.</p>
     </div>
 </section>
 
