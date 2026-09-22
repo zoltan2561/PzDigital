@@ -757,6 +757,8 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .showcase-flow-icon .icon { width: 21px; height: 21px; }
 .showcase-flow small { display: block; margin-bottom: 5px; color: #a6c3e6; font-size: .65rem; }
 .showcase-flow > div > div { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; font-size: .72rem; font-weight: 600; }
+.showcase-flow-step { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.showcase-flow-step .icon { width: 13px; height: 13px; color: #9eccff; stroke-width: 2; }
 .showcase-flow b { color: #78aeff; font-weight: 400; }
 .hero-footnote { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 18px; border-top: 1px solid #a1c9ff26; color: #b5c8e0; font-size: .73rem; }
 .hero-footnote a { display: flex; align-items: center; gap: 15px; min-height: 44px; color: #e0ecff; }

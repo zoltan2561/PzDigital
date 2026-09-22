@@ -4,6 +4,7 @@
 
 @section('content')
 @php($heroProduct = $products->first())
+@php($heroFlow = $heroProduct['home_flow'] ?? $heroProduct['flow'] ?? [])
 <section class="hero company-home-hero">
     <div class="hero-orbit" aria-hidden="true"></div>
     <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
@@ -31,7 +32,7 @@
                 </a>
                 <div class="showcase-flow">
                     <span class="showcase-flow-icon" aria-hidden="true"><x-marketing.icon name="flow" /></span>
-                    <div><small>Egy átgondolt folyamat</small><div>@foreach($heroProduct['flow'] as $step)<span>{{ $step['title'] }}</span>@unless($loop->last)<b aria-hidden="true">→</b>@endunless @endforeach</div></div>
+                    <div><small>A fejlesztés lépései</small><div>@foreach($heroFlow as $step)<span class="showcase-flow-step"><x-marketing.icon :name="$step['icon'] ?? 'flow'" /><span>{{ $step['title'] }}</span></span>@unless($loop->last)<b aria-hidden="true">→</b>@endunless @endforeach</div></div>
                 </div>
             </div>
         @endif

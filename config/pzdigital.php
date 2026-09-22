@@ -59,6 +59,12 @@ return [
                 ['title' => 'Műhelymunka', 'text' => 'A csapat a napi munkaközpontból követi az állapotokat, teendőket és ügyfélkéréseket.'],
                 ['title' => 'Ügyféltájékoztatás', 'text' => 'Az ügyfél saját kóddal látja a státuszt, az üzeneteket, a várható elkészülést és a publikus fotókat.'],
             ],
+            'home_flow' => [
+                ['title' => 'Munkafelvétel', 'icon' => 'flow'],
+                ['title' => 'Programozás', 'icon' => 'code'],
+                ['title' => 'Egyeztetés', 'icon' => 'people'],
+                ['title' => 'Átadás', 'icon' => 'shield'],
+            ],
             'screenshots' => [
                 ['src' => '/media/pzdigital/szervizpro/dashboard.png', 'alt' => 'A SzervizPRO napi műhelyközpontja munkalap- és kommunikációs áttekintéssel', 'label' => 'Műhelynézet', 'title' => 'A napi teendők egy képernyőn'],
                 ['src' => '/media/pzdigital/szervizpro/customer-home.png', 'alt' => 'A SzervizPRO ügyféloldali kezdőképernyője állapot-előnézettel', 'label' => 'Ügyféloldal', 'title' => 'Kevesebb telefon, érthetőbb tájékoztatás'],
