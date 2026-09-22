@@ -23,13 +23,11 @@
             </div>
         </div>
         @if($heroProduct)
-            <div class="hero-showcase" data-hero-showcase>
-                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Egy saját fejlesztésünk: {{ $heroProduct['name'] }}</div>
-                <a class="showcase-window" href="{{ route('products.show', $heroProduct['slug']) }}" aria-label="{{ $heroProduct['name'] }}: a termék bemutatása">
-                    <div class="showcase-toolbar" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>{{ $heroProduct['name'] }}</span><x-marketing.icon name="shield" /></div>
-                    <img src="{{ $heroProduct['screenshots'][0]['src'] }}" alt="{{ $heroProduct['screenshots'][0]['alt'] }}" width="1440" height="1050" fetchpriority="high">
-                    <div class="showcase-caption"><div><small>{{ $heroProduct['status_label'] }}</small><strong>{{ $heroProduct['name'] }}</strong></div><span class="showcase-open" aria-hidden="true">↗</span></div>
-                </a>
+            <div class="hero-showcase" data-hero-showcase data-hero-product="{{ $heroProduct['slug'] }}">
+                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Munkáinkból válogatva</div>
+                <figure class="showcase-window showcase-window-collage">
+                    <img src="/media/pzdigital/hero/multi-project-dashboard-v1.png" alt="SzoftPont termék- és projektáttekintő: SzervizPRO, FoodShop, NapiInfo és ZCutzBarber" width="1672" height="932" fetchpriority="high">
+                </figure>
                 <div class="showcase-flow">
                     <span class="showcase-flow-icon" aria-hidden="true"><x-marketing.icon name="flow" /></span>
                     <div><small>A fejlesztés lépései</small><div>@foreach($heroFlow as $step)<span class="showcase-flow-step"><x-marketing.icon :name="$step['icon'] ?? 'flow'" /><span>{{ $step['title'] }}</span></span>@unless($loop->last)<b aria-hidden="true">→</b>@endunless @endforeach</div></div>

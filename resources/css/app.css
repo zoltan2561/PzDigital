@@ -748,6 +748,8 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .window-dots i { width: 6px; height: 6px; background: #b7c6da; border-radius: 50%; }
 .window-dots i:first-child { background: #6b9feb; }
 .showcase-window > img { width: 100%; height: auto; aspect-ratio: 1.8; object-fit: cover; object-position: top; }
+.showcase-window-collage { border-color: #547bc2; background: #07152c; box-shadow: 0 30px 76px #02081ab8, 0 0 0 6px #4d7cff12; }
+.showcase-window-collage > img { display: block; aspect-ratio: 1.794; object-fit: cover; }
 .showcase-caption { display: flex; align-items: center; justify-content: space-between; padding: 16px 21px; background: #fff; color: var(--ink); }
 .showcase-caption small { display: block; color: var(--muted); font-size: .65rem; }
 .showcase-caption strong { font-size: 1.1rem; }

@@ -39,6 +39,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('Ami ma pluszmunka,')
             ->assertSee('arra fejlesztünk megoldást.')
             ->assertSee('data-hero-showcase', false)
+            ->assertSee('Munkáinkból válogatva')
+            ->assertSee('/media/pzdigital/hero/multi-project-dashboard-v1.png', false)
             ->assertSee('A fejlesztés lépései')
             ->assertSee('Munkafelvétel')
             ->assertSee('Programozás')
@@ -151,7 +153,7 @@ class PublicPagesTest extends TestCase
 
         $this->get('/')->assertOk()
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('FoodShop: a termék bemutatása')
+            ->assertSee('data-hero-product="foodshop"', false)
             ->assertDontSee('/media/pzdigital/szervizpro/dashboard.png', false);
 
         $products['foodshop']['featured_on_home'] = false;
