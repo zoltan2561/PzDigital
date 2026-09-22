@@ -60,6 +60,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .site-header { position: sticky; top: 0; z-index: 50; color: var(--ink); background: rgba(250,250,248,.92); border-bottom: 1px solid var(--border); backdrop-filter: blur(14px); }
 .nav-shell { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font-size: 1.4rem; font-weight: 780; letter-spacing: -.055em; }
+.brand-logo { display: block; width: 164px; height: auto; max-width: none; }
 .brand-wordmark { position: relative; display: inline-flex; align-items: baseline; }
 .brand-wordmark > span { color: var(--sp-violet); }
 .brand-wordmark i { width: .22em; height: .22em; margin-left: .08em; border-radius: 50%; background: var(--sp-violet); }
@@ -966,6 +967,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .section-faq .faq-list details[open] { border-color: #c9c2f0; box-shadow: 0 6px 25px #2b235806; }
 .technology-groups li { color: #545b68; }
 .site-footer .brand { color: var(--text-dark); }
+.site-footer .brand-logo { width: 174px; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .hero-project-card-main:hover, .hero-project-card-secondary:hover, .hero-project-card-product:hover { transform: translateY(-2px); }
     .project-card:hover { transform: translateY(-3px); }
@@ -983,7 +985,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 /* SzoftPont layout refinement: denser, light-section rhythm from the approved sketch. */
 .site-header { color: #f8f9ff; background: rgba(14, 23, 42, .94); border-bottom-color: rgba(174, 188, 228, .13); }
 .site-header .brand { color: #f8f9ff; }
-.site-header .brand-wordmark::before { content: ''; width: .7em; height: .7em; margin-right: .32em; border: .15em solid #4e7cff; border-radius: 50%; box-shadow: inset .2em -.18em 0 #6c5ce7; }
+.site-header .brand-logo { width: 164px; }
 .site-header .main-nav > a:not(.button) { color: #d2d8e6; }
 .site-header .main-nav > a:not(.button):hover, .site-header .main-nav > a.active:not(.button) { color: #fff; }
 .site-header .main-nav > a:not(.button)::after { bottom: -17px; background: #4e7cff; }
