@@ -113,14 +113,29 @@
 </section>
 @endif
 
-<section class="section technology-section" data-home-reveal>
+<section class="section technology-section" id="technologiak" data-home-reveal>
     <div class="container technology-inner">
         <div class="technology-heading">
             <span class="eyebrow">Szakmai háttér</span>
             <h2>A háttérben ezekkel dolgozunk.</h2>
             <p>Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.</p>
         </div>
-        <ul class="technology-list" aria-label="Használt technológiák"><li>Laravel</li><li>PHP</li><li>JavaScript</li><li>MySQL</li><li>Docker</li><li>Python</li><li>OpenAI API</li><li>Git</li><li>Linux</li></ul>
+        @php($technologies = [
+            ['name' => 'Laravel', 'logo' => 'laravel/FF2D20'],
+            ['name' => 'PHP', 'logo' => 'php/777BB4'],
+            ['name' => 'JavaScript', 'logo' => 'javascript/F7DF1E'],
+            ['name' => 'MySQL', 'logo' => 'mysql/4479A1'],
+            ['name' => 'Docker', 'logo' => 'docker/2496ED'],
+            ['name' => 'Python', 'logo' => 'python/3776AB'],
+            ['name' => 'OpenAI API', 'logo' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'],
+            ['name' => 'Git', 'logo' => 'git/F05032'],
+            ['name' => 'Linux', 'logo' => 'linux/FCC624'],
+        ])
+        <ul class="technology-list" aria-label="Használt technológiák">
+            @foreach($technologies as $technology)
+                <li><img class="technology-logo" src="{{ str_starts_with($technology['logo'], 'http') ? $technology['logo'] : 'https://cdn.simpleicons.org/'.$technology['logo'] }}" alt="" width="22" height="22" loading="lazy"><span>{{ $technology['name'] }}</span></li>
+            @endforeach
+        </ul>
     </div>
 </section>
 

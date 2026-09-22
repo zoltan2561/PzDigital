@@ -63,6 +63,8 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('Szemléltető példa.')
             ->assertSee('A háttérben ezekkel dolgozunk.')
             ->assertSee('Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.')
+            ->assertSee('cdn.simpleicons.org/laravel/FF2D20', false)
+            ->assertSee('ChatGPT_logo.svg', false)
             ->assertSee('OpenAI API')
             ->assertSee('Gyakori kérdések')
             ->assertSee('Mikorra készülhet el a fejlesztés?')

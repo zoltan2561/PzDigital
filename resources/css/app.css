@@ -854,9 +854,9 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .technology-groups h3 { margin-bottom: 11px; font-size: 1rem; letter-spacing: -.02em; }
 .technology-groups ul { display: flex; flex-wrap: wrap; gap: 5px 0; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: .8rem; font-weight: 600; }
 .technology-groups li + li::before { content: '·'; margin-inline: 8px; color: var(--muted); }
-.technology-list { display: flex; flex-wrap: wrap; gap: 9px 0; margin: 0; padding: 0; list-style: none; color: var(--ink); font-size: clamp(.9rem, 1.2vw, 1rem); font-weight: 650; }
-.technology-list li { display: inline-flex; align-items: center; }
-.technology-list li:not(:last-child)::after { content: '·'; margin-inline: 13px; color: var(--sp-violet); }
+.technology-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; color: var(--ink); font-size: clamp(.84rem, 1.1vw, .96rem); font-weight: 650; }
+.technology-list li { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 9px 12px; border: 1px solid #d9e0eb; border-radius: 10px; background: #fff; box-shadow: 0 5px 14px rgba(35, 57, 105, .05); white-space: nowrap; }
+.technology-logo { width: 22px; height: 22px; object-fit: contain; }
 
 @media (max-width: 1100px) {
     .company-home-hero-grid { gap: 38px; padding-block: 64px; }
@@ -1030,7 +1030,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .technology-section { padding-block: 42px; background: #f3f6fb; }
 .technology-groups { border-top-color: #ccd5e3; }
 .technology-groups article { padding-block: 15px; border-bottom-color: #ccd5e3; }
-.technology-list { max-width: 700px; padding-top: 9px; border-top: 1px solid #ccd5e3; }
+.technology-list { max-width: 760px; padding-top: 16px; border-top: 1px solid #ccd5e3; }
 .section-faq .container.narrow { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); gap: clamp(36px, 8vw, 110px); max-width: var(--content); }
 .section-faq .section-heading { margin: 0; }
 .section-faq .faq-list { align-self: start; }
