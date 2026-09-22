@@ -735,6 +735,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .company-home-hero .hero-copy > p { max-width: 570px; margin-bottom: 0; color: #c9cbd2; font-size: 1.03rem; line-height: 1.8; }
 .hero-eyebrow { display: flex; align-items: center; gap: 9px; font-size: .65rem; letter-spacing: .12em; color: #d1ccff; margin-bottom: 28px; }
 .hero-eyebrow > span, .showcase-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--sp-violet); box-shadow: 0 0 0 5px #6c5ce724; }
+.brand-dot { display: inline-block; width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--sp-violet); box-shadow: 0 0 0 4px #6c5ce720; }
 .hero-assurances { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 30px; color: #bccde2; font-size: .74rem; }
 .hero-assurances > span { display: inline-flex; gap: 7px; align-items: center; }
 .hero-assurances .icon { width: 18px; height: 18px; color: #82b9ff; }
@@ -853,6 +854,9 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .technology-groups h3 { margin-bottom: 11px; font-size: 1rem; letter-spacing: -.02em; }
 .technology-groups ul { display: flex; flex-wrap: wrap; gap: 5px 0; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: .8rem; font-weight: 600; }
 .technology-groups li + li::before { content: '·'; margin-inline: 8px; color: var(--muted); }
+.technology-list { display: flex; flex-wrap: wrap; gap: 9px 0; margin: 0; padding: 0; list-style: none; color: var(--ink); font-size: clamp(.9rem, 1.2vw, 1rem); font-weight: 650; }
+.technology-list li { display: inline-flex; align-items: center; }
+.technology-list li:not(:last-child)::after { content: '·'; margin-inline: 13px; color: var(--sp-violet); }
 
 @media (max-width: 1100px) {
     .company-home-hero-grid { gap: 38px; padding-block: 64px; }
@@ -962,7 +966,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
     .hero-project-card-main:hover, .hero-project-card-secondary:hover, .hero-project-card-product:hover { transform: translateY(-2px); }
     .project-card:hover { transform: translateY(-3px); }
     .button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px #6c5ce722; }
-    .section-services .service-rows article:hover { transform: translateY(-3px); border-color: #c9c2f0; box-shadow: 0 15px 35px #312b540f; }
+.section-services .service-rows article:hover { transform: translateY(-3px); border-color: #c9c2f0; box-shadow: 0 15px 35px #312b540f; }
     .showcase-window:hover { box-shadow: 0 36px 80px #09071990, 0 0 0 9px #a99ef218; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1026,6 +1030,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .technology-section { padding-block: 42px; background: #f3f6fb; }
 .technology-groups { border-top-color: #ccd5e3; }
 .technology-groups article { padding-block: 15px; border-bottom-color: #ccd5e3; }
+.technology-list { max-width: 700px; padding-top: 9px; border-top: 1px solid #ccd5e3; }
 .section-faq .container.narrow { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); gap: clamp(36px, 8vw, 110px); max-width: var(--content); }
 .section-faq .section-heading { margin: 0; }
 .section-faq .faq-list { align-self: start; }
@@ -1040,3 +1045,14 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
     .showcase-flow { margin-inline: 0; }
     .section-faq .section-heading { margin-bottom: 28px; }
 }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .section-services .service-rows article:hover { transform: none; border-color: #c9c2f0; box-shadow: 0 12px 30px rgba(35, 57, 105, .1); }
+}
+
+/* V2 customer-facing details: plain text links and a quiet recurring brand dot. */
+.section-services .service-rows a span { display: inline; width: auto; height: auto; background: transparent; border-radius: 0; font-size: inherit; }
+.section-heading .eyebrow::before,
+.technology-heading .eyebrow::before,
+.principles-intro .eyebrow::before,
+.compact-references .eyebrow::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: var(--sp-violet); box-shadow: 0 0 0 3px #6c5ce71a; vertical-align: middle; }

@@ -18,7 +18,7 @@ export function initHomeReveals(gsap, ScrollTrigger) {
             document.querySelectorAll('[data-home-reveal]').forEach((section) => {
                 const groups = [
                     '.section-heading, .principles-intro, .technology-heading, .compact-references-inner > div:first-child',
-                    '.service-rows article, .process-grid li, .principles-list article, .technology-groups article, .faq-list details',
+                    '.service-rows article, .process-grid li, .principles-list article, .technology-list li, .faq-list details',
                 ];
                 groups.forEach((selector) => {
                     const elements = section.querySelectorAll(selector);

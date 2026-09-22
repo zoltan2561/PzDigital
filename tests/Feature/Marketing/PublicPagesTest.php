@@ -39,18 +39,18 @@ class PublicPagesTest extends TestCase
             ->assertSee('Ami ma pluszmunka,')
             ->assertSee('arra fejlesztünk megoldást.')
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('Mondd el, mi nehezíti a munkát. Készítünk hozzá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk a felesleges kézi lépéseket.')
+            ->assertSee('Mondd el, mi lassítja a munkát. Készítünk rá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk, amit ma még kézzel csinálsz.')
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
             ->assertSee('Mire szeretnél megoldást?')
-            ->assertSee('Egyedi szoftverek')
-            ->assertSee('Automatizálás és összekapcsolás')
+            ->assertSee('Egyedi szoftver')
+            ->assertSee('Automatizálás')
             ->assertSee('Saját szoftverek a napi működéshez')
             ->assertSee('SzervizPRO')
             ->assertSee('FoodShop')
             ->assertSee('Bemutató elérhető')
             ->assertSee('Előkészítés alatt')
-            ->assertSee('GyrosCity — a FoodShop éles előzménye.')
+            ->assertSee('A FoodShop alapja: a GyrosCity.')
             ->assertSee('Innen indul a közös munka')
             ->assertSee('Javaslatot és ajánlatot kapsz')
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
@@ -61,8 +61,8 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('A foglalás bekerül a naptárba.')
             ->assertDontSee('Te látod, ki mikor érkezik.')
             ->assertDontSee('Szemléltető példa.')
-            ->assertSee('Technológiák, amelyekkel dolgozunk')
-            ->assertSee('Nem kell ezek közül választanod. A feladathoz megfelelő eszközöket javasoljuk.')
+            ->assertSee('A háttérben ezekkel dolgozunk.')
+            ->assertSee('Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.')
             ->assertSee('OpenAI API')
             ->assertSee('Gyakori kérdések')
             ->assertSee('Mikorra készülhet el a fejlesztés?')
@@ -87,8 +87,8 @@ class PublicPagesTest extends TestCase
         $this->assertLessThan(strpos($html, 'Innen indul a közös munka'), strpos($html, 'id="szolgaltatasok"'));
         $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'Innen indul a közös munka'));
         $this->assertLessThan(strpos($html, 'Beszéljük át a feladatot.'), strpos($html, 'id="megoldasok"'));
-        $this->assertLessThan(strpos($html, 'Technológiák, amelyekkel dolgozunk'), strpos($html, 'id="referenciak"'));
-        $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'Technológiák, amelyekkel dolgozunk'));
+        $this->assertLessThan(strpos($html, 'A háttérben ezekkel dolgozunk.'), strpos($html, 'id="referenciak"'));
+        $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'A háttérben ezekkel dolgozunk.'));
         $this->assertSame(6, substr_count($html, '<details>'));
         $this->assertSame(2, substr_count($html, 'data-home-product-slot'));
         $this->assertSame(1, substr_count($html, '<h1>'));
@@ -126,13 +126,13 @@ class PublicPagesTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertDontSee('id="referenciak"', false)
-            ->assertSee('Technológiák, amelyekkel dolgozunk');
+            ->assertSee('A háttérben ezekkel dolgozunk.');
 
         config(['pzdigital.home.show_references' => false]);
         $this->get('/')
             ->assertOk()
             ->assertDontSee('id="referenciak"', false)
-            ->assertSee('Technológiák, amelyekkel dolgozunk');
+            ->assertSee('A háttérben ezekkel dolgozunk.');
         $this->get('/referenciak')->assertOk();
     }
 

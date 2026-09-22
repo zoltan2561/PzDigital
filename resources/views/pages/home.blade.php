@@ -8,9 +8,9 @@
     <div class="hero-orbit" aria-hidden="true"></div>
     <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
         <div class="hero-copy">
-            <span class="eyebrow eyebrow-light hero-eyebrow"><span aria-hidden="true"></span> Szoftver · Automatizálás · Integráció</span>
+            <span class="eyebrow eyebrow-light hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> Szoftver · Automatizálás · Integráció</span>
             <h1>Ami ma pluszmunka,<br> <span>arra fejlesztünk megoldást.</span></h1>
-            <p>Mondd el, mi nehezíti a munkát. Készítünk hozzá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk a felesleges kézi lépéseket.</p>
+            <p>Mondd el, mi lassítja a munkát. Készítünk rá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk, amit ma még kézzel csinálsz.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
                 <a class="button button-outline" href="#megoldasok">Megnézem a termékeket</a>
@@ -43,9 +43,9 @@
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Miben segítünk?</span><h2>Mire szeretnél megoldást?</h2></div></div>
         <div class="service-rows">
-            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="code" /></span><span>01 / FEJLESZTÉS</span></div><h3>Egyedi szoftverek</h3><p>A munkádhoz illeszkedő rendszert készítünk, például feladatok követésére, adatok kezelésére vagy belső folyamatok támogatására.</p><a href="{{ route('services') }}#rendszerek" aria-label="Részletek: Egyedi szoftverek">Részletek <span aria-hidden="true">↗</span></a></article>
-            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="flow" /></span><span>02 / AUTOMATIZÁLÁS</span></div><h3>Automatizálás és összekapcsolás</h3><p>Összekötjük a használt programokat, és csökkentjük az ismétlődő kézi adatmozgatást, ahol ezt a rendszerek lehetővé teszik.</p><a href="{{ route('services') }}#integraciok" aria-label="Részletek: Automatizálás és összekapcsolás">Részletek <span aria-hidden="true">↗</span></a></article>
-            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="globe" /></span><span>03 / WEBES JELENLÉT</span></div><h3>Weboldalak és online felületek</h3><p>Céges bemutatkozást, rendelési vagy foglalási felületet készítünk, a hozzá szükséges kezeléssel együtt.</p><a href="{{ route('services') }}#weboldalak" aria-label="Részletek: Weboldalak és online felületek">Részletek <span aria-hidden="true">↗</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="code" /></span><span>01 / FEJLESZTÉS</span></div><h3>Egyedi szoftver</h3><p>Olyan rendszert készítünk, ami a saját munkafolyamataidhoz igazodik — például nyilvántartáshoz, feladatkövetéshez vagy belső ügyintézéshez.</p><a href="{{ route('services') }}#rendszerek" aria-label="Részletek: Egyedi szoftver">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="flow" /></span><span>02 / AUTOMATIZÁLÁS</span></div><h3>Automatizálás</h3><p>Összekötjük, amit ma külön kezelsz, és ahol lehet, kiváltjuk az ismétlődő kézi adatmozgatást.</p><a href="{{ route('services') }}#integraciok" aria-label="Részletek: Automatizálás">Részletek <span aria-hidden="true">→</span></a></article>
+            <article><div class="service-card-top"><span class="service-icon"><x-marketing.icon name="globe" /></span><span>03 / ONLINE RENDSZEREK</span></div><h3>Web és online rendszerek</h3><p>Bemutatkozó oldal, rendelés, foglalás vagy más online felület — azzal a kezeléssel együtt, amire tényleg szükséged van.</p><a href="{{ route('services') }}#weboldalak" aria-label="Részletek: Web és online rendszerek">Részletek <span aria-hidden="true">→</span></a></article>
         </div>
     </div>
 </section>
@@ -85,13 +85,13 @@
         <div class="principles-intro">
             <span class="eyebrow">Miért SzoftPont?</span>
             <h2>Beszéljük át a feladatot. A technikai részét megoldjuk.</h2>
-            <p>Elmondod, hogyan dolgoztok, és min szeretnél változtatni. Mi végiggondoljuk, minek kell együtt működnie.</p>
+            <p>Nem kell tudnod, milyen technológia vagy rendszer kell hozzá. Először azt nézzük meg, mit szeretnél egyszerűbben csinálni.</p>
             <a class="text-link" href="{{ route('about') }}">A SzoftPontról <span aria-hidden="true">→</span></a>
         </div>
         <div class="principles-list">
-            <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>Nem kell fejlesztői nyelven elmagyaráznod a problémát.</p></div></article>
-            <article><span>02</span><div><h3>Tudd, mit kapsz</h3><p>Előre átbeszéljük, mi készül és mi tartozik a feladatba.</p></div></article>
-            <article><span>03</span><div><h3>Később is bővíthető</h3><p>Ha később új igény jön, nem kell feltétlenül mindent elölről kezdeni.</p></div></article>
+            <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>Nem technikai kifejezésekkel kezdünk, hanem azzal, mit szeretnél megoldani.</p></div></article>
+            <article><span>02</span><div><h3>Tudd, mit kapsz</h3><p>Előre átbeszéljük a feladatokat és azt, mi tartozik az ajánlatba.</p></div></article>
+            <article><span>03</span><div><h3>Később is bővíthető</h3><p>Ha később új igényed lesz, megnézzük, hogyan érdemes továbbépíteni.</p></div></article>
         </div>
     </div>
 </section>
@@ -117,15 +117,10 @@
     <div class="container technology-inner">
         <div class="technology-heading">
             <span class="eyebrow">Szakmai háttér</span>
-            <h2>Technológiák, amelyekkel dolgozunk</h2>
-            <p>Nem kell ezek közül választanod. A feladathoz megfelelő eszközöket javasoljuk.</p>
+            <h2>A háttérben ezekkel dolgozunk.</h2>
+            <p>Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.</p>
         </div>
-        <div class="technology-groups">
-            <article><h3>Weboldalak és alkalmazások</h3><ul><li>PHP</li><li>Laravel</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></article>
-            <article><h3>Adatkezelés</h3><ul><li>MySQL</li><li>MariaDB</li></ul></article>
-            <article><h3>Üzemeltetési háttér</h3><ul><li>Linux</li><li>Docker</li><li>Git</li></ul></article>
-            <article><h3>AI és automatizálás</h3><ul><li>OpenAI API</li><li>Python</li></ul></article>
-        </div>
+        <ul class="technology-list" aria-label="Használt technológiák"><li>Laravel</li><li>PHP</li><li>JavaScript</li><li>MySQL</li><li>Docker</li><li>Python</li><li>OpenAI API</li><li>Git</li><li>Linux</li></ul>
     </div>
 </section>
 
@@ -135,7 +130,7 @@
         <div class="faq-list">
             <details><summary>Mikorra készülhet el a fejlesztés?</summary><p>Egy kisebb automatizálás és egy összetettebb üzleti rendszer eltérő munkát igényel. A feladat és a szükséges tartalmak átbeszélése után adunk ütemezési javaslatot.</p></details>
             <details><summary>Mitől függ a fejlesztés ára?</summary><p>A funkcióktól, a tartalomtól és a meglévő rendszerekhez szükséges kapcsolatoktól. Az ajánlatban megmutatjuk, mi tartozik a feladathoz, és mi jelent külön költséget.</p></details>
-            <details><summary>A meglévő rendszerünket is tudjátok továbbfejleszteni?</summary><p>Először átnézzük a jelenlegi megoldást. Ezután javasoljuk, mit érdemes megtartani, javítani vagy továbbfejleszteni. Nem kell automatikusan mindent újrakezdeni.</p></details>
+            <details><summary>Meglévő rendszerrel is tudtok dolgozni?</summary><p>Először átnézzük a jelenlegi megoldást. Ezután javasoljuk, mit érdemes megtartani, javítani vagy továbbfejleszteni. Nem kell automatikusan mindent újrakezdeni.</p></details>
             <details><summary>Milyen feladatot érdemes automatizálni?</summary><p>Például foglalási adatok továbbítását, riportok előkészítését vagy ismétlődő adatfrissítést. A saját folyamatodból indulunk ki; a lehetőségekhez a használt rendszereket is meg kell nézni.</p></details>
             <details><summary>A domain, a tárhely és a céges e-mail ügyében is segítetek?</summary><p>Ezek beállítása is része lehet a közös munkának. Az ajánlatban külön jelezzük a beállítás feladatait és a szükséges szolgáltatások díjait.</p></details>
             <details><summary>Kész műszaki tervvel kell érkeznem?</summary><p>Nem. Elég, ha elmondod, mivel foglalkozol, és min szeretnél változtatni. Ha van jelenlegi weboldalad vagy egy jó példád, azt is megnézzük.</p></details>

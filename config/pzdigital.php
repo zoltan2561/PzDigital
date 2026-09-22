@@ -3,7 +3,7 @@
 return [
     'brand' => [
         'name' => 'SzoftPont',
-        'tagline' => 'Üzleti szoftverek. Valódi működésre tervezve.',
+        'tagline' => 'SzoftPont. Pont arra, amire szükséged van.',
         // Set only after the new mailbox has been provisioned and approved.
         'contact_email' => env('SZOFTPONT_CONTACT_EMAIL'),
     ],
@@ -91,8 +91,8 @@ return [
             'demo_url' => null,
             'accent' => 'green',
             'symbol' => '✦',
-            'visual_label' => 'Éles előzmény',
-            'visual_title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete',
+            'visual_label' => 'A FoodShop alapja: GyrosCity',
+            'visual_title' => 'GyrosCity étlap — a FoodShop alapja',
             'primary_cta' => 'Érdeklődöm a megoldásról',
             'benefits' => [
                 'Saját márkához illeszthető kínálati felület.',
