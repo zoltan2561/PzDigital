@@ -1200,3 +1200,80 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
     .product-card { border-radius: 14px; }
     .project-card-image, .project-card-body { padding: 20px; }
 }
+
+/* Browser QA fixes: contrast, footer branding and denser product/process presentation. */
+.values-grid article {
+    color: var(--text-dark);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 14px 30px rgba(2, 8, 20, .14);
+}
+.values-grid h3 { color: var(--text-dark); }
+.values-grid p { color: var(--muted-dark); }
+
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    max-width: 1040px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 48px;
+    bottom: 92px;
+    left: 69px;
+    width: 2px;
+    background: linear-gradient(#4e7cff, #9e8df3 72%, transparent);
+}
+.timeline article {
+    position: relative;
+    z-index: 1;
+    grid-template-columns: 72px 1fr;
+    gap: 28px;
+    padding: 26px 30px;
+    border: 1px solid #dbe5f2;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #fff, #f8faff);
+    box-shadow: 0 12px 30px rgba(28, 52, 88, .06);
+}
+.timeline article > span {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border: 1px solid #cbd9ff;
+    border-radius: 15px;
+    color: #fff;
+    background: linear-gradient(135deg, #4e7cff, #7564e8);
+    box-shadow: 0 10px 24px rgba(78, 124, 255, .2);
+    font-size: 1rem;
+    letter-spacing: .02em;
+}
+.timeline h2 { margin-bottom: 8px; font-size: clamp(1.35rem, 2vw, 1.7rem); }
+.timeline article p { margin-bottom: 6px; }
+.timeline strong { font-size: .86rem; }
+.timeline-note {
+    margin-top: 8px;
+    padding: 22px 26px;
+    border: 1px solid #dbe5f2;
+    border-radius: 14px;
+    background: #f2f6fc;
+}
+
+@media (min-width: 821px) {
+    .home-products-grid.is-two-up .home-product-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    .home-products-grid.is-two-up .home-product-media { order: 0; }
+    .home-products-grid.is-two-up .home-product-copy { order: 1; }
+    .home-products-grid.is-two-up .home-product-image-frame { aspect-ratio: 2.05; }
+    .home-products-grid.is-two-up .home-product-media figcaption { padding-top: 16px; }
+}
+
+@media (max-width: 580px) {
+    .timeline { gap: 13px; }
+    .timeline::before { top: 42px; bottom: 112px; left: 49px; }
+    .timeline article { grid-template-columns: 54px 1fr; gap: 14px; padding: 22px 18px; }
+    .timeline article > span { width: 44px; height: 44px; border-radius: 13px; }
+    .timeline-note { padding: 20px; }
+}
