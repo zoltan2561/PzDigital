@@ -26,8 +26,8 @@
 
     <header class="site-header" data-header>
         <div class="container nav-shell">
-            <a class="brand" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal">
-                <img class="brand-logo brand-logo-light" src="{{ asset('media/pzdigital/brand/szoftpont-logo-light.png') }}" alt="" width="2172" height="724">
+            <a class="brand brand-surface" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal">
+                <img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftpont-logo-primary.png') }}" alt="" width="2172" height="724">
             </a>
 
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" data-nav-toggle>
@@ -54,7 +54,7 @@
     <footer class="site-footer">
         <div class="container footer-grid">
             <div>
-                <a class="brand brand-inverse" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal"><img class="brand-logo brand-logo-light" src="{{ asset('media/pzdigital/brand/szoftpont-logo-light.png') }}" alt="" width="2172" height="724"></a>
+                <a class="brand brand-inverse brand-surface" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal"><img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftpont-logo-primary.png') }}" alt="" width="2172" height="724"></a>
                 <p>{{ config('pzdigital.brand.tagline') }}</p>
                 <a class="footer-email" href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a>
             </div>

@@ -61,6 +61,8 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .nav-shell { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font-size: 1.4rem; font-weight: 780; letter-spacing: -.055em; }
 .brand-logo { display: block; width: 164px; height: auto; max-width: none; }
+.brand-surface { display: grid; width: 184px; height: 48px; place-items: center; overflow: hidden; padding: 0 7px; border: 1px solid rgba(214, 226, 248, .82); border-radius: 11px; background: rgba(255, 255, 255, .97); box-shadow: 0 8px 24px rgba(2, 8, 23, .16), inset 0 1px 0 #fff; }
+.brand-surface .brand-logo { width: 174px; }
 .brand-wordmark { position: relative; display: inline-flex; align-items: baseline; }
 .brand-wordmark > span { color: var(--sp-violet); }
 .brand-wordmark i { width: .22em; height: .22em; margin-left: .08em; border-radius: 50%; background: var(--sp-violet); }
@@ -968,6 +970,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .technology-groups li { color: #545b68; }
 .site-footer .brand { color: var(--text-dark); }
 .site-footer .brand-logo { width: 174px; }
+.site-footer .brand-surface { border-color: #344258; box-shadow: 0 10px 28px rgba(0, 0, 0, .2); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .hero-project-card-main:hover, .hero-project-card-secondary:hover, .hero-project-card-product:hover { transform: translateY(-2px); }
     .project-card:hover { transform: translateY(-3px); }
@@ -986,6 +989,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .site-header { color: #f8f9ff; background: rgba(14, 23, 42, .94); border-bottom-color: rgba(174, 188, 228, .13); }
 .site-header .brand { color: #f8f9ff; }
 .site-header .brand-logo { width: 164px; }
+.site-header .brand-surface .brand-logo { width: 174px; }
 .site-header .main-nav > a:not(.button) { color: #d2d8e6; }
 .site-header .main-nav > a:not(.button):hover, .site-header .main-nav > a.active:not(.button) { color: #fff; }
 .site-header .main-nav > a:not(.button)::after { bottom: -17px; background: #4e7cff; }
@@ -1276,4 +1280,6 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
     .timeline article { grid-template-columns: 54px 1fr; gap: 14px; padding: 22px 18px; }
     .timeline article > span { width: 44px; height: 44px; border-radius: 13px; }
     .timeline-note { padding: 20px; }
+    .brand-surface { width: 158px; height: 43px; border-radius: 10px; }
+    .brand-surface .brand-logo, .site-header .brand-surface .brand-logo { width: 150px; }
 }

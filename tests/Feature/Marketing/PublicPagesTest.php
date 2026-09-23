@@ -26,7 +26,7 @@ class PublicPagesTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('SzoftPont')
-            ->assertSee('/media/pzdigital/brand/szoftpont-logo-light.png', false)
+            ->assertSee('/media/pzdigital/brand/szoftpont-logo-primary.png', false)
             ->assertDontSee('PZ Digital')
             ->assertSee('property="og:site_name" content="SzoftPont"', false)
             ->assertSee('application/ld+json', false)
