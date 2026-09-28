@@ -382,6 +382,16 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('DRAFT-DO-NOT-PUBLISH');
     }
 
+    public function test_product_cards_show_the_correct_public_demo_addresses(): void
+    {
+        $this->get('/termekek')->assertOk()
+            ->assertSee('Melyik rendszert keresed?')
+            ->assertSee('Ügyféloldali bemutató')
+            ->assertSee('Élő éttermi bemutató')
+            ->assertSee('href="https://szerviz.pro/"', false)
+            ->assertSee('href="https://foodpro.shop/"', false);
+    }
+
     public function test_szervizpro_page_displays_verified_product_screens(): void
     {
         $this->get('/termekek/szervizpro')
@@ -405,6 +415,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('/media/pzdigital/szervizpro/print-work-order-items.jpg', false)
             ->assertSee('A műhelyben')
             ->assertSee('Az ügyfélnek')
+            ->assertSee('Saját arculat programozás nélkül')
             ->assertSee('Nyomtatáshoz');
 
         foreach (config('pzdigital.products.szervizpro.screenshots') as $screenshot) {
@@ -423,16 +434,21 @@ class PublicPagesTest extends TestCase
             ->assertSee('https://foodpro.shop/', false)
             ->assertSee('Árajánlatot kérek')
             ->assertSee('Gyors rendelés')
+            ->assertSee('Mentett kedvencek és címek')
+            ->assertSee('Rendelések követése')
+            ->assertSee('Apple Pay és Google Pay')
             ->assertSee('Rendeléskezelés és nyomtatás')
             ->assertSee('E-mail értesítési sablonok')
-            ->assertSee('saját Barion-szerződése')
+            ->assertSee('saját Barion-szerződés')
             ->assertSee('3 hónap díjmentes tárhely és domain')
             ->assertSee('/media/pzdigital/foodpro/home-desktop.png', false)
             ->assertSee('/media/pzdigital/foodpro/menu.png', false)
             ->assertSee('/media/pzdigital/foodpro/orders-admin.png', false)
+            ->assertSee('/media/pzdigital/foodpro/order-tracking.png', false)
             ->assertSee('/media/pzdigital/foodpro/print-receipt.png', false)
             ->assertSee('/media/pzdigital/foodpro/users-admin.png', false)
             ->assertSee('/media/pzdigital/foodpro/barion-admin.png', false)
+            ->assertDontSee('/media/pzdigital/foodpro/newsletter.png', false)
             ->assertDontSee('GyrosCity');
 
         foreach (config('pzdigital.products.foodpro.screenshots') as $screenshot) {

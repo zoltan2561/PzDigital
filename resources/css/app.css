@@ -298,6 +298,9 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .page-hero p { color: var(--muted-dark); font-size: 1.08rem; }
 .product-hero .hero-grid { min-height: 570px; padding-block: 82px; }
 .product-hero .hero-copy h1 { font-size: clamp(2.65rem, 4.8vw, 4.25rem); }
+.product-hero-customization { display: grid; gap: 2px; max-width: 610px; margin: 24px 0 28px; padding: 14px 18px; border: 1px solid rgba(194, 185, 255, .3); border-left: 3px solid #9d8cfb; border-radius: 10px; background: rgba(142, 126, 234, .1); }
+.product-hero-customization strong { color: #f5f2ff; font-size: .86rem; }
+.product-hero-customization span { color: #cbd0dc; font-size: .82rem; line-height: 1.5; }
 .scope-card { padding: 36px; border: 1px solid #cfdae7; border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
 .scope-kicker { display: block; margin-bottom: 10px; color: var(--brand); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .scope-card ul { padding-left: 20px; color: #344258; }
@@ -1172,6 +1175,18 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .product-card-copy .text-link { margin-top: auto; padding-top: 12px; }
 .product-heading h3 { font-weight: 720; }
 .product-card .product-visual { box-shadow: 0 24px 48px rgba(21, 40, 73, .16); }
+.products-grid .product-card { display: flex; min-height: 0; flex-direction: column; padding: 0; }
+.products-grid .product-card-copy { order: 1; flex: 1; max-width: none; min-height: 0; padding: clamp(24px, 2.6vw, 34px); }
+.products-grid .product-card .product-visual-compact,
+.products-grid .product-card .product-visual-real.product-visual-compact { position: relative; right: auto; bottom: auto; order: 0; width: auto; margin: 30px 30px 0; }
+.products-grid .product-card-actions { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
+.product-demo-url { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 9px; width: fit-content; max-width: 100%; margin-top: 20px; color: #3f4f67; font-size: .78rem; }
+.product-demo-url strong { color: var(--brand-dark); font-weight: 700; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.product-demo-url:hover strong, .product-demo-url:focus-visible strong { color: #312497; }
+@media (max-width: 580px) {
+    .products-grid .product-card .product-visual-compact,
+    .products-grid .product-card .product-visual-real.product-visual-compact { margin: 20px 20px 0; }
+}
 
 .section-projects-dark {
     position: relative;
