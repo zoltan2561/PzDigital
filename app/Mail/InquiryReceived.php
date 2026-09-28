@@ -18,9 +18,11 @@ class InquiryReceived extends Mailable
 
     public function envelope(): Envelope
     {
+        $isDemo = str_starts_with($this->inquiry->interest_type, 'demo_');
+
         return new Envelope(
             replyTo: [new Address($this->inquiry->email, $this->inquiry->name)],
-            subject: 'Új '.config('pzdigital.brand.name').' megkeresés: '.$this->inquiry->interest_type,
+            subject: 'Új '.config('pzdigital.brand.name').' '.($isDemo ? 'demóigénylés' : 'megkeresés').': '.($isDemo ? $this->inquiry->product_slug : $this->inquiry->interest_type),
         );
     }
 

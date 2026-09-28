@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Marketing;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDemoRequest;
 use App\Http\Requests\StoreInquiryRequest;
 use App\Jobs\SendInquiryNotification;
 use App\Models\Inquiry;
@@ -45,8 +46,33 @@ class InquiryController extends Controller
 
     public function store(StoreInquiryRequest $request): RedirectResponse
     {
+        return $this->saveInquiry($request->validated(), 'contact');
+    }
+
+    public function createDemo(): View
+    {
+        $products = $this->catalog->products();
+        $requestedProduct = request()->string('termek')->toString();
+
+        return view('pages.demo-request', [
+            'products' => $products,
+            'selectedProduct' => $products->has($requestedProduct) ? $requestedProduct : '',
+            'submissionToken' => (string) Str::uuid(),
+        ]);
+    }
+
+    public function storeDemo(StoreDemoRequest $request): RedirectResponse
+    {
         $data = $request->validated();
 
+        return $this->saveInquiry([
+            ...$data,
+            'interest_type' => 'demo_'.$data['product_slug'],
+        ], 'demo');
+    }
+
+    private function saveInquiry(array $data, string $kind): RedirectResponse
+    {
         $inquiry = DB::transaction(function () use ($data): Inquiry {
             $inquiry = Inquiry::firstOrCreate(
                 ['submission_token' => $data['submission_token']],
@@ -69,6 +95,8 @@ class InquiryController extends Controller
             return $inquiry;
         });
 
-        return redirect()->route('thank-you')->with('inquiry_reference', $inquiry->id);
+        return redirect()->route('thank-you')
+            ->with('inquiry_reference', $inquiry->id)
+            ->with('inquiry_kind', $kind);
     }
 }

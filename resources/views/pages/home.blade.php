@@ -146,7 +146,7 @@
             <details><summary>Mitől függ a fejlesztés ára?</summary><p>A funkcióktól, a tartalomtól és a meglévő rendszerekhez szükséges kapcsolatoktól. Az ajánlatban megmutatjuk, mi tartozik a feladathoz, és mi jelent külön költséget.</p></details>
             <details><summary>Meglévő rendszerrel is tudtok dolgozni?</summary><p>Először átnézzük a jelenlegi megoldást. Ezután javasoljuk, mit érdemes megtartani, javítani vagy továbbfejleszteni. Nem kell automatikusan mindent újrakezdeni.</p></details>
             <details><summary>Milyen feladatot érdemes automatizálni?</summary><p>Például foglalási adatok továbbítását, riportok előkészítését vagy ismétlődő adatfrissítést. A saját folyamatodból indulunk ki; a lehetőségekhez a használt rendszereket is meg kell nézni.</p></details>
-            <details><summary>A domain, a tárhely és a céges e-mail ügyében is segítetek?</summary><p>A saját termékeinknél 3 hónap díjmentes tárhelyet és domaint adunk, a beüzemelésben segítünk. Az indulás utáni és az egyéb szolgáltatási költségeket az ajánlatban rögzítjük.</p></details>
+            <details><summary>A domain, a tárhely és a céges e-mail ügyében is segítetek?</summary><p>A saját termékeinknél 3 hónap díjmentes tárhelyet és domaint adunk, a beüzemelésben segítünk. A 4. hónaptól kedvezményes tárhely- és domainfenntartást kínálunk; a pontos feltételeket az ajánlatban rögzítjük. Igény esetén hosszú távú támogatásról külön egyeztetünk.</p></details>
             <details><summary>Kész műszaki tervvel kell érkeznem?</summary><p>Nem. Elég, ha elmondod, mivel foglalkozol, és min szeretnél változtatni. Ha van jelenlegi weboldalad vagy egy jó példád, azt is megnézzük.</p></details>
         </div>
     </div>

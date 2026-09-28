@@ -10,7 +10,7 @@
             <span class="eyebrow eyebrow-light">{{ $product['eyebrow'] }}</span>
             <h1>{{ $product['headline'] }}</h1>
             <p>{{ $product['summary'] }}</p>
-            <div class="button-row"><a class="button" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }} <span aria-hidden="true">→</span></a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a>@if(! empty($product['demo_url']))<a class="button button-outline" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">Élő bemutató <span aria-hidden="true">↗</span></a>@endif</div>
+            <div class="button-row"><a class="button" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom <span aria-hidden="true">→</span></a><a class="button button-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a>@if(! empty($product['demo_url']))<a class="button button-outline" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">Nyilvános bemutató <span aria-hidden="true">↗</span></a>@endif</div>
         </div>
         <div>
             <x-marketing.product-visual :product="$product" />
@@ -44,7 +44,7 @@
                 </article>
             @endforeach
         </div>
-        <div class="button-row"><a class="button" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }} <span aria-hidden="true">→</span></a></div>
+        <div class="button-row"><a class="button" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom <span aria-hidden="true">→</span></a><a class="button button-dark-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a></div>
     </div>
 </section>
 @endif

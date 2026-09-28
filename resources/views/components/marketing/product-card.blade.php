@@ -10,7 +10,7 @@
         <ul class="check-list">
             @foreach($product['benefits'] as $benefit)<li>{{ $benefit }}</li>@endforeach
         </ul>
-        <div class="product-card-actions"><a class="text-link" href="{{ route('products.show', $product['slug']) }}">Részletes bemutató <span aria-hidden="true">→</span></a><a class="button button-small" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">Árajánlatot kérek</a></div>
+        <div class="product-card-actions"><a class="text-link" href="{{ route('products.show', $product['slug']) }}">Részletes bemutató <span aria-hidden="true">→</span></a><a class="button button-small" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom</a><a class="text-link" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">Árajánlatot kérek</a></div>
     </div>
     <x-marketing.product-visual :product="$product" compact />
 </article>

@@ -215,7 +215,26 @@ class PublicPagesTest extends TestCase
             ->assertSee('Mondd el, mire van szükséged.')
             ->assertDontSee('belső ellenőrzés');
 
-        $this->assertSame(4, substr_count($response->getContent(), 'data-project-card='));
+        $this->assertSame(5, substr_count($response->getContent(), 'data-project-card='));
+        $response->assertSee('FotoKlikk')->assertSee('Mire szolgál?')->assertDontSee('pzoli.com');
+    }
+
+    public function test_both_products_offer_a_demo_request_and_the_new_reference_explains_its_purpose(): void
+    {
+        foreach (['szervizpro', 'foodpro'] as $slug) {
+            $this->get('/termekek/'.$slug)->assertOk()
+                ->assertSee(route('demo.request', ['termek' => $slug]), false)
+                ->assertSee('Kipróbálom')
+                ->assertSee('kedvezményes tárhely- és domainfenntartást');
+        }
+
+        $this->get('/referenciak/fotoklikk')->assertOk()
+            ->assertSee('Fejlesztői közreműködés')
+            ->assertSee('Mire szolgál?')
+            ->assertSee('/media/pzdigital/references/fotoklikk/desktop.png', false)
+            ->assertDontSee('pzoli.com');
+
+        $this->get('/sitemap.xml')->assertOk()->assertSee('/demo-igenyles')->assertSee('/referenciak/fotoklikk');
     }
 
     public function test_primary_calls_to_action_share_the_general_contact_route(): void

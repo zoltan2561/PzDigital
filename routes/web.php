@@ -17,6 +17,8 @@ Route::get('/hogyan-dolgozunk', fn () => app(PageController::class)->page('proce
 Route::get('/rolunk', fn () => app(PageController::class)->page('about'))->name('about');
 Route::get('/kapcsolat', [InquiryController::class, 'create'])->name('contact');
 Route::post('/kapcsolat', [InquiryController::class, 'store'])->middleware('throttle:inquiries')->name('contact.store');
+Route::get('/demo-igenyles', [InquiryController::class, 'createDemo'])->name('demo.request');
+Route::post('/demo-igenyles', [InquiryController::class, 'storeDemo'])->middleware('throttle:inquiries')->name('demo.store');
 Route::get('/koszonjuk', fn () => view('pages.thank-you'))->name('thank-you');
 Route::get('/adatkezeles', fn () => app(PageController::class)->page('privacy'))->name('privacy');
 Route::get('/impresszum', fn () => app(PageController::class)->page('legal'))->name('legal');
@@ -25,7 +27,7 @@ Route::get('/sitemap.xml', function () {
     $catalog = app(MarketingCatalog::class);
     $urls = [
         route('home'), route('products.index'), route('services'), route('process'), route('about'), route('contact'),
-        route('projects.index'),
+        route('projects.index'), route('demo.request'),
         ...$catalog->products()
             ->map(fn (array $product): string => route('products.show', $product['slug']))
             ->values()

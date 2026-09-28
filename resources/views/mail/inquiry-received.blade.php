@@ -1,4 +1,4 @@
-<h1>Új {{ config('pzdigital.brand.name') }} megkeresés</h1>
+<h1>Új {{ config('pzdigital.brand.name') }} {{ str_starts_with($inquiry->interest_type, 'demo_') ? 'demóigénylés' : 'megkeresés' }}</h1>
 <p><strong>Név:</strong> {{ $inquiry->name }}</p>
 <p><strong>E-mail:</strong> {{ $inquiry->email }}</p>
 @if($inquiry->company)<p><strong>Cég:</strong> {{ $inquiry->company }}</p>@endif

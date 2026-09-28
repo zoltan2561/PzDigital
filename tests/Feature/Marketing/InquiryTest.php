@@ -15,6 +15,55 @@ class InquiryTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_demo_request_is_separate_and_queued_for_the_selected_product(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+
+        $this->get('/demo-igenyles?termek=foodpro')->assertOk()
+            ->assertSee('Demóhozzáférést kérek')
+            ->assertSee('value="foodpro" selected', false);
+
+        $payload = [
+            'submission_token' => $token,
+            'name' => 'Teszt Ügyfél',
+            'email' => 'demo@example.com',
+            'product_slug' => 'foodpro',
+            'source_path' => '/termekek/foodpro',
+        ];
+
+        $this->post('/demo-igenyles', $payload)->assertRedirect('/koszonjuk')
+            ->assertSessionHas('inquiry_kind', 'demo');
+        $this->assertDatabaseHas('inquiries', [
+            'submission_token' => $token,
+            'interest_type' => 'demo_foodpro',
+            'product_slug' => 'foodpro',
+            'email' => 'demo@example.com',
+        ]);
+        $this->assertSame('Új SzoftLab demóigénylés: foodpro', (new InquiryReceived(Inquiry::first()))->envelope()->subject);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+
+        $this->post('/demo-igenyles', $payload)->assertRedirect('/koszonjuk');
+        $this->assertDatabaseCount('inquiries', 1);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+    }
+
+    public function test_demo_request_rejects_an_unpublished_product(): void
+    {
+        Bus::fake();
+        config(['pzdigital.products.foodpro.content_approved' => false]);
+
+        $this->from('/demo-igenyles')->post('/demo-igenyles', [
+            'submission_token' => (string) Str::uuid(),
+            'name' => 'Teszt Ügyfél',
+            'email' => 'demo@example.com',
+            'product_slug' => 'foodpro',
+        ])->assertRedirect('/demo-igenyles')->assertSessionHasErrors('product_slug');
+
+        $this->assertDatabaseCount('inquiries', 0);
+        Bus::assertNothingDispatched();
+    }
+
     public function test_valid_inquiry_is_persisted_and_notification_is_queued(): void
     {
         Bus::fake();

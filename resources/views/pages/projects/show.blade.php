@@ -8,7 +8,7 @@
     <header class="case-hero">
         <div class="container case-hero-grid">
             <div class="case-hero-copy">
-                <span class="eyebrow eyebrow-light">Referenciamunka · {{ $project['showcase_label'] ?? $project['categories'][0] }}</span>
+                <span class="eyebrow eyebrow-light">{{ ($project['project_type'] ?? '') === 'collaboration' ? 'Fejlesztői közreműködés' : 'Referenciamunka' }} · {{ $project['showcase_label'] ?? $project['categories'][0] }}</span>
                 <h1>{{ $project['case_study']['headline'] ?? $project['name'] }}</h1>
                 <p>{{ $project['case_study']['lead'] ?? $project['summary'] }}</p>
                 <div class="button-row">
@@ -25,13 +25,14 @@
             </figure>
         </div>
         <nav class="case-anchor-nav" aria-label="Projektoldal szakaszai">
-            <div class="container"><a href="#attekintes">Áttekintés</a><a href="#mukodes">Működés</a><a href="#kepernyok">Képernyők</a></div>
+            <div class="container"><a href="#attekintes">Áttekintés</a>@if($publishedBlocks->contains(fn (array $block): bool => $block['type'] === 'workflow'))<a href="#mukodes">Működés</a>@endif<a href="#kepernyok">Képernyők</a></div>
         </nav>
     </header>
 
     <section class="case-facts">
         <div class="container">
             <dl>
+                @if(! empty($project['purpose']))<div><dt>Mire szolgál?</dt><dd>{{ $project['purpose'] }}</dd></div>@endif
                 <div><dt>Feladat</dt><dd>{{ $project['case_study_sections']['task'] }}</dd></div>
                 <div><dt>Saját szerep</dt><dd>{{ $project['case_study_sections']['role'] }}</dd></div>
                 <div><dt>Célcsoport</dt><dd>{{ $project['case_study']['audience'] ?? 'A projekt nyilvános felületének használói' }}</dd></div>

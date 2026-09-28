@@ -48,7 +48,7 @@ if (inquiryForm) {
     };
 
     interest?.addEventListener('change', syncCatalogSelection);
-    syncCatalogSelection();
+    if (interest && productSlug && projectSlug) syncCatalogSelection();
 
     inquiryForm.addEventListener('submit', () => {
         submit.disabled = true;
