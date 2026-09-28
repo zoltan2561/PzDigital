@@ -307,6 +307,19 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .scope-card p { margin: 25px 0 0; padding-top: 20px; border-top: 1px solid var(--border); font-size: .86rem; }
 .product-gallery-section { overflow: hidden; }
 .product-gallery-groups { display: grid; gap: 46px; }
+.product-gallery-featured { margin-bottom: 26px; }
+.product-gallery-more { border: 1px solid #d5def0; border-radius: 14px; background: #fff; }
+.product-gallery-more > summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 24px; color: #182741; cursor: pointer; list-style: none; }
+.product-gallery-more > summary::-webkit-details-marker { display: none; }
+.product-gallery-more > summary > span:first-child { display: grid; gap: 3px; }
+.product-gallery-more > summary strong { font-size: 1rem; }
+.product-gallery-more > summary small { color: #566780; font-size: .82rem; }
+.product-gallery-more-action { flex: 0 0 auto; color: #5142c1; font-size: .86rem; font-weight: 700; }
+.product-gallery-more-action span { display: inline-block; margin-left: 8px; font-size: 1.2rem; transition: transform .2s ease; }
+.product-gallery-more[open] .product-gallery-more-action span { transform: rotate(180deg); }
+.product-gallery-more[open] > summary { border-bottom: 1px solid #d5def0; }
+.product-gallery-more .product-gallery-groups { padding: 26px; }
+.product-gallery-more > summary:focus-visible { outline: 3px solid #6756df; outline-offset: 3px; }
 .product-gallery-group h3 { margin: 0 0 18px; font-size: clamp(1.3rem, 2vw, 1.7rem); }
 .product-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; align-items: start; }
 .gallery-card { display: flex; flex-direction: column; margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: #fff; box-shadow: 0 16px 44px rgba(15, 23, 42, .065); }
@@ -1316,8 +1329,10 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 
 /* Product pages: a clear path from outcomes to capabilities and a quote. */
 .product-jump-nav { position: sticky; top: 76px; z-index: 40; border-bottom: 1px solid #d9e2ef; background: rgba(250, 250, 248, .96); backdrop-filter: blur(14px); }
-.product-jump-nav .container { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); min-height: 58px; overflow-x: auto; scrollbar-width: thin; }
+.product-jump-nav .container { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); min-height: 58px; }
+.product-jump-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); min-width: 0; overflow-x: auto; scrollbar-width: thin; }
 .product-jump-nav a { flex: 0 0 auto; padding-block: 17px; color: #41516b; font-size: .86rem; font-weight: 700; white-space: nowrap; transition: color .2s ease; }
+.product-jump-price { margin-left: auto; }
 .product-jump-nav a:hover, .product-jump-nav a:focus-visible { color: #5142c1; }
 .product-value-section { background: linear-gradient(180deg, #f3f6ff, #fafaf8); }
 .product-value-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -1373,8 +1388,13 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 }
 @media (max-width: 580px) {
     .product-jump-nav { top: 76px; }
-    .product-jump-nav .container { gap: 22px; min-height: 52px; }
+    .product-jump-nav .container { gap: 12px; min-height: 52px; }
+    .product-jump-links { flex: 1 1 auto; gap: 22px; }
     .product-jump-nav a { padding-block: 15px; font-size: .78rem; }
+    .product-jump-nav .product-jump-price { margin-left: 0; padding: 9px 11px; border-radius: 8px; color: #fff; background: #5b4bd2; font-size: .75rem; }
+    .product-jump-nav .product-jump-price:hover, .product-jump-nav .product-jump-price:focus-visible { color: #fff; background: #4939b6; }
+    .product-gallery-more > summary { align-items: flex-start; flex-direction: column; gap: 10px; padding: 18px; }
+    .product-gallery-more .product-gallery-groups { padding: 18px; }
     .product-feature-grid { grid-template-columns: 1fr; }
     .product-value-card > span { margin-bottom: 14px; }
     .product-offer-card { border-radius: 16px; }

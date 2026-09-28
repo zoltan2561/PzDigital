@@ -18,7 +18,7 @@ export function initHomeReveals(gsap, ScrollTrigger) {
             document.querySelectorAll('[data-home-reveal]').forEach((section) => {
                 const groups = [
                     '.section-heading, .principles-intro, .technology-heading, .compact-references-inner > div:first-child, .product-offer-intro',
-                    '.service-rows article, .process-grid li, .principles-list article, .technology-list li, .faq-list details, .product-value-card, .product-feature-card, .product-tour article, .gallery-card',
+                    '.service-rows article, .process-grid li, .principles-list article, .technology-list li, .faq-list details, .product-value-card, .product-feature-card, .product-tour article, .product-gallery-featured .gallery-card',
                 ];
                 groups.forEach((selector) => {
                     const elements = section.querySelectorAll(selector);

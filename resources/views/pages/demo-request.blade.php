@@ -9,7 +9,7 @@
             <span class="eyebrow eyebrow-light">Kipróbálom</span>
             <h1>Nézd meg működés közben.</h1>
             <p>Kérj demóhozzáférést a kiválasztott rendszerhez. Végigkattinthatod a fő folyamatokat, és megnézheted, hogyan működne a mindennapokban.</p>
-            <div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük az igénylést, majd e-mailben elküldjük a kipróbáláshoz szükséges hozzáférést és tudnivalókat. A demó tesztadatokat használ; nem kell éles ügyféladatot megadnod.</p></div>
+            <div class="contact-note"><strong>Mi történik beküldés után?</strong><p>1–2 munkanapon belül értesítünk e-mailben, és egyeztetjük a kipróbáláshoz szükséges hozzáférést. A demó tesztadatokat használ; nem kell éles ügyféladatot megadnod.</p></div>
             <p class="contact-direct">Inkább ajánlatot kérnél? <a href="{{ route('contact') }}">Írj nekünk</a>.</p>
         </div>
         <div class="form-card">

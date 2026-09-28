@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<nav class="product-jump-nav" aria-label="Termékoldal szakaszai"><div class="container"><a href="#elonyok">Mit nyersz vele?</a><a href="#folyamat">Hogyan működik?</a><a href="#funkciok">Funkciók</a>@if(! empty($product['screenshots']))<a href="#kepernyok">Képernyők</a>@endif<a href="#bevezetes">Bevezetés és ár</a></div></nav>
+<nav class="product-jump-nav" aria-label="Termékoldal szakaszai"><div class="container"><div class="product-jump-links"><a href="#elonyok">Mit nyersz vele?</a><a href="#folyamat">Hogyan működik?</a><a href="#funkciok">Funkciók</a>@if(! empty($product['screenshots']))<a href="#kepernyok">Képernyők</a>@endif</div><a class="product-jump-price" href="#bevezetes">Bevezetés és ár</a></div></nav>
 
 <section id="elonyok" class="section product-value-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">A mindennapokban</span><h2>{{ $product['value_heading'] ?? 'Ezt teszi egyszerűbbé a műhelyben' }}</h2></div><p>{{ $product['value_intro'] ?? 'A rendszer a műhely napi feladatait és az ügyfél tájékoztatását egy folyamatba rendezi.' }}</p></div><div class="product-value-grid">@foreach($product['value_points'] as $point)<article class="product-value-card"><span>0{{ $loop->iteration }}</span><h3>{{ $point['title'] }}</h3><p>{{ $point['text'] }}</p></article>@endforeach</div></div></section>
 
@@ -51,24 +51,34 @@
 @endif
 
 @if(! empty($product['screenshots']))
+@php($galleryScreenshots = collect($product['screenshots']))
+@php($featuredScreenshots = $galleryScreenshots->filter(fn ($screenshot) => ! empty($screenshot['featured'])))
+@php($moreScreenshots = $galleryScreenshots->reject(fn ($screenshot) => ! empty($screenshot['featured'])))
 <section id="kepernyok" class="section section-soft product-gallery-section" data-home-reveal>
     <div class="container">
         <div class="section-heading"><div><span class="eyebrow">Valódi képernyők</span><h2>Nézd meg működés közben</h2></div><p>{{ $product['gallery_intro'] ?? 'A képek a működő rendszer helyi demójából, tesztadatokkal készültek. A bevezetett rendszer arculata és beállításai a műhelyhez igazíthatók.' }}</p></div>
-        <div class="product-gallery-groups">
-            @foreach(collect($product['screenshots'])->groupBy(fn ($screenshot) => $screenshot['group'] ?? '') as $group => $screenshots)
-                <div class="product-gallery-group">
-                    @if($group !== '')<h3>{{ $group }}</h3>@endif
-                    <div class="product-gallery">
-                        @foreach($screenshots as $screenshot)
-                            <figure @class(['gallery-card', 'gallery-card-wide' => $loop->first && ($screenshot['width'] ?? 1440) / ($screenshot['height'] ?? 1000) > 1.8 && $group !== 'Nyomtatáshoz', 'gallery-card-portrait' => ($screenshot['orientation'] ?? null) === 'portrait'])>
-                                <a class="gallery-image" href="{{ $screenshot['src'] }}" data-product-lightbox-open aria-label="{{ $screenshot['title'] }} — kép nagyítása"><img src="{{ $screenshot['src'] }}" alt="{{ $screenshot['alt'] }}" width="{{ $screenshot['width'] ?? 1440 }}" height="{{ $screenshot['height'] ?? 1000 }}" loading="lazy"></a>
-                                <figcaption><span>{{ $screenshot['label'] }}</span><strong>{{ $screenshot['title'] }}</strong></figcaption>
-                            </figure>
-                        @endforeach
-                    </div>
-                </div>
+        <div class="product-gallery product-gallery-featured">
+            @foreach($featuredScreenshots as $screenshot)
+                <x-marketing.product-gallery-card :screenshot="$screenshot" />
             @endforeach
         </div>
+        @if($moreScreenshots->isNotEmpty())
+        <details class="product-gallery-more">
+            <summary><span><strong>További képernyők</strong><small>{{ $moreScreenshots->count() }} további kép a működés részleteiről</small></span><span class="product-gallery-more-action">Megnézem <span aria-hidden="true">⌄</span></span></summary>
+            <div class="product-gallery-groups">
+                @foreach($moreScreenshots->groupBy(fn ($screenshot) => $screenshot['group'] ?? '') as $group => $screenshots)
+                    <div class="product-gallery-group">
+                        @if($group !== '')<h3>{{ $group }}</h3>@endif
+                        <div class="product-gallery">
+                            @foreach($screenshots as $screenshot)
+                                <x-marketing.product-gallery-card :screenshot="$screenshot" :wide="$loop->first && ($screenshot['width'] ?? 1440) / ($screenshot['height'] ?? 1000) > 1.8 && $group !== 'Nyomtatáshoz'" />
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </details>
+        @endif
     </div>
 </section>
 <dialog class="product-lightbox" data-product-lightbox aria-label="Termékkép nagyítva">
