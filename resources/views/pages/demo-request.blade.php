@@ -1,6 +1,6 @@
 @extends('layouts.marketing')
 @php($title = 'Demóigénylés — SzoftLab')
-@php($description = 'Kérj hozzáférést a SzervizPRO vagy a FoodPro kipróbálásához, és járd végig a rendszer működését.')
+@php($description = 'Kérj hozzáférést a SzervizPro vagy a FoodPro kipróbálásához, és járd végig a rendszer működését.')
 
 @section('content')
 <section class="contact-hero">

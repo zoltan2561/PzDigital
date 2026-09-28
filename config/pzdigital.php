@@ -45,7 +45,7 @@ return [
     'products' => [
         'szervizpro' => [
             'slug' => 'szervizpro',
-            'name' => 'SzervizPRO',
+            'name' => 'SzervizPro',
             'eyebrow' => 'Szervizeknek tervezett rendszer',
             'headline' => 'Kevesebb adminisztráció. Átláthatóbb szervizmunka.',
             'summary' => 'Digitális munkalap, ügyfélkövetés és műhelykommunikáció egy átlátható rendszerben — kis- és közepes autószervizeknek.',
@@ -62,7 +62,7 @@ return [
             'accent' => 'blue',
             'symbol' => '⌁',
             'visual_label' => 'Bemutató elérhető',
-            'visual_title' => 'SzervizPRO · napi műhelyközpont',
+            'visual_title' => 'SzervizPro · napi műhelyközpont',
             'primary_cta' => 'Árajánlatot kérek',
             'benefits' => [
                 'Digitális munkalapok és gyors státuszváltás.',
@@ -95,7 +95,7 @@ return [
                 ['title' => 'Átadás', 'icon' => 'shield'],
             ],
             'screenshots' => [
-                ['src' => '/media/pzdigital/szervizpro/dashboard.png', 'alt' => 'A SzervizPRO napi műhelyközpontja munkalap- és kommunikációs áttekintéssel', 'label' => 'Műhelynézet', 'title' => 'A napi teendők egy képernyőn', 'group' => 'A műhelyben', 'width' => 1440, 'height' => 1050],
+                ['src' => '/media/pzdigital/szervizpro/dashboard.png', 'alt' => 'A SzervizPro napi műhelyközpontja munkalap- és kommunikációs áttekintéssel', 'label' => 'Műhelynézet', 'title' => 'A napi teendők egy képernyőn', 'group' => 'A műhelyben', 'width' => 1440, 'height' => 1050],
                 ['src' => '/media/pzdigital/szervizpro/work-order.jpg', 'alt' => 'Digitális munkalap tesztadatokkal: jármű, ügyfél, állapot és munkaleírás', 'label' => 'Digitális munkalap', 'title' => 'A javítás minden fontos adata egy helyen', 'group' => 'A műhelyben', 'fit' => 'contain', 'width' => 1940, 'height' => 920],
                 ['src' => '/media/pzdigital/szervizpro/work-order-parts.jpg', 'alt' => 'Munkalap alkatrészlistája tesztadatokkal: fékbetét, féktárcsa, motorolaj és tömítés, mennyiséggel és árral', 'label' => 'Alkatrészek', 'title' => 'Alkatrészek és összegek a munkalapon', 'group' => 'A műhelyben', 'fit' => 'contain', 'width' => 1550, 'height' => 980],
                 ['src' => '/media/pzdigital/szervizpro/customer-home.jpg', 'alt' => 'Teszt Szerviz Kft. ügyféloldali kezdőképernyője állapot-előnézettel, demóadatokkal', 'label' => 'Ügyféloldal', 'title' => 'Kevesebb telefon, érthetőbb tájékoztatás', 'group' => 'Az ügyfélnek', 'fit' => 'contain', 'width' => 1950, 'height' => 790],
