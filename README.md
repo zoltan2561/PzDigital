@@ -1,4 +1,4 @@
-# PZ Digital weboldal
+# SzoftLab weboldal
 
 Laravel 13 + Blade + Tailwind/Vite alapú céges weboldal. A projekt adatvezérelt termék- és referenciaoldalakat, szolgáltatási és folyamatoldalakat, valamint tartósan mentett, queue-alapú kapcsolatfelvételt tartalmaz.
 
@@ -29,3 +29,5 @@ vendor\bin\pint --test
 ```
 
 Részletes konfiguráció és nyitott jóváhagyások: [docs/pzdigital/IMPLEMENTATION_NOTES.md](docs/pzdigital/IMPLEMENTATION_NOTES.md).
+
+Az aktuális arculat és a képek: [docs/SZOFTLAB_BRAND.md](docs/SZOFTLAB_BRAND.md).

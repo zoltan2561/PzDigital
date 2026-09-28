@@ -20,6 +20,9 @@ class InquiryController extends Controller
     public function create(): View
     {
         $interest = request()->string('erdeklodes')->toString();
+        if ($interest === 'foodshop') {
+            $interest = 'foodpro';
+        }
         $project = request()->string('referencia')->toString();
         $products = $this->catalog->products();
         $projects = $this->catalog->projects();

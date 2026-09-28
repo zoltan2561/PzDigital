@@ -1,5 +1,5 @@
 export function initHomeReveals(gsap, ScrollTrigger) {
-    if (!document.querySelector('.company-home-hero')) {
+    if (!document.querySelector('[data-home-reveal]')) {
         return () => {};
     }
 
@@ -17,8 +17,8 @@ export function initHomeReveals(gsap, ScrollTrigger) {
 
             document.querySelectorAll('[data-home-reveal]').forEach((section) => {
                 const groups = [
-                    '.section-heading, .principles-intro, .technology-heading, .compact-references-inner > div:first-child',
-                    '.service-rows article, .process-grid li, .principles-list article, .technology-list li, .faq-list details',
+                    '.section-heading, .principles-intro, .technology-heading, .compact-references-inner > div:first-child, .product-offer-intro',
+                    '.service-rows article, .process-grid li, .principles-list article, .technology-list li, .faq-list details, .product-value-card, .product-feature-card, .product-tour article, .gallery-card',
                 ];
                 groups.forEach((selector) => {
                     const elements = section.querySelectorAll(selector);
@@ -29,7 +29,7 @@ export function initHomeReveals(gsap, ScrollTrigger) {
                         scrollTrigger: { trigger: elements[0], start: 'top 92%', once: true },
                     });
                 });
-                section.querySelectorAll('.home-product-card, .reference-preview').forEach((element) => {
+                section.querySelectorAll('.home-product-card, .reference-preview, .product-offer-card').forEach((element) => {
                     gsap.from(element, {
                         y: 10, opacity: 0.65, duration: 0.6, ease: 'power3.out',
                         clearProps: 'transform,opacity',

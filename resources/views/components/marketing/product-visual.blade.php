@@ -4,7 +4,7 @@
         <div class="visual-label visual-label-verified"><span></span>{{ $product['visual_label'] }}</div>
         <div class="browser-bar"><i></i><i></i><i></i><span>{{ $product['visual_title'] }}</span></div>
         <div class="product-screen">
-            <img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="1440" height="1000" @if($compact) loading="lazy" @else fetchpriority="high" @endif>
+            <img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="{{ $product['screenshots'][0]['width'] ?? 1440 }}" height="{{ $product['screenshots'][0]['height'] ?? 1000 }}" @if($compact) loading="lazy" @else fetchpriority="high" @endif>
         </div>
     </figure>
 @else

@@ -1,12 +1,13 @@
 @extends('layouts.marketing')
-@php($title = 'Kapcsolat — SzoftPont')
-@php($description = 'Kérj termékbemutatót vagy írj a SzoftPontnak egyedi webes fejlesztési elképzelésedről.')
+@php($title = 'Kapcsolat — SzoftLab')
+@php($description = 'Kérj termékbemutatót vagy írj a SzoftLabnak egyedi webes fejlesztési elképzelésedről.')
 @php($activeProject = old('project_slug', $selectedProject))
+@php($quoteRequest = request()->boolean('ajanlat') && $selectedProduct !== '')
 
 @section('content')
 <section class="contact-hero">
     <div class="container contact-grid">
-        <div class="contact-copy"><span class="eyebrow eyebrow-light">Kapcsolat</span><h1>Mit szeretnél megoldani?</h1><p>Írd meg, mire van szükséged. Nem kell kész tervet vagy műszaki leírást küldened. Új fejlesztésről és meglévő rendszer továbbfejlesztéséről is egyeztethetünk.</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük, amit írtál, és jelentkezünk, hogy átbeszéljük a részleteket.</p></div><p class="contact-direct">Közvetlen e-mail: <a href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a></p></div>
+        <div class="contact-copy"><span class="eyebrow eyebrow-light">{{ $quoteRequest ? 'Termékajánlat' : 'Kapcsolat' }}</span><h1>{{ $quoteRequest ? 'Kérj árajánlatot' : 'Mit szeretnél megoldani?' }}</h1><p>{{ $quoteRequest ? 'Írd meg, hogyan dolgoztok most, és mire van szükségetek. A kiválasztott terméket előre beállítottuk az űrlapon; a pontos tartalomról és árról egyeztetés után adunk írásos ajánlatot.' : 'Írd meg, mire van szükséged. Nem kell kész tervet vagy műszaki leírást küldened. Új fejlesztésről és meglévő rendszer továbbfejlesztéséről is egyeztethetünk.' }}</p><div class="contact-note"><strong>Mi történik beküldés után?</strong><p>Átnézzük, amit írtál, és jelentkezünk, hogy átbeszéljük a részleteket.</p></div><p class="contact-direct">Közvetlen e-mail: <a href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a></p></div>
         <div class="form-card">
             <div class="form-heading"><span>Írj nekünk</span><p>A *-gal jelölt mezők kötelezők.</p></div>
             @if($errors->any())<div class="form-alert" role="alert"><strong>{{ $errors->has('form') ? 'A beküldést nem tudtuk feldolgozni.' : 'Nézd át a megjelölt mezőket.' }}</strong>@if($errors->has('form'))<p>{{ $errors->first('form') }}</p>@else<p>Javítsd az adatokat, majd küldd el újra.</p>@endif</div>@endif

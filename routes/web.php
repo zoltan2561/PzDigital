@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/termekek', [PageController::class, 'products'])->name('products.index');
+Route::redirect('/termekek/foodshop', '/termekek/foodpro', 301);
 Route::get('/termekek/{slug}', [PageController::class, 'product'])->name('products.show');
 Route::get('/referenciak', [PageController::class, 'projects'])->name('projects.index');
 Route::get('/referenciak/{slug}', [PageController::class, 'project'])->name('projects.show');

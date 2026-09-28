@@ -1,6 +1,6 @@
 @extends('layouts.marketing')
-@php($title = 'SzoftPont – Szoftverfejlesztés és automatizálás')
-@php($description = 'Egyedi szoftverek, automatizálás és rendszerkapcsolatok a vállalkozásod működéséhez. Saját termékek, bemutatók és átlátható megvalósítás.')
+@php($title = 'SzoftLab – Kulcsrakész rendszerek valós problémákra')
+@php($description = 'Kulcsrakész üzleti rendszerek, amelyek megoldják a napi működés gondjait, és időt, munkát spórolnak.')
 
 @section('content')
 @php($heroProduct = $products->first())
@@ -10,8 +10,8 @@
     <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
         <div class="hero-copy">
             <span class="eyebrow eyebrow-light hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> Szoftver · Automatizálás · Integráció</span>
-            <h1>Ami ma pluszmunka,<br> <span>arra fejlesztünk megoldást.</span></h1>
-            <p>Mondd el, mi lassítja a munkát. Készítünk rá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk, amit ma még kézzel csinálsz.</p>
+            <h1>Valós problémákra<br> <span>kulcsrakész rendszerek.</span></h1>
+            <p>Elkészítjük és bevezetjük a munkádhoz illő megoldást: összekötjük a meglévő rendszereidet, automatizáljuk az ismétlődő feladatokat, hogy időt és munkát spórolj.</p>
             <div class="button-row">
                 <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
                 <a class="button button-outline" href="#megoldasok">Megnézem a termékeket</a>
@@ -24,9 +24,9 @@
         </div>
         @if($heroProduct)
             <div class="hero-showcase" data-hero-showcase data-hero-product="{{ $heroProduct['slug'] }}">
-                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Munkáinkból válogatva</div>
+                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Így áll össze a megoldás</div>
                 <figure class="showcase-window showcase-window-collage">
-                    <img src="/media/pzdigital/hero/multi-project-dashboard-v1.png" alt="SzoftPont termék- és projektáttekintő: SzervizPRO, FoodShop, NapiInfo és ZCutzBarber" width="1672" height="932" fetchpriority="high">
+                    <img src="/media/pzdigital/hero/szoftlab-connected-systems.png" alt="Szemléltető ábra: különálló feladatok egy összekapcsolt rendszerben, áttekinthető eredményekkel" width="1672" height="941" fetchpriority="high">
                 </figure>
                 <div class="showcase-flow">
                     <span class="showcase-flow-icon" aria-hidden="true"><x-marketing.icon name="flow" /></span>
@@ -82,10 +82,10 @@
 <section class="section company-principles-section" data-home-reveal>
     <div class="container principles-layout">
         <div class="principles-intro">
-            <span class="eyebrow">Miért SzoftPont?</span>
+            <span class="eyebrow">Miért SzoftLab?</span>
             <h2>Beszéljük át a feladatot. A technikai részét megoldjuk.</h2>
             <p>Nem kell tudnod, milyen technológia vagy rendszer kell hozzá. Először azt nézzük meg, mit szeretnél egyszerűbben csinálni.</p>
-            <a class="text-link" href="{{ route('about') }}">A SzoftPontról <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="{{ route('about') }}">A SzoftLabról <span aria-hidden="true">→</span></a>
         </div>
         <div class="principles-list">
             <article><span>01</span><div><h3>Érthető egyeztetés</h3><p>Nem technikai kifejezésekkel kezdünk, hanem azzal, mit szeretnél megoldani.</p></div></article>
@@ -146,7 +146,7 @@
             <details><summary>Mitől függ a fejlesztés ára?</summary><p>A funkcióktól, a tartalomtól és a meglévő rendszerekhez szükséges kapcsolatoktól. Az ajánlatban megmutatjuk, mi tartozik a feladathoz, és mi jelent külön költséget.</p></details>
             <details><summary>Meglévő rendszerrel is tudtok dolgozni?</summary><p>Először átnézzük a jelenlegi megoldást. Ezután javasoljuk, mit érdemes megtartani, javítani vagy továbbfejleszteni. Nem kell automatikusan mindent újrakezdeni.</p></details>
             <details><summary>Milyen feladatot érdemes automatizálni?</summary><p>Például foglalási adatok továbbítását, riportok előkészítését vagy ismétlődő adatfrissítést. A saját folyamatodból indulunk ki; a lehetőségekhez a használt rendszereket is meg kell nézni.</p></details>
-            <details><summary>A domain, a tárhely és a céges e-mail ügyében is segítetek?</summary><p>Ezek beállítása is része lehet a közös munkának. Az ajánlatban külön jelezzük a beállítás feladatait és a szükséges szolgáltatások díjait.</p></details>
+            <details><summary>A domain, a tárhely és a céges e-mail ügyében is segítetek?</summary><p>A saját termékeinknél 3 hónap díjmentes tárhelyet és domaint adunk, a beüzemelésben segítünk. Az indulás utáni és az egyéb szolgáltatási költségeket az ajánlatban rögzítjük.</p></details>
             <details><summary>Kész műszaki tervvel kell érkeznem?</summary><p>Nem. Elég, ha elmondod, mivel foglalkozol, és min szeretnél változtatni. Ha van jelenlegi weboldalad vagy egy jó példád, azt is megnézzük.</p></details>
         </div>
     </div>

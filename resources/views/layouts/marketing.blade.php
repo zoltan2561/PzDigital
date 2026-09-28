@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? config('pzdigital.brand.name').' — üzleti szoftverek és egyedi fejlesztés' }}</title>
-    <meta name="description" content="{{ $description ?? 'Egyedi szoftverek, automatizálás és rendszerkapcsolatok a vállalkozásod működéséhez.' }}">
+    <title>{{ $title ?? config('pzdigital.brand.name').' — kulcsrakész üzleti rendszerek' }}</title>
+    <meta name="description" content="{{ $description ?? 'Kulcsrakész rendszerek valós üzleti problémákra. Kevesebb kézi munka, több idő a fontos feladatokra.' }}">
     <link rel="canonical" href="{{ url()->current() }}">
     @if(($noindex ?? false) || app()->environment() !== 'production')
         <meta name="robots" content="noindex, nofollow">
@@ -12,10 +12,14 @@
     <meta name="theme-color" content="#13151A">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ config('pzdigital.brand.name') }}">
-    <meta property="og:title" content="{{ $title ?? config('pzdigital.brand.name').' — üzleti szoftverek és egyedi fejlesztés' }}">
-    <meta property="og:description" content="{{ $description ?? 'Egyedi szoftverek, automatizálás és rendszerkapcsolatok a vállalkozásod működéséhez.' }}">
+    <meta property="og:title" content="{{ $title ?? config('pzdigital.brand.name').' — kulcsrakész üzleti rendszerek' }}">
+    <meta property="og:description" content="{{ $description ?? 'Kulcsrakész rendszerek valós üzleti problémákra. Kevesebb kézi munka, több idő a fontos feladatokra.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('media/pzdigital/brand/szoftlab-social.png') }}">
+    <meta property="og:image:width" content="1731">
+    <meta property="og:image:height" content="909">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ asset('media/pzdigital/brand/szoftlab-social.png') }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <script type="application/ld+json"><?php echo json_encode(['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => config('pzdigital.brand.name'), 'url' => url('/')], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
@@ -27,7 +31,7 @@
     <header class="site-header" data-header>
         <div class="container nav-shell">
             <a class="brand brand-surface" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal">
-                <img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftpont-logo-primary.png') }}" alt="" width="2172" height="724">
+                <img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftlab-logo-primary.png') }}" alt="" width="2172" height="724">
             </a>
 
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" data-nav-toggle>
@@ -54,7 +58,7 @@
     <footer class="site-footer">
         <div class="container footer-grid">
             <div>
-                <a class="brand brand-inverse brand-surface" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal"><img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftpont-logo-primary.png') }}" alt="" width="2172" height="724"></a>
+                <a class="brand brand-inverse brand-surface" href="{{ route('home') }}" aria-label="{{ config('pzdigital.brand.name') }} főoldal"><img class="brand-logo brand-logo-primary" src="{{ asset('media/pzdigital/brand/szoftlab-logo-primary.png') }}" alt="" width="2172" height="724"></a>
                 <p>{{ config('pzdigital.brand.tagline') }}</p>
                 <a class="footer-email" href="mailto:{{ config('pzdigital.contact_email') }}">{{ config('pzdigital.contact_email') }}</a>
             </div>

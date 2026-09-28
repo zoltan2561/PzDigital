@@ -1,9 +1,10 @@
 @extends('layouts.marketing')
-@php($title = 'Termékek — SzoftPont')
-@php($description = 'Ismerd meg a SzoftPont saját szoftvermegoldásait, minden terméknél valós készültségi állapottal.')
+@php($title = 'Termékek — SzoftLab')
+@php($description = 'Ismerd meg a SzoftLab saját szoftvermegoldásait, minden terméknél valós készültségi állapottal.')
 
 @section('content')
-<section class="page-hero"><div class="container narrow"><span class="eyebrow eyebrow-light">Saját szoftvermegoldásaink</span><h1>Üzleti folyamatokra tervezett termékek</h1><p>A működő demót és az előkészítés alatt álló termékváltozatot külön jelöljük. A bemutató mindig a valós készültségből indul ki.</p></div></section>
-<section class="section"><div class="container"><div class="products-grid">@foreach($products as $product)<x-marketing.product-card :product="$product" />@endforeach</div></div></section>
+<section class="page-hero"><div class="container narrow"><span class="eyebrow eyebrow-light">Saját szoftvermegoldásaink</span><h1>Kész rendszer a napi munkádhoz</h1><p>Válassz működő szervizrendszert, vagy ismerd meg az előkészítés alatt álló vendéglátós megoldást. Mindkettőnél egyértelműen jelöljük, mi érhető el most.</p></div></section>
+<section class="section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">Válassz területet</span><h2>Melyik működésben segíthetünk?</h2></div><p>A részletes oldalakon a napi előnyöket, a funkciókat és a bevezetés feltételeit is megtalálod.</p></div><div class="products-grid">@foreach($products as $product)<x-marketing.product-card :product="$product" />@endforeach</div></div></section>
+<section class="section product-index-offer" data-home-reveal><div class="container"><span class="eyebrow">Egyszerű indulás</span><h2>Egyszeri vételár, segítség a beüzemelésben.</h2><p>Mindkét termék ajánlatához 3 hónap díjmentes tárhely és domain tartozik. A pontos vételárat, a bevezetési feladatokat és a további fenntartási költségeket írásban rögzítjük.</p><a class="text-link" href="{{ route('contact') }}">Segítséget kérek a választáshoz <span aria-hidden="true">→</span></a></div></section>
 <x-marketing.contact-cta title="Melyik megoldás illik a működésedhez?" />
 @endsection

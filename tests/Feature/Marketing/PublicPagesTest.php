@@ -9,7 +9,7 @@ class PublicPagesTest extends TestCase
     public function test_marketing_pages_render(): void
     {
         $routes = [
-            '/', '/termekek', '/termekek/szervizpro', '/termekek/foodshop',
+            '/', '/termekek', '/termekek/szervizpro', '/termekek/foodpro',
             '/referenciak', '/referenciak/gyroscity', '/referenciak/zcutzbarber',
             '/referenciak/tiszaszalka-se', '/referenciak/napiinfo',
             '/szolgaltatasok', '/hogyan-dolgozunk', '/rolunk', '/kapcsolat',
@@ -21,14 +21,16 @@ class PublicPagesTest extends TestCase
         }
     }
 
-    public function test_public_brand_and_metadata_use_szoftpont(): void
+    public function test_public_brand_and_metadata_use_szoftlab(): void
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('SzoftPont')
-            ->assertSee('/media/pzdigital/brand/szoftpont-logo-primary.png', false)
+            ->assertSee('SzoftLab')
+            ->assertSee('/media/pzdigital/brand/szoftlab-logo-primary.png', false)
+            ->assertSee('/media/pzdigital/brand/szoftlab-social.png', false)
             ->assertDontSee('PZ Digital')
-            ->assertSee('property="og:site_name" content="SzoftPont"', false)
+            ->assertDontSee('SzoftPont')
+            ->assertSee('property="og:site_name" content="SzoftLab"', false)
             ->assertSee('application/ld+json', false)
             ->assertSee('favicon.svg', false);
     }
@@ -37,17 +39,17 @@ class PublicPagesTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Ami ma pluszmunka,')
-            ->assertSee('arra fejlesztünk megoldást.')
+            ->assertSee('Valós problémákra')
+            ->assertSee('kulcsrakész rendszerek.')
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('Munkáinkból válogatva')
-            ->assertSee('/media/pzdigital/hero/multi-project-dashboard-v1.png', false)
+            ->assertSee('Így áll össze a megoldás')
+            ->assertSee('/media/pzdigital/hero/szoftlab-connected-systems.png', false)
             ->assertSee('A fejlesztés lépései')
             ->assertSee('Munkafelvétel')
             ->assertSee('Programozás')
             ->assertSee('Egyeztetés')
             ->assertSee('Átadás')
-            ->assertSee('Mondd el, mi lassítja a munkát. Készítünk rá szoftvert, összekötjük a meglévő rendszereidet, vagy automatizáljuk, amit ma még kézzel csinálsz.')
+            ->assertSee('Elkészítjük és bevezetjük a munkádhoz illő megoldást: összekötjük a meglévő rendszereidet, automatizáljuk az ismétlődő feladatokat, hogy időt és munkát spórolj.')
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
             ->assertSee('Mire szeretnél megoldást?')
@@ -55,10 +57,10 @@ class PublicPagesTest extends TestCase
             ->assertSee('Automatizálás')
             ->assertSee('Saját szoftverek a napi működéshez')
             ->assertSee('SzervizPRO')
-            ->assertSee('FoodShop')
+            ->assertSee('FoodPro')
             ->assertSee('Bemutató elérhető')
             ->assertSee('Előkészítés alatt')
-            ->assertSee('A FoodShop alapja: a GyrosCity.')
+            ->assertSee('A FoodPro alapja: a GyrosCity.')
             ->assertSee('Innen indul a közös munka')
             ->assertSee('Javaslatot és ajánlatot kapsz')
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
@@ -154,16 +156,16 @@ class PublicPagesTest extends TestCase
 
         $this->get('/')->assertOk()
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('data-hero-product="foodshop"', false)
+            ->assertSee('data-hero-product="foodpro"', false)
             ->assertDontSee('/media/pzdigital/szervizpro/dashboard.png', false);
 
-        $products['foodshop']['featured_on_home'] = false;
+        $products['foodpro']['featured_on_home'] = false;
         config(['pzdigital.products' => $products]);
 
         $this->get('/')->assertOk()
             ->assertDontSee('data-hero-showcase', false)
             ->assertDontSee('has-showcase', false)
-            ->assertSee('Ami ma pluszmunka,');
+            ->assertSee('Valós problémákra');
     }
 
     public function test_homepage_preview_placeholder_is_explicit_non_interactive_and_environment_safe(): void
@@ -208,7 +210,7 @@ class PublicPagesTest extends TestCase
         $response = $this->get('/referenciak')
             ->assertOk()
             ->assertSee('Weboldalak és rendszerek a gyakorlatban')
-            ->assertSee('Korábbi és jelenlegi munkák a SzoftPont mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
+            ->assertSee('Korábbi és jelenlegi munkák a SzoftLab mögötti fejlesztői tapasztalatból. Ismerd meg az egyes projektek feladatát és megvalósítását.')
             ->assertSee('project-grid project-grid-index', false)
             ->assertSee('Mondd el, mire van szükséged.')
             ->assertDontSee('belső ellenőrzés');
@@ -235,10 +237,10 @@ class PublicPagesTest extends TestCase
             ->assertSee('Ezt mutatjuk meg a bemutatón')
             ->assertSee('Egy munkalap, a felvételtől az átadásig')
             ->assertSee(route('contact', ['erdeklodes' => 'szervizpro']), false);
-        $this->get('/termekek/foodshop')->assertOk()
+        $this->get('/termekek/foodpro')->assertOk()
             ->assertSee('Előkészítés alatt')
             ->assertSee('nyilvános tesztrendelés jelenleg nem érhető el.')
-            ->assertSee(route('contact', ['erdeklodes' => 'foodshop']), false);
+            ->assertSee(route('contact', ['erdeklodes' => 'foodpro']), false);
     }
 
     public function test_process_page_uses_the_same_customer_facing_four_steps(): void
@@ -255,9 +257,9 @@ class PublicPagesTest extends TestCase
 
     public function test_product_media_and_customer_copy_preserve_context_without_empty_boxes(): void
     {
-        $this->get('/termekek/foodshop')->assertOk()
+        $this->get('/termekek/foodpro')->assertOk()
             ->assertDontSee('Képes bemutató hamarosan')
-            ->assertSee('A FoodShop alapja: a GyrosCity')
+            ->assertSee('A FoodPro alapja: a GyrosCity')
             ->assertSee('A kínálattól a rendelésig')
             ->assertSee('gallery-card-portrait', false)
             ->assertSee('href="/media/pzdigital/references/gyroscity/menu-mobile.jpg"', false);
@@ -336,29 +338,59 @@ class PublicPagesTest extends TestCase
         $this->get('/termekek/szervizpro')
             ->assertOk()
             ->assertSee('Valódi képernyők')
-            ->assertSee('Digitális munkalapok és gyors státuszváltás.')
-            ->assertSee('/media/pzdigital/szervizpro/customer-home.png', false)
-            ->assertSee('/media/pzdigital/szervizpro/status-lookup.png', false);
+            ->assertSee('Alkatrész-adatbázis és bizonylatimport')
+            ->assertSee('Számlázz.hu XML-előnézet már készül.')
+            ->assertSee('Éles számlakibocsátás és Billingo kapcsolat')
+            ->assertSee('Működő funkció')
+            ->assertSee('Külön egyeztetendő')
+            ->assertSee('3 hónap díjmentes tárhely és domain')
+            ->assertSee('Árajánlatot kérek')
+            ->assertSee('/media/pzdigital/szervizpro/customer-home.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/status-lookup.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/customer-status.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/work-order.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/work-order-parts.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/print-work-order.jpg', false)
+            ->assertSee('/media/pzdigital/szervizpro/print-work-order-items.jpg', false)
+            ->assertSee('A műhelyben')
+            ->assertSee('Az ügyfélnek')
+            ->assertSee('Nyomtatáshoz');
+
+        foreach (config('pzdigital.products.szervizpro.screenshots') as $screenshot) {
+            $this->assertFileExists(public_path(ltrim($screenshot['src'], '/')));
+        }
     }
 
-    public function test_foodshop_is_presented_as_a_preparation_with_gyroscity_origin(): void
+    public function test_foodpro_is_presented_as_a_preparation_with_gyroscity_origin(): void
     {
-        $this->assertNull(config('pzdigital.products.foodshop.demo_url'));
-        $this->assertSame('origin', config('pzdigital.products.foodshop.related_projects.0.relationship'));
+        $this->assertNull(config('pzdigital.products.foodpro.demo_url'));
+        $this->assertSame('origin', config('pzdigital.products.foodpro.related_projects.0.relationship'));
 
-        $this->get('/termekek/foodshop')
+        $this->get('/termekek/foodpro')
             ->assertOk()
             ->assertSee('Előkészítés alatt')
-            ->assertSee('A GyrosCity rendelési rendszerére épülő megoldás. A több vállalkozásnál bevezethető változat előkészítés alatt áll.')
-            ->assertSee('Érdeklődöm a megoldásról')
-            ->assertSee('GyrosCity — a FoodShop éles előzménye. Referenciaképernyő.')
+            ->assertSee('A FoodPro a GyrosCity éles rendelési projektjének tapasztalatára épülő')
+            ->assertSee('Árajánlatot kérek')
+            ->assertSee('Éles előzményben')
+            ->assertSee('3 hónap díjmentes tárhely és domain')
+            ->assertSee('GyrosCity — a FoodPro éles előzménye. Referenciaképernyő.')
             ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
             ->assertSee(route('projects.show', 'gyroscity'), false)
             ->assertDontSee('Demó kipróbálása');
 
-        $this->get('/kapcsolat?erdeklodes=foodshop')
+        $this->get('/kapcsolat?erdeklodes=foodpro')
             ->assertOk()
-            ->assertSee('value="foodshop" data-product-option="foodshop" selected', false);
+            ->assertSee('value="foodpro" data-product-option="foodpro" selected', false);
+
+        $this->get('/kapcsolat?erdeklodes=foodpro&ajanlat=1')
+            ->assertOk()
+            ->assertSee('Kérj árajánlatot')
+            ->assertSee('value="foodpro" data-product-option="foodpro" selected', false);
+
+        $this->get('/termekek/foodshop')->assertRedirect('/termekek/foodpro');
+        $this->get('/kapcsolat?erdeklodes=foodshop&ajanlat=1')
+            ->assertOk()
+            ->assertSee('value="foodpro" data-product-option="foodpro" selected', false);
     }
 
     public function test_unknown_product_returns_a_real_404(): void
@@ -392,13 +424,13 @@ class PublicPagesTest extends TestCase
     public function test_unapproved_product_is_not_public(): void
     {
         $products = config('pzdigital.products');
-        $products['foodshop']['content_approved'] = false;
+        $products['foodpro']['content_approved'] = false;
         config(['pzdigital.products' => $products]);
 
-        $this->get('/termekek/foodshop')->assertNotFound();
-        $this->get('/termekek')->assertDontSee(route('products.show', 'foodshop'), false);
-        $this->get('/kapcsolat')->assertDontSee('FoodShop — egyeztetés');
-        $this->get('/sitemap.xml')->assertDontSee('/termekek/foodshop');
+        $this->get('/termekek/foodpro')->assertNotFound();
+        $this->get('/termekek')->assertDontSee(route('products.show', 'foodpro'), false);
+        $this->get('/kapcsolat')->assertDontSee('FoodPro — egyeztetés');
+        $this->get('/sitemap.xml')->assertDontSee('/termekek/foodpro');
     }
 
     public function test_unapproved_project_is_absent_from_every_public_surface(): void

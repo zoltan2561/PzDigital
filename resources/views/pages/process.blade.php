@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@php($title = 'Hogyan dolgozunk? — SzoftPont')
+@php($title = 'Hogyan dolgozunk? — SzoftLab')
 @section('content')
 <section class="page-hero"><div class="container narrow"><span class="eyebrow eyebrow-light">Együttműködés</span><h1>Innen indul a közös munka</h1><p>Négy érthető lépésben jutunk el a feladattól az átadásig.</p></div></section>
 <section class="section"><div class="container timeline">

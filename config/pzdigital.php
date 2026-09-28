@@ -2,10 +2,10 @@
 
 return [
     'brand' => [
-        'name' => 'SzoftPont',
-        'tagline' => 'SzoftPont. Pont arra, amire szükséged van.',
+        'name' => 'SzoftLab',
+        'tagline' => 'Kulcsrakész rendszerek, amelyek időt és munkát spórolnak.',
         // Set only after the new mailbox has been provisioned and approved.
-        'contact_email' => env('SZOFTPONT_CONTACT_EMAIL'),
+        'contact_email' => env('SZOFTLAB_CONTACT_EMAIL'),
     ],
     'contact_email' => env('PZDIGITAL_CONTACT_EMAIL', 'hello@pzdigital.hu'),
     'privacy_version' => env('PZDIGITAL_PRIVACY_VERSION', 'draft-2026-09'),
@@ -28,6 +28,12 @@ return [
         'other' => 'Általános egyeztetés',
     ],
 
+    'product_offer' => [
+        'price_model' => 'Egyszeri vételár',
+        'included_start' => '3 hónap díjmentes tárhely és domain',
+        'setup' => 'Segítség a beüzemelésben',
+        'note' => 'A vételárat, a pontos tartalmat, a domain feltételeit és a 4. hónaptól felmerülő fenntartási költséget az írásos ajánlat rögzíti.',
+    ],
     'products' => [
         'szervizpro' => [
             'slug' => 'szervizpro',
@@ -48,11 +54,24 @@ return [
             'symbol' => '⌁',
             'visual_label' => 'Bemutató elérhető',
             'visual_title' => 'SzervizPRO · napi műhelyközpont',
-            'primary_cta' => 'Bemutatót kérek',
+            'primary_cta' => 'Árajánlatot kérek',
             'benefits' => [
                 'Digitális munkalapok és gyors státuszváltás.',
                 'Ügyféloldali követés rendszám és azonosító alapján.',
                 'Üzenetek, visszahívási kérések és publikus fotók egy helyen.',
+            ],
+            'value_points' => [
+                ['title' => 'Kevesebb kézi admin', 'text' => 'Az autó, a munka, a felhasznált tételek és az állapot egy munkalap köré rendeződik.'],
+                ['title' => 'Kevesebb státuszhívás', 'text' => 'Az ügyfél a kapott azonosítóval maga is ellenőrizheti a javítás nyilvános állapotát.'],
+                ['title' => 'Átláthatóbb átadás', 'text' => 'A műhely és az ügyfél ugyanarról a javításról kap követhető tájékoztatást.'],
+            ],
+            'capabilities' => [
+                ['title' => 'Munkalap a felvételtől az átadásig', 'text' => 'Ügyfél, jármű, hiba, munkadíj, tételek, jegyzetek és állapotok egy helyen. A csapat gyorsan látja, mi következik.', 'state' => 'available'],
+                ['title' => 'Alkatrész-adatbázis és bizonylatimport', 'text' => 'Szöveges beszállítói PDF-ből tételjavaslat készül. Ellenőrzés és javítás után az alkatrészek munkalaphoz rendelhetők; a bizonytalan sorokat nem véglegesíti automatikusan.', 'state' => 'available'],
+                ['title' => 'Ügyféloldali státusz, fotó és üzenet', 'text' => 'Az ügyfél rendszám és kapott azonosító alapján nézheti meg a látható állapotot és képeket, üzenhet vagy visszahívást kérhet.', 'state' => 'available'],
+                ['title' => 'E-mail értesítések', 'text' => 'A fontos eseményekről sorba állított e-mail értesítés küldhető; a műhely az értesítések állapotát is követheti.', 'state' => 'available'],
+                ['title' => 'Számlatervezet és tételes összesítés', 'text' => 'A munkalapból helyi PDF-számlatervezet és ellenőrizhető tételes összesítés készülhet.', 'state' => 'available'],
+                ['title' => 'Számlázz.hu és Billingo', 'text' => 'Számlázz.hu XML-előnézet már készül. Éles számlakibocsátás és Billingo kapcsolat a szolgáltatói beállításokkal együtt külön bevezetési feladat.', 'state' => 'planned'],
             ],
             'flow' => [
                 ['title' => 'Munkafelvétel', 'text' => 'Az ügyfél, a jármű, a hiba és a vállalt munka egy rendezett munkalapra kerül.'],
@@ -66,9 +85,14 @@ return [
                 ['title' => 'Átadás', 'icon' => 'shield'],
             ],
             'screenshots' => [
-                ['src' => '/media/pzdigital/szervizpro/dashboard.png', 'alt' => 'A SzervizPRO napi műhelyközpontja munkalap- és kommunikációs áttekintéssel', 'label' => 'Műhelynézet', 'title' => 'A napi teendők egy képernyőn'],
-                ['src' => '/media/pzdigital/szervizpro/customer-home.png', 'alt' => 'A SzervizPRO ügyféloldali kezdőképernyője állapot-előnézettel', 'label' => 'Ügyféloldal', 'title' => 'Kevesebb telefon, érthetőbb tájékoztatás'],
-                ['src' => '/media/pzdigital/szervizpro/status-lookup.png', 'alt' => 'Javítási állapot lekérdezése rendszám és kapott azonosító alapján', 'label' => 'Biztonságos lekérdezés', 'title' => 'Rendszám és azonosító alapján'],
+                ['src' => '/media/pzdigital/szervizpro/dashboard.png', 'alt' => 'A SzervizPRO napi műhelyközpontja munkalap- és kommunikációs áttekintéssel', 'label' => 'Műhelynézet', 'title' => 'A napi teendők egy képernyőn', 'group' => 'A műhelyben', 'width' => 1440, 'height' => 1050],
+                ['src' => '/media/pzdigital/szervizpro/work-order.jpg', 'alt' => 'Digitális munkalap tesztadatokkal: jármű, ügyfél, állapot és munkaleírás', 'label' => 'Digitális munkalap', 'title' => 'A javítás minden fontos adata egy helyen', 'group' => 'A műhelyben', 'fit' => 'contain', 'width' => 1940, 'height' => 920],
+                ['src' => '/media/pzdigital/szervizpro/work-order-parts.jpg', 'alt' => 'Munkalap alkatrészlistája tesztadatokkal: fékbetét, féktárcsa, motorolaj és tömítés, mennyiséggel és árral', 'label' => 'Alkatrészek', 'title' => 'Alkatrészek és összegek a munkalapon', 'group' => 'A műhelyben', 'fit' => 'contain', 'width' => 1550, 'height' => 980],
+                ['src' => '/media/pzdigital/szervizpro/customer-home.jpg', 'alt' => 'Teszt Szerviz Kft. ügyféloldali kezdőképernyője állapot-előnézettel, demóadatokkal', 'label' => 'Ügyféloldal', 'title' => 'Kevesebb telefon, érthetőbb tájékoztatás', 'group' => 'Az ügyfélnek', 'fit' => 'contain', 'width' => 1950, 'height' => 790],
+                ['src' => '/media/pzdigital/szervizpro/status-lookup.jpg', 'alt' => 'Javítási állapot lekérdezése rendszám és kapott azonosító alapján a Teszt Szerviz Kft. demójában', 'label' => 'Biztonságos lekérdezés', 'title' => 'Rendszám és azonosító alapján', 'group' => 'Az ügyfélnek', 'fit' => 'contain', 'width' => 1950, 'height' => 790],
+                ['src' => '/media/pzdigital/szervizpro/customer-status.jpg', 'alt' => 'Ügyféloldali javítási állapot tesztadatokkal: szerelés alatt, várható elkészülés, idővonal és kapcsolatfelvétel', 'label' => 'Javítás követése', 'title' => 'Az ügyfél látja, hol tart az autója', 'group' => 'Az ügyfélnek', 'fit' => 'contain', 'width' => 1950, 'height' => 920],
+                ['src' => '/media/pzdigital/szervizpro/print-work-order.jpg', 'alt' => 'Nyomtatásra kész munkalap első része tesztadatokkal: munkalapszám, jármű, állapot és ügyféladatok', 'label' => 'Nyomtatható munkalap', 'title' => 'Papíron is áttekinthető munkalap', 'group' => 'Nyomtatáshoz', 'fit' => 'contain', 'width' => 790, 'height' => 610],
+                ['src' => '/media/pzdigital/szervizpro/print-work-order-items.jpg', 'alt' => 'Nyomtatható munkalap tételes alkatrészlistája mennyiséggel, nettó és bruttó árral, tesztadatokkal', 'label' => 'Nyomtatott tételek', 'title' => 'A felhasznált alkatrészek a nyomtatott lapon', 'group' => 'Nyomtatáshoz', 'fit' => 'contain', 'width' => 790, 'height' => 330],
             ],
             'demo_highlights' => [
                 ['title' => 'Egy munkalap, a felvételtől az átadásig', 'text' => 'A bemutatón végignézzük a munkafelvételt és az állapotok követését. Így a saját műhelyed egy tipikus feladatán keresztül ismerheted meg a rendszert.', 'image' => null],
@@ -78,14 +102,16 @@ return [
             'questions' => [
                 ['question' => 'Mit láthatok a bemutatón?', 'answer' => 'A működő műhelynézetet, a digitális munkalapot és az ügyféloldali státuszkövetést mutatjuk meg, a saját folyamataidra koncentrálva.'],
                 ['question' => 'Mennyi idő a bevezetés?', 'answer' => 'Az időigényt a szükséges beállítások és adat-előkészítés felmérése után lehet felelősen rögzíteni.'],
+                ['question' => 'Működik már az éles számlakibocsátás?', 'answer' => 'Jelenleg számlatervezet és Számlázz.hu XML-előnézet érhető el. Az éles Számlázz.hu és Billingo kapcsolat külön integrációs és szolgáltatói ellenőrzést igényel.'],
+                ['question' => 'Bármilyen beszállítói PDF automatikusan importálható?', 'answer' => 'A szöveges PDF-ek felismert sorai ellenőrizhetők és javíthatók. A szkennelt dokumentumok OCR-feldolgozása és minden beszállítói formátum automatikus felismerése jelenleg nem része a rendszernek.'],
             ],
         ],
-        'foodshop' => [
-            'slug' => 'foodshop',
-            'name' => 'FoodShop',
+        'foodpro' => [
+            'slug' => 'foodpro',
+            'name' => 'FoodPro',
             'eyebrow' => 'Online rendelési megoldás',
-            'headline' => 'Online rendelési megoldás, éles projekt tapasztalataira építve.',
-            'summary' => 'A GyrosCity rendelési rendszerére épülő megoldás. A több vállalkozásnál bevezethető változat előkészítés alatt áll.',
+            'headline' => 'Saját rendelési felület az éttermednek.',
+            'summary' => 'A FoodPro a GyrosCity éles rendelési projektjének tapasztalatára épülő, éttermeknek tervezett termék. A több helyen bevezethető változat még előkészítés alatt áll.',
             'audience' => 'Éttermek és vendéglátóhelyek',
             'lifecycle_status' => 'preview',
             'status_label' => 'Előkészítés alatt',
@@ -97,13 +123,24 @@ return [
             'demo_url' => null,
             'accent' => 'green',
             'symbol' => '✦',
-            'visual_label' => 'A FoodShop alapja: GyrosCity',
-            'visual_title' => 'GyrosCity étlap — a FoodShop alapja',
-            'primary_cta' => 'Érdeklődöm a megoldásról',
+            'visual_label' => 'A FoodPro alapja: GyrosCity',
+            'visual_title' => 'GyrosCity étlap — a FoodPro alapja',
+            'primary_cta' => 'Árajánlatot kérek',
             'benefits' => [
                 'Saját márkához illeszthető kínálati felület.',
                 'Mobilon is áttekinthető étlap- és kategóriaszerkezet.',
                 'A termékváltozat pontos keretei egyeztetés alatt állnak.',
+            ],
+            'value_points' => [
+                ['title' => 'Saját rendelési út', 'text' => 'A vendég az étterem saját felületén nézi meg a kínálatot és indítja a rendelést.'],
+                ['title' => 'Könnyebb választás mobilon', 'text' => 'Kategóriák, termékkártyák és átlátható kosár segítik a gyors döntést.'],
+                ['title' => 'Rendezettebb feldolgozás', 'text' => 'A beérkező rendelés a kezelőoldali munkafolyamatba kerül; a pontos FoodPro-változatot az igényekhez igazítjuk.'],
+            ],
+            'capabilities' => [
+                ['title' => 'Mobilbarát étlap és kategóriák', 'text' => 'A GyrosCity éles előzményében a vendég átlátható kínálatból választ. A FoodPro saját arculattal átvehető megoldását előkészítjük.', 'state' => 'origin'],
+                ['title' => 'Kosár és rendelés', 'text' => 'Az éles előzményben a kosárból rendelés indítható. A FoodPro bevezethető változatának szabályait az étterem működéséhez rögzítjük.', 'state' => 'origin'],
+                ['title' => 'Rendelések kezelése', 'text' => 'A GyrosCity adminisztrációban a beérkező rendelések feldolgozhatók. A FoodPro kezelőoldali munkamenete még egyeztetés alatt áll.', 'state' => 'origin'],
+                ['title' => 'Fizetés és külső kapcsolatok', 'text' => 'A kívánt fizetési és egyéb szolgáltatói integrációkat a konkrét bevezetés előtt felmérjük; ezek elérhetőségét az ajánlat rögzíti.', 'state' => 'planned'],
             ],
             'flow' => [
                 ['title' => 'Kínálat', 'text' => 'A termékek és kategóriák jól áttekinthető, mobilbarát bemutatása.'],
@@ -111,11 +148,11 @@ return [
                 ['title' => 'Feldolgozás', 'text' => 'A beérkező rendelések kezelőoldali feldolgozásának koncepciója.'],
             ],
             'screenshots' => [
-                ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'label' => 'Éles előzmény', 'title' => 'GyrosCity étlap — a FoodShop éles előzményének felülete'],
+                ['src' => '/media/pzdigital/references/gyroscity/menu-desktop.jpg', 'alt' => 'GyrosCity online étlap több valódi termékkártyával, nevekkel és árakkal', 'label' => 'Éles előzmény', 'title' => 'GyrosCity étlap — a FoodPro éles előzményének felülete'],
                 ['src' => '/media/pzdigital/references/gyroscity/menu-mobile.jpg', 'alt' => 'GyrosCity mobilos étlapja a népszerű termékek listájával', 'label' => 'Mobilfelület', 'title' => 'Termékkínálat mobilon', 'orientation' => 'portrait', 'width' => 390, 'height' => 844],
             ],
             'demo_highlights' => [
-                ['title' => 'A kínálattól a rendelésig', 'text' => 'A GyrosCity éles előzménye alapján bemutatjuk a vendégoldali rendelési utat. A FoodShop termékváltozatának pontos funkcióit egyeztetjük.', 'image' => null],
+                ['title' => 'A kínálattól a rendelésig', 'text' => 'A GyrosCity éles előzménye alapján bemutatjuk a vendégoldali rendelési utat. A FoodPro termékváltozatának pontos funkcióit egyeztetjük.', 'image' => null],
                 ['title' => 'Mi történik a rendelés beérkezése után?', 'text' => 'Átbeszéljük a kezelőoldali feldolgozást és az éttermed igényeit. A termékváltozat előkészítés alatt áll; nyilvános tesztrendelés jelenleg nem érhető el.', 'image' => null],
             ],
             'related_projects' => [
@@ -124,6 +161,7 @@ return [
             'questions' => [
                 ['question' => 'Elérhető már élő kipróbálás?', 'answer' => 'Nyilvános, írható demót csak elkülönített és biztonságosan ellenőrzött környezetben nyitunk meg. Jelenleg bemutató kérhető.'],
                 ['question' => 'Van bankkártyás fizetés?', 'answer' => 'Az elérhető fizetési és külső integrációkat a konkrét projekt és szolgáltatói feltételek alapján egyeztetjük.'],
+                ['question' => 'A képek már a FoodPro termékből valók?', 'answer' => 'Nem. A képek a GyrosCity éles rendelési felületét mutatják, amelyre a FoodPro koncepciója épül.'],
             ],
         ],
     ],
@@ -141,7 +179,7 @@ return [
             'categories' => ['Éttermi weboldal', 'Online rendelés'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftLab mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -169,7 +207,7 @@ return [
                         ['title' => 'Rendelés', 'body' => 'A kiválasztott tételek a vendégoldali rendelési folyamatba kerülnek.'],
                         ['title' => 'Feldolgozás', 'body' => 'A rendelést a kezelőoldali adminisztrációban lehet feldolgozni.'],
                     ], 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
-                    ['type' => 'integration', 'heading' => 'Éles előzmény a FoodShop mögött', 'body' => 'Az itt bemutatott rendszer a FoodShop előkészítés alatt álló termékváltozatának éles előzménye. Ez nem jelent kész, több vállalkozásnál azonnal bevezethető terméket.', 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
+                    ['type' => 'integration', 'heading' => 'Éles előzmény a FoodPro mögött', 'body' => 'Az itt bemutatott rendszer a FoodPro előkészítés alatt álló termékváltozatának éles előzménye. Ez nem jelent kész, több vállalkozásnál azonnal bevezethető terméket.', 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                     ['type' => 'gallery', 'heading' => 'A valódi étlapfelület', 'body' => 'Nyilvános asztali és mobilképek; a háttérfolyamatot külön, jelölt szemléltető magyarázza.', 'publication_status' => 'published', 'evidence_status' => 'public_screen'],
                     ['type' => 'outcome', 'heading' => 'Amit megvalósítottunk', 'items' => ['Kategóriákba rendezett, reszponzív étlap', 'Vendégoldali rendelési út', 'Rendeléskezelő adminisztráció'], 'publication_status' => 'published', 'evidence_status' => 'owner_confirmed'],
                 ],
@@ -188,7 +226,7 @@ return [
             'categories' => ['Szolgáltatói weboldal', 'Időpontfoglalás'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftLab mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -234,7 +272,7 @@ return [
             'categories' => ['Egyesületi weboldal', 'Sporttartalom'],
             'project_type' => 'client_project',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftLab mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
@@ -281,7 +319,7 @@ return [
             'categories' => ['Tartalmi portál', 'Szerkesztett cikkek'],
             'project_type' => 'unspecified',
             'delivery_context' => 'founder_prior_work',
-            'role_description' => 'Korábbi fejlesztői munka a SzoftPont mögötti szakmai tapasztalatból.',
+            'role_description' => 'Korábbi fejlesztői munka a SzoftLab mögötti szakmai tapasztalatból.',
             'year' => null,
             'publication_status' => 'published',
             'content_approved' => true,
