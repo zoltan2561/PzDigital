@@ -225,7 +225,7 @@ class PublicPagesTest extends TestCase
             $this->get('/termekek/'.$slug)->assertOk()
                 ->assertSee(route('demo.request', ['termek' => $slug]), false)
                 ->assertSee('Kipróbálom')
-                ->assertSee('kedvezményes tárhely- és domainfenntartást');
+                ->assertSee('kedvezményes tárhelydíjjal');
         }
 
         $this->get('/referenciak/fotoklikk')->assertOk()

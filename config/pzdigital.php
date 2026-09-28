@@ -32,7 +32,7 @@ return [
         'price_model' => 'Egyszeri vételár',
         'included_start' => '3 hónap díjmentes tárhely és domain',
         'setup' => 'Segítség a beüzemelésben',
-        'note' => 'A 4. hónaptól kedvezményes tárhely- és domainfenntartást kínálunk. A pontos feltételeket az írásos ajánlat rögzíti; igény esetén hosszú távú támogatásról külön egyeztetünk.',
+        'note' => 'A 4. hónaptól kedvezményes tárhelydíjjal számolhatsz. A domain további feltételeit és a pontos díjakat az írásos ajánlat rögzíti; igény esetén hosszú távú támogatásról külön egyeztetünk.',
     ],
     'products' => [
         'szervizpro' => [
@@ -180,7 +180,7 @@ return [
                 ['question' => 'Megnézhetem működés közben?', 'answer' => 'Igen, a foodpro.shop oldalon bemutató étterem és mintatartalom látható. A saját éttermedhez szükséges beállításokat ajánlat alapján készítjük el.'],
                 ['question' => 'Van bankkártyás fizetés?', 'answer' => 'Barion tesztbeállítás van a rendszerben. Éles online bankkártyás fizetéshez saját Barion kereskedői szerződés, hozzáférések és beüzemelési teszt szükséges; ez nem aktív a bemutatóban.'],
                 ['question' => 'Hogyan működnek az e-mail értesítések?', 'answer' => 'Fiókellenőrzési, rendelési és állapotértesítési e-mail folyamatok állnak rendelkezésre. Az éles kiküldést az étterem saját levelezésével kell beállítani és ellenőrizni.'],
-                ['question' => 'Mit kapok az egyszeri vételárért?', 'answer' => 'A pontos funkciókat és beüzemelési feladatokat az ajánlat rögzíti. Az induláshoz 3 hónap díjmentes tárhely és domain tartozik; a 4. hónaptól kedvezményes tárhely- és domainfenntartást kínálunk. Igény esetén hosszú távú támogatásról külön egyeztetünk.'],
+                ['question' => 'Mit kapok az egyszeri vételárért?', 'answer' => 'A pontos funkciókat és beüzemelési feladatokat az ajánlat rögzíti. Az induláshoz 3 hónap díjmentes tárhely és domain tartozik; a 4. hónaptól kedvezményes tárhelydíjjal számolhatsz. A domain további feltételeit az ajánlat tartalmazza. Igény esetén hosszú távú támogatásról külön egyeztetünk.'],
             ],
         ],
     ],
