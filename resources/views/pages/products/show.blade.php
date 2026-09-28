@@ -59,8 +59,8 @@
                     @if($group !== '')<h3>{{ $group }}</h3>@endif
                     <div class="product-gallery">
                         @foreach($screenshots as $screenshot)
-                            <figure @class(['gallery-card', 'gallery-card-wide' => $loop->first && $group !== 'Nyomtatáshoz', 'gallery-card-portrait' => ($screenshot['orientation'] ?? null) === 'portrait', 'gallery-card-contained' => ($screenshot['fit'] ?? null) === 'contain'])>
-                                <a class="gallery-image" href="{{ $screenshot['src'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $screenshot['title'] }} — teljes kép megnyitása"><img src="{{ $screenshot['src'] }}" alt="{{ $screenshot['alt'] }}" width="{{ $screenshot['width'] ?? 1440 }}" height="{{ $screenshot['height'] ?? 1000 }}" loading="lazy"></a>
+                            <figure @class(['gallery-card', 'gallery-card-wide' => $loop->first && ($screenshot['width'] ?? 1440) / ($screenshot['height'] ?? 1000) > 1.8 && $group !== 'Nyomtatáshoz', 'gallery-card-portrait' => ($screenshot['orientation'] ?? null) === 'portrait'])>
+                                <a class="gallery-image" href="{{ $screenshot['src'] }}" data-product-lightbox-open aria-label="{{ $screenshot['title'] }} — kép nagyítása"><img src="{{ $screenshot['src'] }}" alt="{{ $screenshot['alt'] }}" width="{{ $screenshot['width'] ?? 1440 }}" height="{{ $screenshot['height'] ?? 1000 }}" loading="lazy"></a>
                                 <figcaption><span>{{ $screenshot['label'] }}</span><strong>{{ $screenshot['title'] }}</strong></figcaption>
                             </figure>
                         @endforeach
@@ -70,6 +70,20 @@
         </div>
     </div>
 </section>
+<dialog class="product-lightbox" data-product-lightbox aria-label="Termékkép nagyítva">
+    <div class="product-lightbox-toolbar">
+        <span data-product-lightbox-count></span>
+        <div class="product-lightbox-actions">
+            <button type="button" data-product-lightbox-prev aria-label="Előző kép">←</button>
+            <button type="button" data-product-lightbox-next aria-label="Következő kép">→</button>
+            <button type="button" data-product-lightbox-close aria-label="Nagyított kép bezárása">Bezárás ×</button>
+        </div>
+    </div>
+    <figure>
+        <div class="product-lightbox-image"><img data-product-lightbox-image alt=""></div>
+        <figcaption data-product-lightbox-caption></figcaption>
+    </figure>
+</dialog>
 @endif
 
 @if($relatedProjects->isNotEmpty())

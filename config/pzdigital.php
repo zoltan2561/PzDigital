@@ -124,7 +124,7 @@ return [
             'accent' => 'green',
             'symbol' => '✦',
             'visual_label' => 'FoodPro élő bemutató',
-            'visual_title' => 'Étlap és gyors rendelés',
+            'visual_title' => 'FoodPro főoldal és gyors rendelés',
             'value_heading' => 'Gyorsabb rendelés, rendezettebb konyhai munka',
             'value_intro' => 'A vendég a saját telefonján választ; az étterem egy kezelőoldalon követi, mit kell elkészíteni.',
             'flow_intro' => 'A vendég rendelési útja és az étterem napi feladatai ugyanabban a rendszerben kapcsolódnak össze.',
@@ -157,6 +157,7 @@ return [
                 ['title' => 'Elkészítés', 'text' => 'A csapat az adminban látja a beérkezett rendelést, és szükség esetén azonnal kinyomtatja.'],
             ],
             'screenshots' => [
+                ['src' => '/media/pzdigital/foodpro/home-desktop.png', 'alt' => 'A FoodPro bemutató étterem főoldala étlap gombbal és kategóriakártyákkal', 'label' => 'Vendégoldali főoldal', 'title' => 'Innen indul a rendelés', 'group' => 'A vendégnek', 'width' => 1440, 'height' => 1050],
                 ['src' => '/media/pzdigital/foodpro/menu.png', 'alt' => 'FoodPro bemutató étlapja termékkártyákkal és árakkal', 'label' => 'Vendégoldali étlap', 'title' => 'A kínálat gyorsan áttekinthető', 'group' => 'A vendégnek', 'width' => 1350, 'height' => 530],
                 ['src' => '/media/pzdigital/foodpro/product-options.png', 'alt' => 'FoodPro termékoldal választható szószokkal és elhagyható összetevőkkel', 'label' => 'Termékopciók', 'title' => 'Személyre szabható étel', 'group' => 'A vendégnek', 'width' => 1360, 'height' => 890],
                 ['src' => '/media/pzdigital/foodpro/quick-order.png', 'alt' => 'FoodPro termékoldal extrákkal, speciális kérés mezővel és Gyors rendelés gombbal', 'label' => 'Gyors rendelés', 'title' => 'Rövid út a rendelésig', 'group' => 'A vendégnek', 'width' => 2560, 'height' => 1249],

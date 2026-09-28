@@ -1,5 +1,6 @@
 import './bootstrap';
 import { initMarketingMotion } from './marketing/motion/index.js';
+import { initProductLightbox } from './marketing/product-lightbox.js';
 
 const navigationToggle = document.querySelector('[data-nav-toggle]');
 const navigation = document.querySelector('[data-nav]');
@@ -56,4 +57,5 @@ if (inquiryForm) {
 }
 
 const destroyMarketingMotion = initMarketingMotion();
+initProductLightbox();
 window.addEventListener('pagehide', destroyMarketingMotion, { once: true });

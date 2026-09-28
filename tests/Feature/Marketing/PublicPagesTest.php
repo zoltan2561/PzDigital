@@ -262,6 +262,9 @@ class PublicPagesTest extends TestCase
             ->assertSee('Gyors rendelés')
             ->assertSee('Beérkezett rendelések egy helyen')
             ->assertSee('gallery-card-portrait', false)
+            ->assertSee('<dialog class="product-lightbox"', false)
+            ->assertSee('data-product-lightbox-open', false)
+            ->assertSee('href="/media/pzdigital/foodpro/home-desktop.png"', false)
             ->assertSee('href="/media/pzdigital/foodpro/mobile-menu.png"', false);
 
         $this->get('/referenciak/gyroscity')->assertOk()
@@ -338,6 +341,8 @@ class PublicPagesTest extends TestCase
         $this->get('/termekek/szervizpro')
             ->assertOk()
             ->assertSee('Valódi képernyők')
+            ->assertSee('<dialog class="product-lightbox"', false)
+            ->assertSee('data-product-lightbox-open', false)
             ->assertSee('Alkatrész-adatbázis és bizonylatimport')
             ->assertSee('Számlázz.hu XML-előnézet már készül.')
             ->assertSee('Éles számlakibocsátás és Billingo kapcsolat')
@@ -376,6 +381,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('E-mail értesítési sablonok')
             ->assertSee('saját Barion-szerződése')
             ->assertSee('3 hónap díjmentes tárhely és domain')
+            ->assertSee('/media/pzdigital/foodpro/home-desktop.png', false)
             ->assertSee('/media/pzdigital/foodpro/menu.png', false)
             ->assertSee('/media/pzdigital/foodpro/orders-admin.png', false)
             ->assertSee('/media/pzdigital/foodpro/print-receipt.png', false)
