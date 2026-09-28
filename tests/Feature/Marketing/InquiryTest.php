@@ -186,8 +186,20 @@ class InquiryTest extends TestCase
 
         $this->get('/kapcsolat?erdeklodes=uj-termek')
             ->assertOk()
-            ->assertSee('Új termék — bemutató')
+            ->assertSee('Új termék — termékmegkeresés')
             ->assertSee('value="uj-termek"', false);
+
+        $this->get('/kapcsolat?erdeklodes=uj-termek&ajanlat=1')
+            ->assertOk()
+            ->assertSee('Új termék — árajánlat')
+            ->assertSee('value="uj-termek" data-product-option="uj-termek" selected', false);
+
+        $general = $this->get('/kapcsolat?erdeklodes=other')->assertOk()
+            ->assertSee('value="other" selected', false)
+            ->assertSee('Általános egyeztetés')
+            ->assertDontSee('Más kérdés');
+        $this->assertSame(1, substr_count($general->getContent(), 'value="other"'));
+        $this->assertSame(1, substr_count($general->getContent(), 'value="custom_development"'));
     }
 
     public function test_honeypot_and_unknown_product_are_rejected(): void

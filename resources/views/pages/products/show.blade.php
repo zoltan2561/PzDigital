@@ -11,7 +11,7 @@
             <h1>{{ $product['headline'] }}</h1>
             <p>{{ $product['summary'] }}</p>
             <div class="product-hero-customization"><strong>Saját arculat, programozás nélkül</strong><span>Válassz kész témát, majd alakítsd a logót és a színeket az adminban.</span></div>
-            <div class="button-row"><a class="button" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom <span aria-hidden="true">→</span></a><a class="button button-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a>@if(! empty($product['demo_url']))<a class="button button-outline" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">Nyilvános bemutató <span aria-hidden="true">↗</span></a>@endif</div>
+            <div class="button-row">@if(! empty($product['demo_url']))<a class="button" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">{{ $product['public_demo_cta'] ?? 'Nyilvános oldal megnyitása' }} <span aria-hidden="true">↗</span></a>@endif<a class="button button-outline" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Demóhozzáférést kérek <span aria-hidden="true">→</span></a><a class="button button-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a></div>
         </div>
         <div>
             <x-marketing.product-visual :product="$product" />
@@ -20,7 +20,7 @@
     </div>
 </section>
 
-<nav class="product-jump-nav" aria-label="Termékoldal szakaszai"><div class="container"><div class="product-jump-links"><a href="#elonyok">Mit nyersz vele?</a><a href="#folyamat">Hogyan működik?</a><a href="#funkciok">Funkciók</a>@if(! empty($product['screenshots']))<a href="#kepernyok">Képernyők</a>@endif</div><a class="product-jump-price" href="#bevezetes">Bevezetés és ár</a></div></nav>
+<nav class="product-jump-nav" aria-label="Termékoldal szakaszai"><div class="container"><div class="product-jump-links"><a href="#elonyok">Mit nyersz vele?</a><a href="#folyamat">Hogyan működik?</a><a href="#funkciok">Funkciók</a>@if(! empty($product['screenshots']))<a href="#kepernyok">Képernyők</a>@endif</div><a class="product-jump-price" href="#bevezetes">Bevezetés és ajánlat</a></div></nav>
 
 <section id="elonyok" class="section product-value-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">A mindennapokban</span><h2>{{ $product['value_heading'] ?? 'Ezt teszi egyszerűbbé a műhelyben' }}</h2></div><p>{{ $product['value_intro'] ?? 'A rendszer a műhely napi feladatait és az ügyfél tájékoztatását egy folyamatba rendezi.' }}</p></div><div class="product-value-grid">@foreach($product['value_points'] as $point)<article class="product-value-card"><span>0{{ $loop->iteration }}</span><h3>{{ $point['title'] }}</h3><p>{{ $point['text'] }}</p></article>@endforeach</div></div></section>
 
@@ -45,7 +45,7 @@
                 </article>
             @endforeach
         </div>
-        <div class="button-row"><a class="button" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom <span aria-hidden="true">→</span></a><a class="button button-dark-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a></div>
+        <div class="button-row"><a class="button" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Demóhozzáférést kérek <span aria-hidden="true">→</span></a><a class="button button-dark-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a></div>
     </div>
 </section>
 @endif

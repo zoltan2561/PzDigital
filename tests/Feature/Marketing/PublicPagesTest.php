@@ -252,9 +252,16 @@ class PublicPagesTest extends TestCase
         foreach (['szervizpro', 'foodpro'] as $slug) {
             $this->get('/termekek/'.$slug)->assertOk()
                 ->assertSee(route('demo.request', ['termek' => $slug]), false)
-                ->assertSee('Kipróbálom')
-                ->assertSee('kedvezményes tárhelydíjjal');
+                ->assertSee('Demóhozzáférést kérek')
+                ->assertSee('Bevezetés és ajánlat')
+                ->assertSee('4. hónaptól fizetendő tárhelydíjat')
+                ->assertDontSee('Bevezetés és ár');
         }
+
+        $this->get('/demo-igenyles?termek=foodpro')->assertOk()
+            ->assertSee('Éttermi oldal megnyitása')
+            ->assertSee('href="https://foodpro.shop/"', false)
+            ->assertSee(route('contact', ['erdeklodes' => 'foodpro', 'ajanlat' => 1]));
 
         $this->get('/referenciak/fotoklikk')->assertOk()
             ->assertSee('Fejlesztői közreműködés')
@@ -389,6 +396,7 @@ class PublicPagesTest extends TestCase
             ->assertSee('Melyik rendszert keresed?')
             ->assertSee('Ügyféloldali bemutató')
             ->assertSee('Élő éttermi bemutató')
+            ->assertSee('azonnal megnyitható')
             ->assertSee('href="https://szerviz.pro/"', false)
             ->assertSee('href="https://foodpro.shop/"', false);
     }

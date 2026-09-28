@@ -19,8 +19,9 @@
         </ul>
         <div class="home-product-actions">
             <a class="text-link" href="{{ route('products.show', $product['slug']) }}" aria-label="{{ $product['name'] }} termékbemutató">Termékbemutató <span aria-hidden="true">→</span></a>
-            <a class="button button-dark-outline" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Kipróbálom</a>
+            <a class="button button-dark-outline" href="{{ route('demo.request', ['termek' => $product['slug']]) }}">Demóhozzáférést kérek</a>
             <a class="button button-dark-outline" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }}</a>
         </div>
+        @if(! empty($product['demo_url']))<a class="home-product-public-demo" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">{{ $product['public_demo_cta'] ?? 'Nyilvános oldal megnyitása' }} <span aria-hidden="true">↗</span></a>@endif
     </div>
 </article>

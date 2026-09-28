@@ -40,7 +40,7 @@ return [
         'price_model' => 'Egyszeri vételár',
         'included_start' => '3 hónap díjmentes tárhely és domain',
         'setup' => 'Segítség a beüzemelésben',
-        'note' => 'A 4. hónaptól kedvezményes tárhelydíjjal számolhatsz. A domain további feltételeit és a pontos díjakat az írásos ajánlat rögzíti; igény esetén hosszú távú támogatásról külön egyeztetünk.',
+        'note' => 'A 4. hónaptól fizetendő tárhelydíjat és a domain további feltételeit még a megrendelés előtt, az írásos ajánlatban rögzítjük. Igény esetén hosszú távú támogatásról külön egyeztetünk.',
     ],
     'products' => [
         'szervizpro' => [
@@ -58,6 +58,7 @@ return [
             'featured_on_home' => true,
             'demo_mode' => 'gallery',
             'demo_url' => 'https://szerviz.pro/',
+            'public_demo_cta' => 'Ügyféloldal megnyitása',
             'demo_label' => 'Ügyféloldali bemutató',
             'accent' => 'blue',
             'symbol' => '⌁',
@@ -132,6 +133,7 @@ return [
             'featured_on_home' => true,
             'demo_mode' => 'gallery',
             'demo_url' => 'https://foodpro.shop/',
+            'public_demo_cta' => 'Éttermi oldal megnyitása',
             'demo_label' => 'Élő éttermi bemutató',
             'accent' => 'green',
             'symbol' => '✦',
@@ -197,7 +199,7 @@ return [
                 ['question' => 'Magam is alakíthatom az oldal kinézetét?', 'answer' => 'Igen. Az előre beállított témák mellett az adminban szerkeszthetők a logók, a márkaszínek, a képek és több navigációs elem. Ezekhez nincs szükség programozóra.'],
                 ['question' => 'Van Apple Pay és Google Pay?', 'answer' => 'A Barion Smart Gateway támogatja ezeket a fizetési módokat. Megjelenésük a kereskedői szerződéstől, a Barion engedélyezésétől és a vendég eszközétől függ. A FoodPro demó jelenleg tesztmódban működik; az éles fizetést külön üzemeljük be.'],
                 ['question' => 'Hogyan működnek az e-mail értesítések?', 'answer' => 'Fiókellenőrzési, rendelési és állapotértesítési e-mail folyamatok állnak rendelkezésre. Az éles kiküldést az étterem saját levelezésével kell beállítani és ellenőrizni.'],
-                ['question' => 'Mit kapok az egyszeri vételárért?', 'answer' => 'A pontos funkciókat és beüzemelési feladatokat az ajánlat rögzíti. Az induláshoz 3 hónap díjmentes tárhely és domain tartozik; a 4. hónaptól kedvezményes tárhelydíjjal számolhatsz. A domain további feltételeit az ajánlat tartalmazza. Igény esetén hosszú távú támogatásról külön egyeztetünk.'],
+                ['question' => 'Mit kapok az egyszeri vételárért?', 'answer' => 'A pontos funkciókat és beüzemelési feladatokat az ajánlat rögzíti. Az induláshoz 3 hónap díjmentes tárhely és domain tartozik. A 4. hónaptól fizetendő tárhelydíjat és a domain további feltételeit még a megrendelés előtt írásban megkapod. Igény esetén hosszú távú támogatásról külön egyeztetünk.'],
             ],
         ],
     ],

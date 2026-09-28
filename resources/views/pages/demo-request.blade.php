@@ -1,16 +1,18 @@
 @extends('layouts.marketing')
 @php($title = 'Demóigénylés — SzoftLab')
 @php($description = 'Kérj hozzáférést a SzervizPro vagy a FoodPro kipróbálásához, és járd végig a rendszer működését.')
+@php($selectedDemoProduct = $products->get($selectedProduct))
 
 @section('content')
 <section class="contact-hero">
     <div class="container contact-grid">
         <div class="contact-copy">
-            <span class="eyebrow eyebrow-light">Kipróbálom</span>
-            <h1>Nézd meg működés közben.</h1>
-            <p>Kérj demóhozzáférést a kiválasztott rendszerhez. Végigkattinthatod a fő folyamatokat, és megnézheted, hogyan működne a mindennapokban.</p>
+            <span class="eyebrow eyebrow-light">Demóhozzáférés</span>
+            <h1>Próbáld ki a kezelőfelületet is.</h1>
+            <p>A nyilvános oldalt azonnal megnyithatod. Ha a belső folyamatokat is végigkattintanád, kérj tesztadatokkal előkészített demóhozzáférést.</p>
             <div class="contact-note"><strong>Mi történik beküldés után?</strong><p>1–2 munkanapon belül értesítünk e-mailben, és egyeztetjük a kipróbáláshoz szükséges hozzáférést. A demó tesztadatokat használ; nem kell éles ügyféladatot megadnod.</p></div>
-            <p class="contact-direct">Inkább ajánlatot kérnél? <a href="{{ route('contact') }}">Írj nekünk</a>.</p>
+            @if(! empty($selectedDemoProduct['demo_url']))<p class="contact-direct">Előbb körülnéznél? <a href="{{ $selectedDemoProduct['demo_url'] }}" target="_blank" rel="noopener noreferrer">{{ $selectedDemoProduct['public_demo_cta'] ?? 'Nyilvános oldal megnyitása' }} ↗</a></p>@endif
+            <p class="contact-direct">Inkább ajánlatot kérnél? <a href="{{ route('contact', $selectedDemoProduct ? ['erdeklodes' => $selectedProduct, 'ajanlat' => 1] : []) }}">Árajánlatot kérek</a>.</p>
         </div>
         <div class="form-card">
             <div class="form-heading"><span>Demóhozzáférést kérek</span><p>A *-gal jelölt mezők kötelezők.</p></div>

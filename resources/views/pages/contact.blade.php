@@ -33,19 +33,19 @@
                         <option value="">Válassz egy lehetőséget</option>
                         <optgroup label="Projekt típusa">
                             @foreach($inquiryInterests as $value => $label)
+                                @continue($value === 'other')
                                 <option value="{{ $value }}" @selected(old('interest_type', $selectedInterest) === $value)>{{ $label }}</option>
                             @endforeach
                         </optgroup>
                         <optgroup label="Saját termék">
                             @foreach($products as $product)
-                                <option value="{{ $product['slug'] }}" data-product-option="{{ $product['slug'] }}" @selected(old('interest_type', $selectedInterest) === $product['slug'])>{{ $product['name'] }} — {{ $product['lifecycle_status'] === 'preview' ? 'egyeztetés' : 'bemutató' }}</option>
+                                <option value="{{ $product['slug'] }}" data-product-option="{{ $product['slug'] }}" @selected(old('interest_type', $selectedInterest) === $product['slug'])>{{ $product['name'] }} — {{ $quoteRequest ? 'árajánlat' : 'termékmegkeresés' }}</option>
                             @endforeach
                         </optgroup>
                         @if($activeProject && $projects->has($activeProject))
                             <option value="project_reference" data-project-option="{{ $activeProject }}" @selected(old('interest_type', $selectedInterest) === 'project_reference')>{{ $projects[$activeProject]['name'] }} projekthez hasonló fejlesztés</option>
                         @endif
-                        <option value="custom_development" @selected(old('interest_type', $selectedInterest) === 'custom_development')>Egyedi fejlesztés</option>
-                        <option value="other" @selected(old('interest_type', $selectedInterest) === 'other')>Más kérdés</option>
+                        <option value="other" @selected(old('interest_type', $selectedInterest) === 'other')>{{ $inquiryInterests->get('other', 'Általános egyeztetés') }}</option>
                     </select>
                     @error('interest_type')<span class="field-error">{{ $message }}</span>@enderror
                     @error('product_slug')<span class="field-error">{{ $message }}</span>@enderror

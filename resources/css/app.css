@@ -966,6 +966,8 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .home-product-benefits li + li { margin-top: 8px; }
 .home-product-actions { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
 .home-product-actions .text-link { margin: 0; }
+.home-product-public-demo { display: inline-flex; align-items: center; align-self: flex-start; gap: 6px; margin-top: 14px; color: #5142c1; font-size: .84rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.home-product-public-demo:hover, .home-product-public-demo:focus-visible { color: #312497; }
 .product-tour { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 .product-tour article { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .product-tour h3 { margin-bottom: 10px; font-size: 1.4rem; }
