@@ -59,8 +59,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('SzervizPRO')
             ->assertSee('FoodPro')
             ->assertSee('Bemutató elérhető')
-            ->assertSee('Előkészítés alatt')
-            ->assertSee('A FoodPro alapja: a GyrosCity.')
+            ->assertSee('Élő bemutató')
+            ->assertSee('Gyors rendelési út mobilon és asztali gépen.')
             ->assertSee('Innen indul a közös munka')
             ->assertSee('Javaslatot és ajánlatot kapsz')
             ->assertSee('Az átadás utáni támogatásról és bővítésről a megállapodás szerint egyeztetünk.')
@@ -238,8 +238,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('Egy munkalap, a felvételtől az átadásig')
             ->assertSee(route('contact', ['erdeklodes' => 'szervizpro']), false);
         $this->get('/termekek/foodpro')->assertOk()
-            ->assertSee('Előkészítés alatt')
-            ->assertSee('nyilvános tesztrendelés jelenleg nem érhető el.')
+            ->assertSee('Élő bemutató')
+            ->assertSee('A csapat azonnal látja a rendelést')
             ->assertSee(route('contact', ['erdeklodes' => 'foodpro']), false);
     }
 
@@ -259,10 +259,10 @@ class PublicPagesTest extends TestCase
     {
         $this->get('/termekek/foodpro')->assertOk()
             ->assertDontSee('Képes bemutató hamarosan')
-            ->assertSee('A FoodPro alapja: a GyrosCity')
-            ->assertSee('A kínálattól a rendelésig')
+            ->assertSee('Gyors rendelés')
+            ->assertSee('Beérkezett rendelések egy helyen')
             ->assertSee('gallery-card-portrait', false)
-            ->assertSee('href="/media/pzdigital/references/gyroscity/menu-mobile.jpg"', false);
+            ->assertSee('href="/media/pzdigital/foodpro/mobile-menu.png"', false);
 
         $this->get('/referenciak/gyroscity')->assertOk()
             ->assertSee('Amit megvalósítottunk')
@@ -361,22 +361,31 @@ class PublicPagesTest extends TestCase
         }
     }
 
-    public function test_foodpro_is_presented_as_a_preparation_with_gyroscity_origin(): void
+    public function test_foodpro_has_its_own_live_demo_and_verified_product_gallery(): void
     {
-        $this->assertNull(config('pzdigital.products.foodpro.demo_url'));
-        $this->assertSame('origin', config('pzdigital.products.foodpro.related_projects.0.relationship'));
+        $this->assertSame('https://foodpro.shop/', config('pzdigital.products.foodpro.demo_url'));
+        $this->assertSame([], config('pzdigital.products.foodpro.related_projects'));
 
         $this->get('/termekek/foodpro')
             ->assertOk()
-            ->assertSee('Előkészítés alatt')
-            ->assertSee('A FoodPro a GyrosCity éles rendelési projektjének tapasztalatára épülő')
+            ->assertSee('Élő bemutató')
+            ->assertSee('https://foodpro.shop/', false)
             ->assertSee('Árajánlatot kérek')
-            ->assertSee('Éles előzményben')
+            ->assertSee('Gyors rendelés')
+            ->assertSee('Rendeléskezelés és nyomtatás')
+            ->assertSee('E-mail értesítési sablonok')
+            ->assertSee('saját Barion-szerződése')
             ->assertSee('3 hónap díjmentes tárhely és domain')
-            ->assertSee('GyrosCity — a FoodPro éles előzménye. Referenciaképernyő.')
-            ->assertSee('/media/pzdigital/references/gyroscity/menu-desktop.jpg', false)
-            ->assertSee(route('projects.show', 'gyroscity'), false)
-            ->assertDontSee('Demó kipróbálása');
+            ->assertSee('/media/pzdigital/foodpro/menu.png', false)
+            ->assertSee('/media/pzdigital/foodpro/orders-admin.png', false)
+            ->assertSee('/media/pzdigital/foodpro/print-receipt.png', false)
+            ->assertSee('/media/pzdigital/foodpro/users-admin.png', false)
+            ->assertSee('/media/pzdigital/foodpro/barion-admin.png', false)
+            ->assertDontSee('GyrosCity');
+
+        foreach (config('pzdigital.products.foodpro.screenshots') as $screenshot) {
+            $this->assertFileExists(public_path(ltrim($screenshot['src'], '/')));
+        }
 
         $this->get('/kapcsolat?erdeklodes=foodpro')
             ->assertOk()

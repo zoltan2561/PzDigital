@@ -1,13 +1,9 @@
 @props(['product'])
 <article class="home-product-card accent-{{ $product['accent'] }}" data-home-product-slot data-product-card="{{ $product['slug'] }}">
     <figure class="home-product-media">
-        <div class="product-media-heading"><span>{{ $product['slug'] === 'foodpro' ? 'A FoodPro alapja: GyrosCity' : $product['screenshots'][0]['label'] }}</span><x-marketing.icon name="globe" /></div>
+        <div class="product-media-heading"><span>{{ $product['screenshots'][0]['label'] }}</span><x-marketing.icon name="globe" /></div>
         <a class="home-product-image-frame" href="{{ route('products.show', $product['slug']) }}" aria-label="{{ $product['name'] }} képes bemutatója"><img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="{{ $product['screenshots'][0]['width'] ?? 1440 }}" height="{{ $product['screenshots'][0]['height'] ?? 1000 }}" loading="lazy"></a>
-        @if($product['slug'] === 'foodpro')
-            <figcaption>A FoodPro alapja: a GyrosCity.</figcaption>
-        @else
-            <figcaption>{{ $product['visual_title'] }}</figcaption>
-        @endif
+        <figcaption>{{ $product['visual_title'] }}</figcaption>
     </figure>
     <div class="home-product-copy">
         <div class="home-product-heading">

@@ -10,7 +10,7 @@
             <span class="eyebrow eyebrow-light">{{ $product['eyebrow'] }}</span>
             <h1>{{ $product['headline'] }}</h1>
             <p>{{ $product['summary'] }}</p>
-            <div class="button-row"><a class="button" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }} <span aria-hidden="true">→</span></a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a></div>
+            <div class="button-row"><a class="button" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">{{ $product['primary_cta'] }} <span aria-hidden="true">→</span></a><a class="button button-outline" href="#funkciok">Megnézem a részleteket</a>@if(! empty($product['demo_url']))<a class="button button-outline" href="{{ $product['demo_url'] }}" target="_blank" rel="noopener noreferrer">Élő bemutató <span aria-hidden="true">↗</span></a>@endif</div>
         </div>
         <div>
             <x-marketing.product-visual :product="$product" />
@@ -21,18 +21,18 @@
 
 <nav class="product-jump-nav" aria-label="Termékoldal szakaszai"><div class="container"><a href="#elonyok">Mit nyersz vele?</a><a href="#folyamat">Hogyan működik?</a><a href="#funkciok">Funkciók</a>@if(! empty($product['screenshots']))<a href="#kepernyok">Képernyők</a>@endif<a href="#bevezetes">Bevezetés és ár</a></div></nav>
 
-<section id="elonyok" class="section product-value-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">A mindennapokban</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Ezt szeretnénk egyszerűbbé tenni' : 'Ezt teszi egyszerűbbé a műhelyben' }}</h2></div><p>{{ $product['lifecycle_status'] === 'preview' ? 'A FoodPro tervezett előnyeit az éles GyrosCity tapasztalatára építjük; a kész termékváltozat még nincs publikálva.' : 'A rendszer a műhely napi feladatait és az ügyfél tájékoztatását egy folyamatba rendezi.' }}</p></div><div class="product-value-grid">@foreach($product['value_points'] as $point)<article class="product-value-card"><span>0{{ $loop->iteration }}</span><h3>{{ $point['title'] }}</h3><p>{{ $point['text'] }}</p></article>@endforeach</div></div></section>
+<section id="elonyok" class="section product-value-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">A mindennapokban</span><h2>{{ $product['value_heading'] ?? 'Ezt teszi egyszerűbbé a műhelyben' }}</h2></div><p>{{ $product['value_intro'] ?? 'A rendszer a műhely napi feladatait és az ügyfél tájékoztatását egy folyamatba rendezi.' }}</p></div><div class="product-value-grid">@foreach($product['value_points'] as $point)<article class="product-value-card"><span>0{{ $loop->iteration }}</span><h3>{{ $point['title'] }}</h3><p>{{ $point['text'] }}</p></article>@endforeach</div></div></section>
 
-<section id="folyamat" class="section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">Bemutatott folyamat</span><h2>Így épül fel a megoldás</h2></div><p>{{ $product['lifecycle_status'] === 'preview' ? 'A termékváltozat végleges működését és kereteit az igényfelmérés pontosítja.' : 'A két oldal ugyanannak a folyamatnak a számukra fontos részét látja.' }}</p></div><ol class="process-grid process-grid-three">@foreach($product['flow'] as $step)<li><span>{{ $loop->iteration }}</span><h3>{{ $step['title'] }}</h3><p>{{ $step['text'] }}</p></li>@endforeach</ol></div></section>
+<section id="folyamat" class="section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">Bemutatott folyamat</span><h2>Így épül fel a megoldás</h2></div><p>{{ $product['flow_intro'] ?? 'A két oldal ugyanannak a folyamatnak a számukra fontos részét látja.' }}</p></div><ol class="process-grid process-grid-three">@foreach($product['flow'] as $step)<li><span>{{ $loop->iteration }}</span><h3>{{ $step['title'] }}</h3><p>{{ $step['text'] }}</p></li>@endforeach</ol></div></section>
 
-<section id="funkciok" class="section product-features-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">Konkrét lehetőségek</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Mit tervezünk a FoodPro-ban?' : 'Mit tud ma a SzervizPRO?' }}</h2></div><p>{{ $product['lifecycle_status'] === 'preview' ? 'Az éles előzmény működését és a készülő termék célját külön jelöljük.' : 'A kész működést és a külön bevezetést igénylő kapcsolatokat külön jelöljük.' }}</p></div><div class="product-feature-grid">@foreach($product['capabilities'] as $capability)<article class="product-feature-card"><span @class(['feature-state', 'feature-state-planned' => $capability['state'] === 'planned'])>{{ ['available' => 'Működő funkció', 'origin' => 'Éles előzményben', 'planned' => 'Külön egyeztetendő'][$capability['state']] }}</span><h3>{{ $capability['title'] }}</h3><p>{{ $capability['text'] }}</p></article>@endforeach</div><a class="text-link product-feature-cta" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">Saját működésedre kérsz ajánlatot? <span aria-hidden="true">→</span></a></div></section>
+<section id="funkciok" class="section product-features-section" data-home-reveal><div class="container"><div class="section-heading"><div><span class="eyebrow">Konkrét lehetőségek</span><h2>Mit tud ma a {{ $product['name'] }}?</h2></div><p>{{ $product['capabilities_intro'] ?? 'A kész működést és a külön bevezetést igénylő kapcsolatokat külön jelöljük.' }}</p></div><div class="product-feature-grid">@foreach($product['capabilities'] as $capability)<article class="product-feature-card"><span @class(['feature-state', 'feature-state-planned' => $capability['state'] === 'planned'])>{{ ['available' => 'Működő funkció', 'planned' => 'Külön egyeztetendő'][$capability['state']] }}</span><h3>{{ $capability['title'] }}</h3><p>{{ $capability['text'] }}</p></article>@endforeach</div><a class="text-link product-feature-cta" href="{{ route('contact', ['erdeklodes' => $product['slug'], 'ajanlat' => 1]) }}">Saját működésedre kérsz ajánlatot? <span aria-hidden="true">→</span></a></div></section>
 
 @if(! empty($product['demo_highlights']))
 <section class="section section-soft" id="bemutato" data-home-reveal>
     <div class="container">
         <div class="section-heading">
-            <div><span class="eyebrow">A te munkamenetedből kiindulva</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Miről egyeztetünk a bemutatón?' : 'Ezt mutatjuk meg a bemutatón' }}</h2></div>
-            <p>{{ $product['lifecycle_status'] === 'preview' ? 'Ismerd meg a megoldás irányát, és mondd el, hogyan működik a vállalkozásod.' : 'Mondj egy tipikus műhelyfeladatot. Megmutatjuk, hogyan követheted végig a rendszerben.' }}</p>
+            <div><span class="eyebrow">A te munkamenetedből kiindulva</span><h2>Ezt mutatjuk meg a bemutatón</h2></div>
+            <p>{{ $product['demo_intro'] ?? 'Mondj egy tipikus műhelyfeladatot. Megmutatjuk, hogyan követheted végig a rendszerben.' }}</p>
         </div>
         <div class="product-tour">
             @foreach($product['demo_highlights'] as $highlight)
@@ -52,7 +52,7 @@
 @if(! empty($product['screenshots']))
 <section id="kepernyok" class="section section-soft product-gallery-section" data-home-reveal>
     <div class="container">
-        <div class="section-heading"><div><span class="eyebrow">{{ $product['lifecycle_status'] === 'preview' ? 'Referenciaképernyők' : 'Valódi képernyők' }}</span><h2>{{ $product['lifecycle_status'] === 'preview' ? 'Az éles előzmény felülete' : 'Nézd meg működés közben' }}</h2></div><p>{{ $product['lifecycle_status'] === 'preview' ? 'A képek a kapcsolódó éles projekt nyilvános felületéről készültek. A több vállalkozásnál bevezethető termékváltozat előkészítés alatt áll.' : 'A képek a működő rendszer helyi demójából, tesztadatokkal készültek. A bevezetett rendszer arculata és beállításai a műhelyhez igazíthatók.' }}</p></div>
+        <div class="section-heading"><div><span class="eyebrow">Valódi képernyők</span><h2>Nézd meg működés közben</h2></div><p>{{ $product['gallery_intro'] ?? 'A képek a működő rendszer helyi demójából, tesztadatokkal készültek. A bevezetett rendszer arculata és beállításai a műhelyhez igazíthatók.' }}</p></div>
         <div class="product-gallery-groups">
             @foreach(collect($product['screenshots'])->groupBy(fn ($screenshot) => $screenshot['group'] ?? '') as $group => $screenshots)
                 <div class="product-gallery-group">
@@ -75,7 +75,7 @@
 @if($relatedProjects->isNotEmpty())
 <section class="section related-project-section" data-home-reveal>
     <div class="container">
-        <div class="section-heading"><div><span class="eyebrow">Éles előzmény</span><h2>A FoodPro alapja: a GyrosCity</h2></div><p>GyrosCity — a FoodPro éles előzménye. Referenciaképernyő. Az élő oldal nem tesztkörnyezet.</p></div>
+        <div class="section-heading"><div><span class="eyebrow">Kapcsolódó munkánk</span><h2>További példa a gyakorlatból</h2></div></div>
         <div class="project-grid project-grid-related">
             @foreach($relatedProjects as $project)
                 <x-marketing.project-card :project="$project" />
