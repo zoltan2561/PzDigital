@@ -393,6 +393,11 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .prose { max-width: 800px; }
 .prose h2 { margin-top: 45px; font-size: 1.7rem; }
 .prose a { color: var(--brand-dark); text-decoration: underline; }
+.legal-facts { margin: 26px 0 40px; border-top: 1px solid var(--border); }
+.legal-facts div { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.legal-facts dt { color: var(--muted); font-weight: 600; }
+.legal-facts dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .legal-facts div { grid-template-columns: 1fr; gap: 3px; } }
 .draft-notice { padding: 22px; border: 1px solid #f2d184; border-radius: 12px; background: #fff9e8; }
 .draft-notice p { margin: 5px 0 0; }
 

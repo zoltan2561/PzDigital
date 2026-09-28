@@ -6,6 +6,33 @@ use Tests\TestCase;
 
 class PublicPagesTest extends TestCase
 {
+    public function test_legal_identity_contact_and_privacy_terms_are_public(): void
+    {
+        $this->get('/impresszum')->assertOk()
+            ->assertSee('Papp Zoltán egyéni vállalkozó')
+            ->assertSee('4937 Barabás, Petőfi Sándor utca 26.')
+            ->assertSee('61241385')
+            ->assertSee('91482877-1-35')
+            ->assertSee('munka@szoftlab.hu')
+            ->assertDontSee('Vásárosnamény');
+
+        $this->get('/adatkezeles')->assertOk()
+            ->assertSee('12 hónapig')
+            ->assertSee('munka@szoftlab.hu')
+            ->assertSee('Nemzeti Adatvédelmi és Információszabadság Hatóságnál');
+
+        foreach (['/kapcsolat', '/demo-igenyles'] as $path) {
+            $this->get($path)->assertOk()
+                ->assertSee('munka@szoftlab.hu')
+                ->assertSee(route('privacy'), false)
+                ->assertDontSee('Az éles indulás előtt');
+        }
+
+        $this->get('/')->assertOk()
+            ->assertSee('Számlaképesek vagytok?')
+            ->assertSee('alanyi adómentes számlát állítunk ki');
+    }
+
     public function test_marketing_pages_render(): void
     {
         $routes = [
@@ -101,7 +128,7 @@ class PublicPagesTest extends TestCase
         $this->assertLessThan(strpos($html, 'Beszéljük át a feladatot.'), strpos($html, 'id="megoldasok"'));
         $this->assertLessThan(strpos($html, 'A háttérben ezekkel dolgozunk.'), strpos($html, 'id="referenciak"'));
         $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'A háttérben ezekkel dolgozunk.'));
-        $this->assertSame(6, substr_count($html, '<details>'));
+        $this->assertSame(7, substr_count($html, '<details>'));
         $this->assertSame(2, substr_count($html, 'data-home-product-slot'));
         $this->assertSame(1, substr_count($html, '<h1>'));
 

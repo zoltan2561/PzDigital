@@ -31,7 +31,7 @@
                     <div class="field"><label for="demo-phone">Telefon <span>(opcionális)</span></label><input id="demo-phone" name="phone" type="tel" value="{{ old('phone') }}" autocomplete="tel" maxlength="40"></div>
                 </div>
                 <div class="field"><label for="demo-message">Mit szeretnél kipróbálni? <span>(opcionális)</span></label><textarea id="demo-message" name="message" rows="4" maxlength="3000" placeholder="Például a munkalapokat vagy a rendeléskezelést néznéd meg közelebbről.">{{ old('message') }}</textarea>@error('message')<span class="field-error">{{ $message }}</span>@enderror</div>
-                <p class="privacy-note">A megadott adatokat a demóigénylés kezelésére használjuk. Az éles indulás előtt a végleges <a href="{{ route('privacy') }}">adatkezelési tájékoztató</a> jóváhagyása szükséges.</p>
+                <p class="privacy-note">A megadott adatokat a demóigénylés kezelésére használjuk. Részletek az <a href="{{ route('privacy') }}">adatkezelési tájékoztatóban</a>.</p>
                 <button class="button button-full" type="submit" data-submit>Demóhozzáférést kérek <span aria-hidden="true">→</span></button>
             </form>
         </div>

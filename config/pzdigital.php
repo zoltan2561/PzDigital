@@ -4,11 +4,19 @@ return [
     'brand' => [
         'name' => 'SzoftLab',
         'tagline' => 'Kulcsrakész rendszerek, amelyek időt és munkát spórolnak.',
-        // Set only after the new mailbox has been provisioned and approved.
-        'contact_email' => env('SZOFTLAB_CONTACT_EMAIL'),
+        'contact_email' => env('SZOFTLAB_CONTACT_EMAIL') ?: 'munka@szoftlab.hu',
     ],
-    'contact_email' => env('PZDIGITAL_CONTACT_EMAIL', 'hello@pzdigital.hu'),
-    'privacy_version' => env('PZDIGITAL_PRIVACY_VERSION', 'draft-2026-09'),
+    'contact_email' => env('SZOFTLAB_CONTACT_EMAIL') ?: 'munka@szoftlab.hu',
+    'privacy_version' => '2026-09-28',
+    'inquiry_retention_months' => 12,
+    'legal' => [
+        'trading_name' => 'SzoftLab',
+        'provider_name' => 'Papp Zoltán egyéni vállalkozó',
+        'registered_address' => '4937 Barabás, Petőfi Sándor utca 26.',
+        'registration_number' => '61241385',
+        'registering_authority' => 'Nemzeti Adó- és Vámhivatal',
+        'tax_number' => '91482877-1-35',
+    ],
     'inquiry_rate_limit' => (int) env('PZDIGITAL_INQUIRY_RATE_LIMIT', 8),
     'featured_project_slug' => 'gyroscity',
     'homepage_story_project_slugs' => ['napiinfo', 'gyroscity', 'zcutzbarber'],

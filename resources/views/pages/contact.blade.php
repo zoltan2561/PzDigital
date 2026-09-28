@@ -52,7 +52,7 @@
                     @error('project_slug')<span class="field-error">{{ $message }}</span>@enderror
                 </div>
                 <div class="field"><label for="message">Rövid leírás <span>(projektmegkeresésnél kötelező)</span></label><textarea id="message" name="message" rows="5" maxlength="3000" placeholder="Mi a célod, és mi nem működik most jól?">{{ old('message') }}</textarea>@error('message')<span class="field-error">{{ $message }}</span>@enderror</div>
-                <p class="privacy-note">A megadott adatokat a kapcsolatfelvétel kezelésére használjuk. Az éles indulás előtt a végleges <a href="{{ route('privacy') }}">adatkezelési tájékoztató</a> jóváhagyása szükséges.</p>
+                <p class="privacy-note">A megadott adatokat a kapcsolatfelvétel kezelésére használjuk. Részletek az <a href="{{ route('privacy') }}">adatkezelési tájékoztatóban</a>.</p>
                 <button class="button button-full" type="submit" data-submit>Megkeresés elküldése <span aria-hidden="true">→</span></button>
             </form>
         </div>
