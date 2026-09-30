@@ -964,8 +964,11 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 /* Product demonstrations: real features, with clearly labelled future media slots. */
 .home-product-benefits { margin: 0 0 26px; padding-left: 19px; color: var(--muted); font-size: .9rem; }
 .home-product-benefits li + li { margin-top: 8px; }
-.home-product-actions { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
-.home-product-actions .text-link { margin: 0; }
+.home-product-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 10px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
+.home-product-actions > a { display: inline-flex; width: 100%; min-height: 49px; align-items: center; justify-content: center; gap: 5px; padding: 10px 8px; text-align: center; font-size: .86rem; line-height: 1.3; }
+.home-product-actions .text-link { margin: 0; border: 1px solid #d5dbf1; border-radius: 10px; background: #f8f9ff; }
+.home-product-actions .text-link:hover, .home-product-actions .text-link:focus-visible { border-color: #9389e7; background: #f1efff; }
+.home-product-actions .button-dark-outline:nth-child(2) { color: #fff; border: 0; background: linear-gradient(135deg, #6c5ce7 0%, #3d67df 100%); }
 .home-product-public-demo { display: inline-flex; align-items: center; align-self: flex-start; gap: 6px; margin-top: 14px; color: #5142c1; font-size: .84rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .home-product-public-demo:hover, .home-product-public-demo:focus-visible { color: #312497; }
 .product-tour { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
@@ -979,8 +982,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 .product-tour-media small { font-size: .75rem; }
 @media (max-width: 680px) {
     .product-tour { grid-template-columns: 1fr; gap: 36px; }
-    .home-product-actions { align-items: stretch; flex-direction: column; }
-    .home-product-actions .text-link { justify-content: center; }
+    .home-product-actions { grid-template-columns: 1fr; }
 }
 
 /* Finishing details and finite, accessible interactions. */
