@@ -78,6 +78,43 @@ class PublicPagesTest extends TestCase
             ->assertSee('favicon.svg', false);
     }
 
+    public function test_social_previews_use_page_images_and_descriptions(): void
+    {
+        $home = $this->get('/')->assertOk()
+            ->assertSee('property="og:locale" content="hu_HU"', false)
+            ->assertSee('property="og:image:alt" content="SzoftLab arculati kép összekapcsolt üzleti rendszerekkel"', false)
+            ->assertSee('name="twitter:card" content="summary_large_image"', false)
+            ->assertSee('name="twitter:title" content="SzoftLab – FoodPro és SzervizPro üzleti rendszerek"', false);
+
+        preg_match('/<script type="application\/ld\+json">(.*?)<\/script>/s', $home->getContent(), $matches);
+        $structuredData = json_decode($matches[1] ?? '', true, flags: JSON_THROW_ON_ERROR);
+        $this->assertSame('Organization', $structuredData['@graph'][0]['@type']);
+        $this->assertSame(asset('media/pzdigital/brand/szoftlab-logo-primary.png'), $structuredData['@graph'][0]['logo']);
+        $this->assertSame('WebSite', $structuredData['@graph'][1]['@type']);
+
+        $this->get('/termekek/foodpro?utm_source=share')->assertOk()
+            ->assertSee('<title>FoodPro – online rendelési rendszer éttermeknek | SzoftLab</title>', false)
+            ->assertSee('rel="canonical" href="'.route('products.show', 'foodpro').'"', false)
+            ->assertSee('property="og:image" content="'.asset('media/pzdigital/foodpro/home-desktop.png').'"', false)
+            ->assertSee('property="og:image:width" content="1425"', false)
+            ->assertSee('property="og:image:height" content="1039"', false)
+            ->assertSee('name="twitter:image:alt" content="A FoodPro bemutató étterem főoldala étlap gombbal és kategóriakártyákkal"', false);
+
+        $this->get('/termekek/szervizpro')->assertOk()
+            ->assertSee('<title>SzervizPro – digitális munkalap autószervizeknek | SzoftLab</title>', false)
+            ->assertSee('property="og:image" content="'.asset('media/pzdigital/szervizpro/dashboard.png').'"', false)
+            ->assertSee('property="og:image:type" content="image/png"', false);
+
+        $this->get('/referenciak/gyroscity')->assertOk()
+            ->assertSee('property="og:image" content="'.asset('media/pzdigital/references/gyroscity/menu-desktop.jpg').'"', false)
+            ->assertSee('property="og:image:type" content="image/jpeg"', false);
+    }
+
+    public function test_robots_file_advertises_the_sitemap(): void
+    {
+        $this->assertStringContainsString('Sitemap: https://szoftlab.hu/sitemap.xml', file_get_contents(public_path('robots.txt')));
+    }
+
     public function test_homepage_leads_with_foodpro_and_szervizpro_before_other_work(): void
     {
         $response = $this->get('/')

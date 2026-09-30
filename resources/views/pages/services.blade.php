@@ -1,5 +1,6 @@
 @extends('layouts.marketing')
 @php($title = 'Szolgáltatások — SzoftLab')
+@php($description = 'Céges weboldal, egyedi üzleti rendszer és automatizálás a napi működésedhez. A SzoftLab a felméréstől a bevezetésig segít.')
 @section('content')
 <section class="page-hero"><div class="container narrow"><span class="eyebrow eyebrow-light">Szolgáltatások</span><h1>A feladattól a használható rendszerig</h1><p>Valós munkafolyamatokra készítünk kulcsrakész megoldást a tervezéstől a bevezetésig. A pontos tartalmat és támogatást minden projektnél külön rögzítjük.</p></div></section>
 <section class="section"><div class="container detail-list">

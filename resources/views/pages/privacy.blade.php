@@ -1,5 +1,6 @@
 @extends('layouts.marketing')
 @php($title = 'Adatkezelési tájékoztató — SzoftLab')
+@php($description = 'Tudnivalók arról, hogyan kezeli a SzoftLab a kapcsolatfelvétel és a demóigénylés során megadott személyes adatokat.')
 @section('content')
 <section class="page-hero compact"><div class="container narrow"><span class="eyebrow eyebrow-light">Kapcsolatfelvétel és demóigénylés</span><h1>Adatkezelési tájékoztató</h1></div></section>
 <section class="section">

@@ -1,5 +1,6 @@
 @extends('layouts.marketing')
 @php($title = 'Impresszum — SzoftLab')
+@php($description = 'A SzoftLab weboldal üzemeltetőjének hivatalos adatai és elérhetőségei.')
 @section('content')
 <section class="page-hero compact"><div class="container narrow"><span class="eyebrow eyebrow-light">Szolgáltatói adatok</span><h1>Impresszum</h1></div></section>
 <section class="section">

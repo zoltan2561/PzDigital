@@ -1,27 +1,76 @@
 <!doctype html>
 <html lang="hu" class="no-js">
 <head>
+    @php
+        $seoTitle = $title ?? config('pzdigital.brand.name').' — kulcsrakész üzleti rendszerek';
+        $seoDescription = $description ?? 'Kulcsrakész rendszerek valós üzleti problémákra. Kevesebb kézi munka, több idő a fontos feladatokra.';
+        $seoUrl = url()->current();
+        $socialImage = $socialImage ?? [
+            'src' => '/media/pzdigital/brand/szoftlab-social.png',
+            'alt' => 'SzoftLab arculati kép összekapcsolt üzleti rendszerekkel',
+            'width' => 1731,
+            'height' => 909,
+        ];
+        $socialImageUrl = asset(ltrim($socialImage['src'], '/'));
+        $socialImageType = str_ends_with(strtolower($socialImage['src']), '.png') ? 'image/png' : 'image/jpeg';
+    @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? config('pzdigital.brand.name').' — kulcsrakész üzleti rendszerek' }}</title>
-    <meta name="description" content="{{ $description ?? 'Kulcsrakész rendszerek valós üzleti problémákra. Kevesebb kézi munka, több idő a fontos feladatokra.' }}">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <link rel="canonical" href="{{ $seoUrl }}">
     @if(($noindex ?? false) || app()->environment() !== 'production')
         <meta name="robots" content="noindex, nofollow">
+    @else
+        <meta name="robots" content="max-image-preview:large">
     @endif
     <meta name="theme-color" content="#13151A">
+    <meta property="og:locale" content="hu_HU">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ config('pzdigital.brand.name') }}">
-    <meta property="og:title" content="{{ $title ?? config('pzdigital.brand.name').' — kulcsrakész üzleti rendszerek' }}">
-    <meta property="og:description" content="{{ $description ?? 'Kulcsrakész rendszerek valós üzleti problémákra. Kevesebb kézi munka, több idő a fontos feladatokra.' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('media/pzdigital/brand/szoftlab-social.png') }}">
-    <meta property="og:image:width" content="1731">
-    <meta property="og:image:height" content="909">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:url" content="{{ $seoUrl }}">
+    <meta property="og:image" content="{{ $socialImageUrl }}">
+    <meta property="og:image:type" content="{{ $socialImageType }}">
+    @if(isset($socialImage['width'], $socialImage['height']))
+        <meta property="og:image:width" content="{{ $socialImage['width'] }}">
+        <meta property="og:image:height" content="{{ $socialImage['height'] }}">
+    @endif
+    <meta property="og:image:alt" content="{{ $socialImage['alt'] }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ asset('media/pzdigital/brand/szoftlab-social.png') }}">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ $socialImageUrl }}">
+    <meta name="twitter:image:alt" content="{{ $socialImage['alt'] }}">
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <script type="application/ld+json"><?php echo json_encode(['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => config('pzdigital.brand.name'), 'url' => url('/')], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    @if(request()->routeIs('home'))
+        @php
+            $seoOrganizationId = route('home').'#organization';
+            $structuredData = [
+                '@context' => 'https://schema.org',
+                '@graph' => [
+                    [
+                        '@type' => 'Organization',
+                        '@id' => $seoOrganizationId,
+                        'name' => config('pzdigital.brand.name'),
+                        'legalName' => config('pzdigital.legal.provider_name'),
+                        'url' => route('home'),
+                        'logo' => asset('media/pzdigital/brand/szoftlab-logo-primary.png'),
+                    ],
+                    [
+                        '@type' => 'WebSite',
+                        '@id' => route('home').'#website',
+                        'name' => config('pzdigital.brand.name'),
+                        'url' => route('home'),
+                        'inLanguage' => 'hu-HU',
+                        'publisher' => ['@id' => $seoOrganizationId],
+                    ],
+                ],
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($structuredData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @endif
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

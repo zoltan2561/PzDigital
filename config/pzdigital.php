@@ -46,6 +46,8 @@ return [
         'szervizpro' => [
             'slug' => 'szervizpro',
             'name' => 'SzervizPro',
+            'seo_title' => 'SzervizPro – digitális munkalap autószervizeknek | SzoftLab',
+            'seo_description' => 'Digitális munkalap, műhelykommunikáció és ügyféloldali státuszkövetés egy rendszerben. Nézd meg a SzervizPro bemutatóját.',
             'eyebrow' => 'Szervizeknek tervezett rendszer',
             'headline' => 'Kevesebb adminisztráció. Átláthatóbb szervizmunka.',
             'summary' => 'Digitális munkalap, ügyfélkövetés és műhelykommunikáció egy átlátható rendszerben — kis- és közepes autószervizeknek.',
@@ -121,6 +123,8 @@ return [
         'foodpro' => [
             'slug' => 'foodpro',
             'name' => 'FoodPro',
+            'seo_title' => 'FoodPro – online rendelési rendszer éttermeknek | SzoftLab',
+            'seo_description' => 'Mobilbarát étlap, online rendelés és rendeléskezelő felület éttermeknek. Nézd meg a FoodPro élő bemutatóját.',
             'eyebrow' => 'Online rendelési megoldás',
             'headline' => 'Saját rendelési felület az éttermednek.',
             'summary' => 'Saját, mobilbarát rendelési felület és kezelőoldal éttermeknek. A visszatérő vendég mentett kedvenceiből gyorsan rendelhet; a csapat egy helyen fogadja, nyomtatja és követi a rendeléseket.',
@@ -174,7 +178,7 @@ return [
                 ['title' => 'Elkészítés és követés', 'text' => 'A csapat fogadja és kinyomtatja a rendelést, a vendég pedig a saját fiókjában látja annak állapotát.'],
             ],
             'screenshots' => [
-                ['src' => '/media/pzdigital/foodpro/home-desktop.png', 'alt' => 'A FoodPro bemutató étterem főoldala étlap gombbal és kategóriakártyákkal', 'label' => 'Vendégoldali főoldal', 'title' => 'Innen indul a rendelés', 'group' => 'A vendégnek', 'featured' => true, 'width' => 1440, 'height' => 1050],
+                ['src' => '/media/pzdigital/foodpro/home-desktop.png', 'alt' => 'A FoodPro bemutató étterem főoldala étlap gombbal és kategóriakártyákkal', 'label' => 'Vendégoldali főoldal', 'title' => 'Innen indul a rendelés', 'group' => 'A vendégnek', 'featured' => true, 'width' => 1425, 'height' => 1039],
                 ['src' => '/media/pzdigital/foodpro/menu.png', 'alt' => 'FoodPro bemutató étlapja termékkártyákkal és árakkal', 'label' => 'Vendégoldali étlap', 'title' => 'A kínálat gyorsan áttekinthető', 'group' => 'A vendégnek', 'width' => 1350, 'height' => 530],
                 ['src' => '/media/pzdigital/foodpro/product-options.png', 'alt' => 'FoodPro termékoldal választható szószokkal és elhagyható összetevőkkel', 'label' => 'Termékopciók', 'title' => 'Személyre szabható étel', 'group' => 'A vendégnek', 'width' => 1360, 'height' => 890],
                 ['src' => '/media/pzdigital/foodpro/quick-order.png', 'alt' => 'FoodPro termékoldal extrákkal, speciális kérés mezővel és Gyors rendelés gombbal', 'label' => 'Gyors rendelés', 'title' => 'Rövid út a rendelésig', 'group' => 'A vendégnek', 'width' => 2560, 'height' => 1249],

@@ -1,6 +1,7 @@
 @extends('layouts.marketing')
-@php($title = $product['name'].' — SzoftLab')
-@php($description = $product['summary'])
+@php($title = $product['seo_title'] ?? $product['name'].' — SzoftLab')
+@php($description = $product['seo_description'] ?? $product['summary'])
+@php($socialImage = $product['screenshots'][0])
 
 @section('content')
 <section class="product-hero">

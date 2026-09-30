@@ -1,6 +1,7 @@
 @extends('layouts.marketing')
 @php($title = $project['name'].' referencia — SzoftLab')
 @php($description = $project['case_study']['lead'] ?? $project['summary'])
+@php($socialImage = [...$project['media'][0], 'width' => 1440, 'height' => 1000])
 @php($publishedBlocks = collect($project['case_study']['blocks'] ?? [])->where('publication_status', 'published'))
 
 @section('content')
