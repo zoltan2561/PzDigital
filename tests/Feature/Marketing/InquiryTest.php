@@ -154,6 +154,40 @@ class InquiryTest extends TestCase
         Bus::assertDispatched(SendInquiryNotification::class, 1);
     }
 
+    public function test_security_review_interest_requires_details_and_preserves_the_selected_service(): void
+    {
+        Bus::fake();
+        $token = (string) Str::uuid();
+
+        $this->get('/kapcsolat?erdeklodes=security_review')
+            ->assertOk()
+            ->assertSee('Biztonsági felmérés és mentési terv')
+            ->assertSee('value="security_review" selected', false);
+
+        $payload = [
+            ...$this->validPayload($token),
+            'interest_type' => 'security_review',
+            'product_slug' => null,
+        ];
+
+        $this->from('/kapcsolat')->post('/kapcsolat', [
+            ...$payload,
+            'message' => '',
+        ])->assertRedirect('/kapcsolat')->assertSessionHasErrors('message');
+
+        $this->post('/kapcsolat', [
+            ...$payload,
+            'message' => 'A webes szolgáltatásunk mentéseit és visszaállítási folyamatát szeretnénk felmérni.',
+        ])->assertRedirect('/koszonjuk');
+
+        $this->assertDatabaseHas('inquiries', [
+            'submission_token' => $token,
+            'interest_type' => 'security_review',
+            'product_slug' => null,
+        ]);
+        Bus::assertDispatched(SendInquiryNotification::class, 1);
+    }
+
     public function test_reference_context_is_validated_and_persisted(): void
     {
         Bus::fake();

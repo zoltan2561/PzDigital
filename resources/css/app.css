@@ -833,7 +833,7 @@ button, a, input, select, textarea, summary { outline-offset: 4px; }
 
 .section-services { padding-bottom: 54px; background: var(--sp-paper); }
 .section-services .eyebrow, .home-process-section .eyebrow, .home-products-section .eyebrow { color: var(--brand-dark); }
-.section-services .service-rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 22px; border: 0; }
+.section-services .service-rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; border: 0; }
 .section-services .service-rows article { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 30px; overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: linear-gradient(145deg, #f7f6ff, var(--sp-paper) 68%); box-shadow: 0 6px 25px #17132208; transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease; }
 .service-card-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 28px; }
 .service-card-top > span:last-child { color: #61748f; font-size: .6rem; font-weight: 650; letter-spacing: .07em; }

@@ -131,6 +131,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('Mire szeretnél megoldást?')
             ->assertSee('Egyedi szoftver')
             ->assertSee('Automatizálás')
+            ->assertSee('Kiberbiztonság és mentés')
+            ->assertSee(route('services').'#kiberbiztonsag', false)
             ->assertSee('Ismerd meg a két rendszert')
             ->assertSee('SzervizPro')
             ->assertSee('FoodPro')
@@ -455,6 +457,8 @@ class PublicPagesTest extends TestCase
             ->assertSee('<dialog class="product-lightbox"', false)
             ->assertSee('data-product-lightbox-open', false)
             ->assertSee('Alkatrész-adatbázis és bizonylatimport')
+            ->assertSee('Online időpontfoglalás')
+            ->assertSee('A kérés elküldése önmagában még nem foglalja le az időpontot.')
             ->assertSee('Számlázz.hu XML-előnézet már készül.')
             ->assertSee('Éles számlakibocsátás és Billingo kapcsolat')
             ->assertSee('Működő funkció')
@@ -476,6 +480,19 @@ class PublicPagesTest extends TestCase
         foreach (config('pzdigital.products.szervizpro.screenshots') as $screenshot) {
             $this->assertFileExists(public_path(ltrim($screenshot['src'], '/')));
         }
+
+        $booking = collect(config('pzdigital.products.szervizpro.capabilities'))->firstWhere('title', 'Online időpontfoglalás');
+        $this->assertSame('planned', $booking['state']);
+    }
+
+    public function test_security_service_has_a_dedicated_inquiry_path(): void
+    {
+        $this->get('/szolgaltatasok')->assertOk()
+            ->assertSee('id="kiberbiztonsag"', false)
+            ->assertSee('Biztonsági állapotfelmérés és javítási javaslatok')
+            ->assertSee('Mentési gyakoriság, megőrzés és felelősök meghatározása')
+            ->assertSee('Visszaállítási lépések és próba az egyeztetett körben')
+            ->assertSee(route('contact', ['erdeklodes' => 'security_review']), false);
     }
 
     public function test_foodpro_has_its_own_live_demo_and_verified_product_gallery(): void

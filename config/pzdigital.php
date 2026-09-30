@@ -32,6 +32,7 @@ return [
         'website' => 'Új céges weboldal',
         'business_system' => 'Egyedi üzleti rendszer',
         'existing_system' => 'Meglévő rendszer továbbfejlesztése',
+        'security_review' => 'Biztonsági felmérés és mentési terv',
         'custom_development' => 'Más egyedi fejlesztés',
         'other' => 'Általános egyeztetés',
     ],
@@ -84,6 +85,7 @@ return [
                 ['title' => 'Ügyféloldali státusz, fotó és üzenet', 'text' => 'Az ügyfél rendszám és kapott azonosító alapján nézheti meg a látható állapotot és képeket, üzenhet vagy visszahívást kérhet.', 'state' => 'available'],
                 ['title' => 'E-mail értesítések', 'text' => 'A fontos eseményekről sorba állított e-mail értesítés küldhető; a műhely az értesítések állapotát is követheti.', 'state' => 'available'],
                 ['title' => 'Számlatervezet és tételes összesítés', 'text' => 'A munkalapból helyi PDF-számlatervezet és ellenőrizhető tételes összesítés készülhet.', 'state' => 'available'],
+                ['title' => 'Online időpontfoglalás', 'text' => 'Az ügyfél online időpontkérést küldhet. A műhely ezután időpontot javasol, amelyet az ügyfél az e-mailben kapott linken elfogadhat vagy elutasíthat. A funkció bevezetése külön egyeztetendő.', 'state' => 'planned'],
                 ['title' => 'Számlázz.hu és Billingo', 'text' => 'Számlázz.hu XML-előnézet már készül. Éles számlakibocsátás és Billingo kapcsolat a szolgáltatói beállításokkal együtt külön bevezetési feladat.', 'state' => 'planned'],
             ],
             'flow' => [
@@ -116,6 +118,7 @@ return [
                 ['question' => 'Mit láthatok a bemutatón?', 'answer' => 'A működő műhelynézetet, a digitális munkalapot és az ügyféloldali státuszkövetést mutatjuk meg, a saját folyamataidra koncentrálva.'],
                 ['question' => 'A saját szervizem arculatára szabhatom?', 'answer' => 'Igen. Előre beállított témákból indulhatsz, majd a logót, a böngészőikont és a fő márkaszíneket magad módosíthatod az adminban, programozó nélkül.'],
                 ['question' => 'Mennyi idő a bevezetés?', 'answer' => 'Az időigényt a szükséges beállítások és adat-előkészítés felmérése után lehet felelősen rögzíteni.'],
+                ['question' => 'Van online időpontfoglalás?', 'answer' => 'Az online időpontkérés és visszaigazolás bevezetése külön egyeztetendő; a nyilvános bemutatóban még nem érhető el. Az ügyfél elküldi a kérést, a műhely időpontot javasol, amelyet az ügyfél elfogadhat vagy elutasíthat. A kérés elküldése önmagában még nem foglalja le az időpontot.'],
                 ['question' => 'Működik már az éles számlakibocsátás?', 'answer' => 'Jelenleg számlatervezet és Számlázz.hu XML-előnézet érhető el. Az éles Számlázz.hu és Billingo kapcsolat külön integrációs és szolgáltatói ellenőrzést igényel.'],
                 ['question' => 'Bármilyen beszállítói PDF automatikusan importálható?', 'answer' => 'A szöveges PDF-ek felismert sorai ellenőrizhetők és javíthatók. A szkennelt dokumentumok OCR-feldolgozása és minden beszállítói formátum automatikus felismerése jelenleg nem része a rendszernek.'],
             ],

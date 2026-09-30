@@ -20,7 +20,7 @@ class StoreInquiryRequest extends FormRequest
         $publishedProducts = $catalog->products()->keys()->all();
         $publishedProjects = $catalog->projects()->keys()->all();
         $inquiryInterests = $catalog->inquiryInterests()->keys()->all();
-        $projectInterests = ['website', 'business_system', 'existing_system', 'custom_development'];
+        $projectInterests = ['website', 'business_system', 'existing_system', 'security_review', 'custom_development'];
 
         return [
             'submission_token' => ['required', 'uuid'],
