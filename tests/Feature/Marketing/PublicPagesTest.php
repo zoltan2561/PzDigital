@@ -62,27 +62,23 @@ class PublicPagesTest extends TestCase
             ->assertSee('favicon.svg', false);
     }
 
-    public function test_homepage_has_company_focus_and_expected_section_order(): void
+    public function test_homepage_leads_with_foodpro_and_szervizpro_before_other_work(): void
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('Valós problémákra')
-            ->assertSee('kulcsrakész rendszerek.')
+            ->assertSee('Két kész rendszer.')
+            ->assertSee('Valós napi feladatokra.')
             ->assertSee('data-hero-showcase', false)
-            ->assertSee('Így áll össze a megoldás')
-            ->assertSee('/media/pzdigital/hero/szoftlab-connected-systems.png', false)
-            ->assertSee('A fejlesztés lépései')
-            ->assertSee('Munkafelvétel')
-            ->assertSee('Programozás')
-            ->assertSee('Egyeztetés')
-            ->assertSee('Átadás')
-            ->assertSee('Elkészítjük és bevezetjük a munkádhoz illő megoldást: összekötjük a meglévő rendszereidet, automatizáljuk az ismétlődő feladatokat, hogy időt és munkát spórolj.')
+            ->assertSee('data-hero-product="foodpro"', false)
+            ->assertSee('data-hero-product="szervizpro"', false)
+            ->assertSee('/media/pzdigital/foodpro/home-desktop.png', false)
+            ->assertSee('/media/pzdigital/szervizpro/dashboard.png', false)
             ->assertSee('Megnézem a termékeket')
             ->assertSee('Miben segítünk?')
             ->assertSee('Mire szeretnél megoldást?')
             ->assertSee('Egyedi szoftver')
             ->assertSee('Automatizálás')
-            ->assertSee('Saját szoftverek a napi működéshez')
+            ->assertSee('Ismerd meg a két rendszert')
             ->assertSee('SzervizPro')
             ->assertSee('FoodPro')
             ->assertDontSee('SzervizPRO')
@@ -99,11 +95,7 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('A foglalás bekerül a naptárba.')
             ->assertDontSee('Te látod, ki mikor érkezik.')
             ->assertDontSee('Szemléltető példa.')
-            ->assertSee('A háttérben ezekkel dolgozunk.')
-            ->assertSee('Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.')
-            ->assertSee('cdn.simpleicons.org/laravel/FF2D20', false)
-            ->assertSee('ChatGPT_logo.svg', false)
-            ->assertSee('OpenAI API')
+            ->assertDontSee('A háttérben ezekkel dolgozunk.')
             ->assertSee('Gyakori kérdések')
             ->assertSee('Mikorra készülhet el a fejlesztés?')
             ->assertSee('A domain, a tárhely és a céges e-mail ügyében is segítetek?')
@@ -124,11 +116,11 @@ class PublicPagesTest extends TestCase
             ->assertDontSee('data-project-story=', false);
 
         $html = $response->getContent();
+        $this->assertLessThan(strpos($html, 'data-hero-product="szervizpro"'), strpos($html, 'data-hero-product="foodpro"'));
+        $this->assertLessThan(strpos($html, 'id="referenciak"'), strpos($html, 'id="megoldasok"'));
+        $this->assertLessThan(strpos($html, 'id="szolgaltatasok"'), strpos($html, 'id="referenciak"'));
         $this->assertLessThan(strpos($html, 'Innen indul a közös munka'), strpos($html, 'id="szolgaltatasok"'));
-        $this->assertLessThan(strpos($html, 'id="megoldasok"'), strpos($html, 'Innen indul a közös munka'));
-        $this->assertLessThan(strpos($html, 'Beszéljük át a feladatot.'), strpos($html, 'id="megoldasok"'));
-        $this->assertLessThan(strpos($html, 'A háttérben ezekkel dolgozunk.'), strpos($html, 'id="referenciak"'));
-        $this->assertLessThan(strpos($html, 'Gyakori kérdések'), strpos($html, 'A háttérben ezekkel dolgozunk.'));
+        $this->assertLessThan(strpos($html, 'Beszéljük át a feladatot.'), strpos($html, 'Innen indul a közös munka'));
         $this->assertSame(7, substr_count($html, '<details>'));
         $this->assertSame(2, substr_count($html, 'data-home-product-slot'));
         $this->assertSame(1, substr_count($html, '<h1>'));
@@ -166,13 +158,13 @@ class PublicPagesTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertDontSee('id="referenciak"', false)
-            ->assertSee('A háttérben ezekkel dolgozunk.');
+            ->assertSee('Ismerd meg a két rendszert');
 
         config(['pzdigital.home.show_references' => false]);
         $this->get('/')
             ->assertOk()
             ->assertDontSee('id="referenciak"', false)
-            ->assertSee('A háttérben ezekkel dolgozunk.');
+            ->assertSee('Ismerd meg a két rendszert');
         $this->get('/referenciak')->assertOk();
     }
 
@@ -193,7 +185,8 @@ class PublicPagesTest extends TestCase
         $this->get('/')->assertOk()
             ->assertDontSee('data-hero-showcase', false)
             ->assertDontSee('has-showcase', false)
-            ->assertSee('Valós problémákra');
+            ->assertSee('Szoftver, ami rendet tesz')
+            ->assertDontSee('Két kész rendszer.');
     }
 
     public function test_homepage_preview_placeholder_is_explicit_non_interactive_and_environment_safe(): void

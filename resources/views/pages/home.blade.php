@@ -1,42 +1,83 @@
 @extends('layouts.marketing')
-@php($title = 'SzoftLab – Kulcsrakész rendszerek valós problémákra')
-@php($description = 'Kulcsrakész üzleti rendszerek, amelyek megoldják a napi működés gondjait, és időt, munkát spórolnak.')
+@php($heroProducts = collect(['foodpro', 'szervizpro'])->map(fn ($slug) => $products->firstWhere('slug', $slug))->filter())
+@php($title = $heroProducts->count() === 2 ? 'SzoftLab – FoodPro és SzervizPro üzleti rendszerek' : 'SzoftLab – Egyedi üzleti rendszerek')
+@php($description = $heroProducts->count() === 2 ? 'FoodPro éttermeknek, SzervizPro autószervizeknek. Nézd meg saját rendszereinket és az egyedi fejlesztési lehetőségeket.' : 'Egyedi üzleti rendszerek a napi működéshez. Nézd meg az elérhető megoldásainkat, vagy beszéljük át a feladatodat.')
 
 @section('content')
-@php($heroProduct = $products->first())
-@php($heroFlow = $heroProduct['home_flow'] ?? $heroProduct['flow'] ?? [])
 <section class="hero company-home-hero">
     <div class="hero-orbit" aria-hidden="true"></div>
-    <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProduct])>
+    <div @class(['container', 'company-home-hero-grid', 'has-showcase' => $heroProducts->isNotEmpty()])>
         <div class="hero-copy">
-            <span class="eyebrow eyebrow-light hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> Szoftver · Automatizálás · Integráció</span>
-            <h1>Valós problémákra<br> <span>kulcsrakész rendszerek.</span></h1>
-            <p>Elkészítjük és bevezetjük a munkádhoz illő megoldást: összekötjük a meglévő rendszereidet, automatizáljuk az ismétlődő feladatokat, hogy időt és munkát spórolj.</p>
+            <span class="eyebrow eyebrow-light hero-eyebrow"><span class="brand-dot" aria-hidden="true"></span> {{ $heroProducts->isNotEmpty() ? 'SzoftLab saját termékek' : 'SzoftLab üzleti rendszerek' }}</span>
+            @if($heroProducts->count() === 2)
+                <h1>Két kész rendszer. <span>Valós napi feladatokra.</span></h1>
+                <p>A FoodPro az éttermi rendeléseket, a SzervizPro a műhelymunkát rendezi egy felületre. Nézd meg a bemutatókat, vagy mondd el, milyen egyedi megoldásra van szükséged.</p>
+            @else
+                <h1>Szoftver, ami rendet tesz <span>a napi munkában.</span></h1>
+                <p>Megértjük, hol akad el a munkád, majd megépítjük a hozzá illő rendszert. Nézd meg az elérhető megoldásainkat, vagy beszéljük át az egyedi feladatodat.</p>
+            @endif
             <div class="button-row">
-                <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
-                <a class="button button-outline" href="#megoldasok">Megnézem a termékeket</a>
+                @if($heroProducts->isNotEmpty())
+                    <a class="button" href="#megoldasok">Megnézem a termékeket <span aria-hidden="true">↓</span></a>
+                    <a class="button button-outline" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
+                @else
+                    <a class="button" href="{{ route('contact', ['erdeklodes' => 'other']) }}">Beszéljünk a feladatról <span aria-hidden="true">→</span></a>
+                    <a class="button button-outline" href="#szolgaltatasok">Miben segítünk? <span aria-hidden="true">↓</span></a>
+                @endif
             </div>
-            <div class="hero-assurances" aria-label="Amiben számíthatsz ránk">
-                <span><x-marketing.icon name="code" /> Egyedi fejlesztés</span>
-                <span><x-marketing.icon name="flow" /> Saját termékek</span>
-                <span><x-marketing.icon name="shield" /> Bevezetés</span>
-            </div>
+            @if($heroProducts->count() === 2)
+                <p class="hero-support">FoodPro éttermeknek · SzervizPro autószervizeknek</p>
+            @endif
         </div>
-        @if($heroProduct)
-            <div class="hero-showcase" data-hero-showcase data-hero-product="{{ $heroProduct['slug'] }}">
-                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Így áll össze a megoldás</div>
-                <figure class="showcase-window showcase-window-collage">
-                    <img src="/media/pzdigital/hero/szoftlab-connected-systems.png" alt="Szemléltető ábra: különálló feladatok egy összekapcsolt rendszerben, áttekinthető eredményekkel" width="1672" height="941" fetchpriority="high">
-                </figure>
-                <div class="showcase-flow">
-                    <span class="showcase-flow-icon" aria-hidden="true"><x-marketing.icon name="flow" /></span>
-                    <div><small>A fejlesztés lépései</small><div>@foreach($heroFlow as $step)<span class="showcase-flow-step"><x-marketing.icon :name="$step['icon'] ?? 'flow'" /><span>{{ $step['title'] }}</span></span>@unless($loop->last)<b aria-hidden="true">→</b>@endunless @endforeach</div></div>
+        @if($heroProducts->isNotEmpty())
+            <div class="hero-showcase" data-hero-showcase>
+                <div class="showcase-label"><span class="showcase-dot" aria-hidden="true"></span> Saját szoftvereink</div>
+                <div class="hero-product-stack">
+                    @foreach($heroProducts as $product)
+                        <a class="hero-product-feature accent-{{ $product['accent'] }}" href="{{ route('products.show', $product['slug']) }}" data-hero-product="{{ $product['slug'] }}" aria-label="{{ $product['name'] }} termékbemutató">
+                            <span class="hero-product-feature-copy"><small>{{ $product['audience'] }}</small><strong>{{ $product['name'] }}</strong><span>{{ $product['headline'] }}</span><b>Termékbemutató <span aria-hidden="true">↗</span></b></span>
+                            <span class="hero-product-feature-image"><img src="{{ $product['screenshots'][0]['src'] }}" alt="{{ $product['screenshots'][0]['alt'] }}" width="{{ $product['screenshots'][0]['width'] ?? 1440 }}" height="{{ $product['screenshots'][0]['height'] ?? 1000 }}" @if($loop->first) fetchpriority="high" @else loading="lazy" @endif></span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         @endif
     </div>
-    <div class="container hero-footnote"><span>Az üzleti feladattól a működő megoldásig.</span><a href="#szolgaltatasok">Nézd meg, miben segítünk <span aria-hidden="true">↓</span></a></div>
 </section>
+
+<section id="megoldasok" class="section section-products home-products-section" data-home-reveal>
+    <div class="container">
+        <div class="section-heading">
+            <div><span class="eyebrow">{{ $heroProducts->count() === 2 ? 'FoodPro és SzervizPro' : 'Saját termékeink' }}</span><h2>{{ $heroProducts->count() === 2 ? 'Ismerd meg a két rendszert' : 'Ismerd meg a rendszereinket' }}</h2></div>
+            <div class="section-heading-action"><p>Nézd meg a képernyőket és a funkciókat, majd kérj demóhozzáférést a számodra érdekes termékhez.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
+        </div>
+        <div @class(['home-products-grid', 'is-two-up' => ! $productPlaceholder])>
+            @foreach($products as $product)
+                <x-marketing.home-product-card :product="$product" />
+            @endforeach
+            @if($productPlaceholder)
+                <x-marketing.product-placeholder :placeholder="$productPlaceholder" />
+            @endif
+        </div>
+    </div>
+</section>
+
+@if($showReferences && $projects->isNotEmpty())
+<section class="compact-references" id="referenciak" data-home-reveal>
+    <div class="container compact-references-inner">
+        <div><span class="eyebrow eyebrow-light">Referenciák</span><h2>Nézd meg, min dolgoztunk.</h2><p>Weboldalak, üzleti felületek és automatizált megoldások a gyakorlatban.</p></div>
+        <div class="compact-reference-links">
+            @foreach($projects->take(3) as $project)
+                <a class="reference-preview" href="{{ route('projects.show', $project['slug']) }}">
+                    <div class="reference-preview-image"><img src="{{ $project['media'][0]['card_src'] ?? $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="1000" loading="lazy"><span aria-hidden="true">↗</span></div>
+                    <div class="reference-preview-copy"><span>{{ $project['name'] }}</span><strong>{{ $project['home_feature'] ?? $project['showcase_title'] }}</strong></div>
+                </a>
+            @endforeach
+            <a class="compact-reference-all" href="{{ route('projects.index') }}">Munkáink megtekintése <span aria-hidden="true">→</span></a>
+        </div>
+    </div>
+</section>
+@endif
 
 <section class="section section-services" id="szolgaltatasok" data-home-reveal>
     <div class="container">
@@ -62,23 +103,6 @@
     </div>
 </section>
 
-<section id="megoldasok" class="section section-products home-products-section" data-home-reveal>
-    <div class="container">
-        <div class="section-heading">
-            <div><span class="eyebrow">Saját termékeink</span><h2>Saját szoftverek a napi működéshez</h2></div>
-            <div class="section-heading-action"><p>Nem kell mindig nulláról indulni. Nézd meg saját termékeinket, és beszéljük át, melyik passzolhat a munkádhoz.</p><a class="text-link" href="{{ route('products.index') }}">Összes termék <span aria-hidden="true">→</span></a></div>
-        </div>
-        <div @class(['home-products-grid', 'is-two-up' => ! $productPlaceholder])>
-            @foreach($products as $product)
-                <x-marketing.home-product-card :product="$product" />
-            @endforeach
-            @if($productPlaceholder)
-                <x-marketing.product-placeholder :placeholder="$productPlaceholder" />
-            @endif
-        </div>
-    </div>
-</section>
-
 <section class="section company-principles-section" data-home-reveal>
     <div class="container principles-layout">
         <div class="principles-intro">
@@ -92,49 +116,6 @@
             <article><span>02</span><div><h3>Tudd, mit kapsz</h3><p>Előre átbeszéljük a feladatokat és azt, mi tartozik az ajánlatba.</p></div></article>
             <article><span>03</span><div><h3>Később is bővíthető</h3><p>Ha később új igényed lesz, megnézzük, hogyan érdemes továbbépíteni.</p></div></article>
         </div>
-    </div>
-</section>
-
-@if($showReferences && $projects->isNotEmpty())
-<section class="compact-references" id="referenciak" data-home-reveal>
-    <div class="container compact-references-inner">
-        <div><span class="eyebrow eyebrow-light">Referenciák</span><h2>Nézd meg, min dolgoztunk.</h2><p>Weboldalak, üzleti felületek és automatizált megoldások a gyakorlatban.</p></div>
-        <div class="compact-reference-links">
-            @foreach($projects->take(3) as $project)
-                <a class="reference-preview" href="{{ route('projects.show', $project['slug']) }}">
-                    <div class="reference-preview-image"><img src="{{ $project['media'][0]['card_src'] ?? $project['media'][0]['src'] }}" alt="{{ $project['media'][0]['alt'] }}" width="1440" height="1000" loading="lazy"><span aria-hidden="true">↗</span></div>
-                    <div class="reference-preview-copy"><span>{{ $project['name'] }}</span><strong>{{ $project['home_feature'] ?? $project['showcase_title'] }}</strong></div>
-                </a>
-            @endforeach
-            <a class="compact-reference-all" href="{{ route('projects.index') }}">Munkáink megtekintése <span aria-hidden="true">→</span></a>
-        </div>
-    </div>
-</section>
-@endif
-
-<section class="section technology-section" id="technologiak" data-home-reveal>
-    <div class="container technology-inner">
-        <div class="technology-heading">
-            <span class="eyebrow">Szakmai háttér</span>
-            <h2>A háttérben ezekkel dolgozunk.</h2>
-            <p>Neked nem kell technológiát választanod. A feladathoz illő megoldást mi rakjuk össze.</p>
-        </div>
-        @php($technologies = [
-            ['name' => 'Laravel', 'logo' => 'laravel/FF2D20'],
-            ['name' => 'PHP', 'logo' => 'php/777BB4'],
-            ['name' => 'JavaScript', 'logo' => 'javascript/F7DF1E'],
-            ['name' => 'MySQL', 'logo' => 'mysql/4479A1'],
-            ['name' => 'Docker', 'logo' => 'docker/2496ED'],
-            ['name' => 'Python', 'logo' => 'python/3776AB'],
-            ['name' => 'OpenAI API', 'logo' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'],
-            ['name' => 'Git', 'logo' => 'git/F05032'],
-            ['name' => 'Linux', 'logo' => 'linux/FCC624'],
-        ])
-        <ul class="technology-list" aria-label="Használt technológiák">
-            @foreach($technologies as $technology)
-                <li><img class="technology-logo" src="{{ str_starts_with($technology['logo'], 'http') ? $technology['logo'] : 'https://cdn.simpleicons.org/'.$technology['logo'] }}" alt="" width="22" height="22" loading="lazy"><span>{{ $technology['name'] }}</span></li>
-            @endforeach
-        </ul>
     </div>
 </section>
 

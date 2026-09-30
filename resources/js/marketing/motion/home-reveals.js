@@ -11,8 +11,7 @@ export function initHomeReveals(gsap, ScrollTrigger) {
             const intro = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform,opacity' } });
             // The headline and contact CTA never wait for an entrance animation.
             if (document.querySelector('[data-hero-showcase]')) {
-                intro.from('.showcase-window', { y: 10, opacity: 0.65, duration: 0.6 }, 0)
-                    .from('.showcase-flow', { y: 8, opacity: 0.65, duration: 0.5 }, 0.1);
+                intro.from('.hero-product-feature', { y: 10, opacity: 0.65, duration: 0.6, stagger: 0.09 }, 0);
             }
 
             document.querySelectorAll('[data-home-reveal]').forEach((section) => {
