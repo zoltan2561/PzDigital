@@ -48,6 +48,22 @@ class PublicPagesTest extends TestCase
         }
     }
 
+    public function test_about_page_shows_the_technology_stack(): void
+    {
+        $this->get('/rolunk')->assertOk()
+            ->assertSee('id="technologiak"', false)
+            ->assertSee('A háttérben ezekkel dolgozunk.')
+            ->assertSee('Laravel')
+            ->assertSee('PHP')
+            ->assertSee('JavaScript')
+            ->assertSee('MySQL')
+            ->assertSee('Docker')
+            ->assertSee('Python')
+            ->assertSee('OpenAI API')
+            ->assertSee('Git')
+            ->assertSee('Linux');
+    }
+
     public function test_public_brand_and_metadata_use_szoftlab(): void
     {
         $this->get('/')
